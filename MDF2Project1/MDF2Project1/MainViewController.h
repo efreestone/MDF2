@@ -15,9 +15,10 @@
 
 @interface MainViewController : UITableViewController
 
-//Declare refresh and add buttons
+//Declare refresh, add, and profile buttons
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *profileButton;
 
 @property (strong, nonatomic) NSArray *testArray;
 

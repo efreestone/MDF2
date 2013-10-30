@@ -7,7 +7,7 @@
         <!--Details View Controller-->
         <scene sceneID="DuK-da-6BB">
             <objects>
-                <viewController id="36b-qW-saf" customClass="DetailsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="detailViewController" id="36b-qW-saf" customClass="DetailsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oMT-jM-gbx"/>
                         <viewControllerLayoutGuide type="bottom" id="wzX-UK-DuI"/>
@@ -36,7 +36,9 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="cuo-7Y-m0a"/>
+                    <navigationItem key="navigationItem" id="cuo-7Y-m0a">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="x2a-Ia-i1o"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="iconImage" destination="Ups-74-4bC" id="N9c-4A-pej"/>
                         <outlet property="tweetTextLabel" destination="eAI-ws-t2j" id="A8J-mu-4Ww"/>
@@ -55,6 +57,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <toolbar key="tableFooterView" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="UIi-2w-h2M">
+                            <rect key="frame" x="0.0" y="130" width="320" height="44"/>
+                            <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                            <items>
+                                <barButtonItem width="110" style="plain" systemItem="fixedSpace" id="Vs1-pV-Ct3"/>
+                                <barButtonItem title="Profile" id="dbH-Gv-KCx">
+                                    <connections>
+                                        <segue destination="KsG-0o-D8A" kind="push" id="Nj0-CQ-kz5"/>
+                                    </connections>
+                                </barButtonItem>
+                            </items>
+                        </toolbar>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="TwitterCell" id="tF8-Kv-kHr" customClass="TwitterCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="44"/>
@@ -86,7 +100,6 @@
                                     <outlet property="iconImage" destination="tYV-gy-6Ww" id="VQ1-G3-AiN"/>
                                     <outlet property="tweetTextLabel" destination="qER-fN-Zwm" id="YVe-oV-kKf"/>
                                     <outlet property="tweetTimeLabel" destination="dZW-nh-xO3" id="Rf3-z1-9hG"/>
-                                    <segue destination="36b-qW-saf" kind="push" id="wd7-oj-gJZ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -105,6 +118,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="dLr-tY-ORX" id="Ubx-db-Yny"/>
+                        <outlet property="profileButton" destination="dbH-Gv-KCx" id="BSB-wW-nTm"/>
                         <outlet property="refreshButton" destination="CDS-hK-nZN" id="TrD-td-6uW"/>
                         <outlet property="view" destination="Jrv-ER-sM5" id="Lw9-8N-eRJ"/>
                     </connections>
@@ -112,6 +126,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="8bD-He-GHt" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="672" y="-689"/>
+        </scene>
+        <!--Profile View Controller-->
+        <scene sceneID="WNJ-z7-Ur9">
+            <objects>
+                <viewController id="KsG-0o-D8A" customClass="ProfileViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b4I-IQ-8C1"/>
+                        <viewControllerLayoutGuide type="bottom" id="5lt-gt-pmA"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="jcs-nM-GQE">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="aUG-nF-tue"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5B8-IM-SYj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="672" y="-5"/>
         </scene>
         <!--Nav View Controller-->
         <scene sceneID="DTu-CM-WXH">

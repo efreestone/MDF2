@@ -11,6 +11,7 @@
 		B81667611820937A00B985C6 /* NavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B81667601820937A00B985C6 /* NavViewController.m */; };
 		B81667641820945D00B985C6 /* TwitterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B81667631820945D00B985C6 /* TwitterCell.m */; };
 		B82C2F251820A40200FABE90 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C2F241820A40200FABE90 /* DetailsViewController.m */; };
+		B82C2F281820AD8300FABE90 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C2F271820AD8300FABE90 /* ProfileViewController.m */; };
 		B835CC28181F15150027AD81 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B835CC27181F15150027AD81 /* Foundation.framework */; };
 		B835CC2A181F15150027AD81 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B835CC29181F15150027AD81 /* CoreGraphics.framework */; };
 		B835CC2C181F15150027AD81 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B835CC2B181F15150027AD81 /* UIKit.framework */; };
@@ -46,6 +47,8 @@
 		B81667631820945D00B985C6 /* TwitterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterCell.m; sourceTree = "<group>"; };
 		B82C2F231820A40200FABE90 /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		B82C2F241820A40200FABE90 /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		B82C2F261820AD8300FABE90 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
+		B82C2F271820AD8300FABE90 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfileViewController.m; sourceTree = "<group>"; };
 		B835CC24181F15150027AD81 /* MDF2Project1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDF2Project1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B835CC27181F15150027AD81 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B835CC29181F15150027AD81 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -137,6 +140,8 @@
 				B81667601820937A00B985C6 /* NavViewController.m */,
 				B81667621820945D00B985C6 /* TwitterCell.h */,
 				B81667631820945D00B985C6 /* TwitterCell.m */,
+				B82C2F261820AD8300FABE90 /* ProfileViewController.h */,
+				B82C2F271820AD8300FABE90 /* ProfileViewController.m */,
 			);
 			path = MDF2Project1;
 			sourceTree = "<group>";
@@ -272,6 +277,7 @@
 				B835CC38181F15160027AD81 /* AppDelegate.m in Sources */,
 				B835CC34181F15160027AD81 /* main.m in Sources */,
 				B82C2F251820A40200FABE90 /* DetailsViewController.m in Sources */,
+				B82C2F281820AD8300FABE90 /* ProfileViewController.m in Sources */,
 				B81667611820937A00B985C6 /* NavViewController.m in Sources */,
 				B816675E18208DCF00B985C6 /* MainViewController.m in Sources */,
 			);

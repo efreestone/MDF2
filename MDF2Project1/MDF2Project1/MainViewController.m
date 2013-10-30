@@ -39,7 +39,7 @@
 
 - (void)viewDidLoad
 {
-    testArray = [[NSArray alloc] initWithObjects: @{@"Tweet":@"Test 1", @"Time":@"7:55pm Oct 29th, 2103"}, @{@"Tweet":@"Test 2", @"Time":@"7:57pm Oct 29th, 2103"}, nil];
+    testArray = [[NSArray alloc] initWithObjects: @{@"Tweet":@"Test 1", @"Time":@"7:55pm Oct 29th, 2103"}, @{@"Tweet":@"Test 2", @"Time":@"7:57pm Oct 29th, 2103"}, @{@"Tweet":@"Test 3", @"Time":@"8:10pm Oct 29th, 2103"}, nil];
     
     [super viewDidLoad];
 
@@ -86,14 +86,17 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     //Allocate detail view controller
-    DetailsViewController *detailsViewController = [[DetailsViewController alloc] initWithNibName:@"DetailsViewController" bundle:nil];
+    //DetailsViewController *detailsViewController = [[DetailsViewController alloc] initWithNibName:@"DetailsViewController" bundle:nil];
     
-    //Apply text to tweet text label
-    detailsViewController.tweetTextLabel.text = (NSString *) [[testArray objectAtIndex:indexPath.row] objectForKey:@"Tweet"];
-    //Apply text to tweet time label
-    detailsViewController.tweetTimeLabel.text = (NSString *) [[testArray objectAtIndex:indexPath.row] objectForKey:@"Time"];
-    //Apply icon image
-    //cell.iconImage.image = ;
+    //if (detailsViewController != nil) {
+        //[self presentViewController:detailsViewController animated:TRUE completion:nil];
+        //Apply text to tweet text label
+        detailsViewController.tweetTextLabel.text = (NSString *) [[testArray objectAtIndex:indexPath.row] objectForKey:@"Tweet"];
+        //Apply text to tweet time label
+        detailsViewController.tweetTimeLabel.text = (NSString *) [[testArray objectAtIndex:indexPath.row] objectForKey:@"Time"];
+        //Apply icon image
+        //cell.iconImage.image = ;
+    //}
 }
 
 //Method for refresh button click
