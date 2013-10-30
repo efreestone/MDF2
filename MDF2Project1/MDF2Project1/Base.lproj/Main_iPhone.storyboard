@@ -100,10 +100,14 @@
                                     <outlet property="iconImage" destination="tYV-gy-6Ww" id="VQ1-G3-AiN"/>
                                     <outlet property="tweetTextLabel" destination="qER-fN-Zwm" id="YVe-oV-kKf"/>
                                     <outlet property="tweetTimeLabel" destination="dZW-nh-xO3" id="Rf3-z1-9hG"/>
-                                    <segue destination="36b-qW-saf" kind="push" identifier="DetailView" id="u5j-Pi-YXh"/>
+                                    <segue destination="36b-qW-saf" kind="push" identifier="DetailView" id="dJ6-E9-UbC"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="lqP-xr-ylG" id="gx1-cg-g17"/>
+                            <outlet property="delegate" destination="lqP-xr-ylG" id="DaK-PS-wcN"/>
+                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="MBN-sb-AjN">
                         <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="CDS-hK-nZN">
