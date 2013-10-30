@@ -19,6 +19,8 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;
 
+@property (strong, nonatomic) NSArray *testArray;
+
 //Declare methods for refresh and add buttons
 -(IBAction)onRefreshClick:(id)sender;
 -(IBAction)onAddClick:(id)sender;

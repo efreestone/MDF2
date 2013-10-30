@@ -12,6 +12,8 @@
 //
 
 #import "MainViewController.h"
+//Import twitter cell
+#import "TwitterCell.h"
 
 @interface MainViewController ()
 
@@ -21,6 +23,8 @@
 
 //Synthesize for getters/setters
 @synthesize refreshButton, addButton;
+
+@synthesize testArray;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -33,6 +37,8 @@
 
 - (void)viewDidLoad
 {
+    testArray = [[NSArray alloc] initWithObjects: @{@"Tweet":@"Test 1", @"Time":@"7:55pm Oct 29th, 2103"}, @{@"Tweet":@"Test 2", @"Time":@"7:57pm Oct 29th, 2103"}, nil];
+    
     [super viewDidLoad];
 
     // Uncomment the following line to preserve selection between presentations.
@@ -58,17 +64,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [testArray count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
-    
-    // Configure the cell...
+    //Allocate and reuse cells
+    TwitterCell *cell = (TwitterCell *)[tableView dequeueReusableCellWithIdentifier:@"TwitterCell"];
+    cell.tweetTextLabel.text = (NSString *) [[testArray objectAtIndex:indexPath.row] objectForKey:@"Tweet"];
+    cell.tweetTimeLabel.text = (NSString *) [[testArray objectAtIndex:indexPath.row] objectForKey:@"Time"];
+    //cell.iconImage.image = ;
     
     return cell;
 }
