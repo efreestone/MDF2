@@ -7,7 +7,7 @@
         <!--Details View Controller-->
         <scene sceneID="DuK-da-6BB">
             <objects>
-                <viewController storyboardIdentifier="detailViewController" id="36b-qW-saf" customClass="DetailsViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DetailsViewController" id="36b-qW-saf" customClass="DetailsViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="oMT-jM-gbx"/>
                         <viewControllerLayoutGuide type="bottom" id="wzX-UK-DuI"/>
@@ -100,6 +100,7 @@
                                     <outlet property="iconImage" destination="tYV-gy-6Ww" id="VQ1-G3-AiN"/>
                                     <outlet property="tweetTextLabel" destination="qER-fN-Zwm" id="YVe-oV-kKf"/>
                                     <outlet property="tweetTimeLabel" destination="dZW-nh-xO3" id="Rf3-z1-9hG"/>
+                                    <segue destination="36b-qW-saf" kind="push" identifier="DetailView" id="u5j-Pi-YXh"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

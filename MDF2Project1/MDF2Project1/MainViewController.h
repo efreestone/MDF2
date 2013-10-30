@@ -13,7 +13,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UITableViewController
+@interface MainViewController : UITableViewController <UITableViewDelegate>
 
 //Declare refresh, add, and profile buttons
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshButton;

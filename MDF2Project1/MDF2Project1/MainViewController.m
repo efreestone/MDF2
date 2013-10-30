@@ -85,19 +85,54 @@
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"mystoryboard" bundle:nil];
+    //UIViewController* vc = [sb instantiateViewControllerWithIdentifier:@"ExampleViewController"];
+    //UIStoryboard*  sb = [UIStoryboard storyboardWithName:@"Main_iPhone" bundle:nil];
     //Allocate detail view controller
-    //DetailsViewController *detailsViewController = [[DetailsViewController alloc] initWithNibName:@"DetailsViewController" bundle:nil];
+    DetailsViewController *detailsViewController = [[DetailsViewController alloc] init];
+    DetailsViewController *storyboardDetails = (DetailsViewController *) [self.storyboard instantiateViewControllerWithIdentifier:@"DetailsViewController"];
+    //DetailsViewController *detailsViewController = [[DetailsViewController alloc] sb instantiateViewControllerWithIdentifier:@"DetailsViewController" bundle:nil];
     
-    //if (detailsViewController != nil) {
+    if (detailsViewController != nil) {
+        NSLog(@"detail view is NOT nil!!");
         //[self presentViewController:detailsViewController animated:TRUE completion:nil];
         //Apply text to tweet text label
+        NSString *clickedTweet = [NSString stringWithFormat:@"%@", [[testArray objectAtIndex:indexPath.row] objectForKey:@"Tweet"]];
         detailsViewController.tweetTextLabel.text = (NSString *) [[testArray objectAtIndex:indexPath.row] objectForKey:@"Tweet"];
         //Apply text to tweet time label
         detailsViewController.tweetTimeLabel.text = (NSString *) [[testArray objectAtIndex:indexPath.row] objectForKey:@"Time"];
         //Apply icon image
         //cell.iconImage.image = ;
-    //}
+        //[self.navigationController pushViewController:detailsViewController animated:true];
+    }
 }
+
+/*- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"DetailView"])
+    {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        UINavigationController *navigationController = segue.destinationViewController;
+        DetailsViewController *detailsViewController = [[navigationController viewControllers] objectAtIndex:0];
+        //detailsViewController.delegate = self;
+        detailsViewController.tweetTextLabel.text = (NSString *) [[testArray objectAtIndex:indexPath.row] objectForKey:@"Tweet"];
+        //Apply text to tweet time label
+        detailsViewController.tweetTimeLabel.text = (NSString *) [[testArray objectAtIndex:indexPath.row] objectForKey:@"Time"];
+        //Apply icon image
+        //cell.iconImage.image = ;
+    }
+}*/
+
+/*- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"AddPlayer"])
+    {
+        UINavigationController *navigationController =
+        segue.destinationViewController;
+        PlayerDetailsViewController *playerDetailsViewController = [[navigationController viewControllers] objectAtIndex:0];
+        playerDetailsViewController.delegate = self;
+    }
+}*/
 
 //Method for refresh button click
 -(IBAction)onRefreshClick:(id)sender {
