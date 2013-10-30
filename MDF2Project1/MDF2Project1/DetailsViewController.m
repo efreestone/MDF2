@@ -1,3 +1,8 @@
+// Elijah Freestone
+// MDF2 1311
+// Project 1
+// October 28th, 2013
+
 //
 //  DetailsViewController.m
 //  MDF2Project1
@@ -13,6 +18,9 @@
 @end
 
 @implementation DetailsViewController
+
+//Synthesize for getters/setters
+@synthesize iconImage,tweetTextLabel, tweetTimeLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

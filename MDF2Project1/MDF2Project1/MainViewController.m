@@ -14,6 +14,8 @@
 #import "MainViewController.h"
 //Import twitter cell
 #import "TwitterCell.h"
+//Import details view controller
+#import "DetailsViewController.h"
 
 @interface MainViewController ()
 
@@ -72,11 +74,26 @@
 {
     //Allocate and reuse cells
     TwitterCell *cell = (TwitterCell *)[tableView dequeueReusableCellWithIdentifier:@"TwitterCell"];
+    //Apply text to tweet text label
     cell.tweetTextLabel.text = (NSString *) [[testArray objectAtIndex:indexPath.row] objectForKey:@"Tweet"];
+    //Apply text to tweet time label
     cell.tweetTimeLabel.text = (NSString *) [[testArray objectAtIndex:indexPath.row] objectForKey:@"Time"];
+    //Apply icon image
     //cell.iconImage.image = ;
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    //Allocate detail view controller
+    DetailsViewController *detailsViewController = [[DetailsViewController alloc] initWithNibName:@"DetailsViewController" bundle:nil];
+    
+    //Apply text to tweet text label
+    detailsViewController.tweetTextLabel.text = (NSString *) [[testArray objectAtIndex:indexPath.row] objectForKey:@"Tweet"];
+    //Apply text to tweet time label
+    detailsViewController.tweetTimeLabel.text = (NSString *) [[testArray objectAtIndex:indexPath.row] objectForKey:@"Time"];
+    //Apply icon image
+    //cell.iconImage.image = ;
 }
 
 //Method for refresh button click

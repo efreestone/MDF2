@@ -1,3 +1,8 @@
+// Elijah Freestone
+// MDF2 1311
+// Project 1
+// October 28th, 2013
+
 //
 //  DetailsViewController.h
 //  MDF2Project1
@@ -9,5 +14,10 @@
 #import <UIKit/UIKit.h>
 
 @interface DetailsViewController : UIViewController
+
+//Declare table view cell items
+@property (strong, nonatomic) IBOutlet UIImageView *iconImage;
+@property (strong, nonatomic) IBOutlet UILabel *tweetTextLabel;
+@property (strong, nonatomic) IBOutlet UILabel *tweetTimeLabel;
 
 @end
