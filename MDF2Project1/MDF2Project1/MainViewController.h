@@ -1,3 +1,8 @@
+// Elijah Freestone
+// MDF2 1311
+// Project 1
+// October 28th, 2013
+
 //
 //  MainViewController.h
 //  MDF2Project1
@@ -10,4 +15,11 @@
 
 @interface MainViewController : UITableViewController
 
+//Declare refresh and add buttons
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
+@property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;
+
+//Declare methods for refresh and add buttons
+-(IBAction)onRefreshClick:(id)sender;
+-(IBAction)onAddClick:(id)sender;
 @end

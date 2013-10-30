@@ -1,3 +1,8 @@
+// Elijah Freestone
+// MDF2 1311
+// Project 1
+// October 28th, 2013
+
 //
 //  MainViewController.m
 //  MDF2Project1
@@ -13,6 +18,9 @@
 @end
 
 @implementation MainViewController
+
+//Synthesize for getters/setters
+@synthesize refreshButton, addButton;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -44,9 +52,8 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -64,6 +71,16 @@
     // Configure the cell...
     
     return cell;
+}
+
+//Method for refresh button click
+-(IBAction)onRefreshClick:(id)sender {
+    
+}
+
+//Method for add button click
+-(IBAction)onAddClick:(id)sender {
+    
 }
 
 /*

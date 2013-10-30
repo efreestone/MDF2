@@ -1,3 +1,8 @@
+// Elijah Freestone
+// MDF2 1311
+// Project 1
+// October 28th, 2013
+
 //
 //  TwitterCell.m
 //  MDF2Project1
@@ -9,6 +14,9 @@
 #import "TwitterCell.h"
 
 @implementation TwitterCell
+
+//Synthesize for getters/setters
+@synthesize iconImage, tweetTextLabel, tweetTimeLabel;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
