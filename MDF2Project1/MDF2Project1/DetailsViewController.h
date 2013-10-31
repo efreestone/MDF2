@@ -19,8 +19,9 @@
 @property (strong, nonatomic) IBOutlet UIImageView *iconImage;
 @property (strong, nonatomic) IBOutlet UILabel *tweetTextLabel;
 @property (strong, nonatomic) IBOutlet UILabel *tweetTimeLabel;
-//Declare strings to hold tweet details
+//Declare strings to hold tweet details and image
 @property (strong, nonatomic) NSString *tweetTextString;
 @property (strong, nonatomic) NSString *tweetTimeString;
+@property (strong, nonatomic) UIImage *tweetProfileImage;
 
 @end

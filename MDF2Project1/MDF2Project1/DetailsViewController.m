@@ -20,7 +20,7 @@
 @implementation DetailsViewController
 
 //Synthesize for getters/setters
-@synthesize iconImage,tweetTextLabel, tweetTimeLabel, tweetTextString, tweetTimeString;
+@synthesize iconImage,tweetTextLabel, tweetTimeLabel, tweetTextString, tweetTimeString, tweetProfileImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,8 +33,10 @@
 
 - (void)viewDidLoad
 {
+    //Set text and image to labels from objects passed from Main View Controller
     tweetTextLabel.text = tweetTextString;
     tweetTimeLabel.text = tweetTimeString;
+    iconImage.image = tweetProfileImage;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }

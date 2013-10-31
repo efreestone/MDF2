@@ -28,7 +28,7 @@
 @implementation MainViewController
 
 //Synthesize for getters/setters
-@synthesize refreshButton, addButton, profileButton, myTableView, twitterFeedArray;
+@synthesize refreshButton, addButton, profileButton, myTableView, twitterFeedArray, profileImage;
 
 @synthesize testArray;
 
@@ -130,15 +130,31 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UIImage *profileImage = [[UIImage alloc] init];
     //Cast a single tweet from twitter feed array into NSDictionary
     NSDictionary *tweetDictionary = [twitterFeedArray objectAtIndex:indexPath.row];
     //Grab user dictionary
     NSDictionary *userDictionary = [tweetDictionary objectForKey:@"user"];
-    /*if (userDictionary != nil) {
-        profileImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[userDictionary valueForKey:@"profile_image_url"]]];
-        //[UIImage imageWithData:[NSData dataWithContentsOfURL:        [[tweet objectForKey:@"user"]objectForKey:@"profile_image_url"]]];
-    }*/
+    if (userDictionary != nil) {
+        //Cast image url into string
+        NSString *imageString = [NSString stringWithFormat: @"%@", [userDictionary valueForKey:@"profile_image_url"]];
+        //Inject url string into NSURL
+        NSURL *imageURL = [NSURL URLWithString:imageString];
+        //Inject image url into NSData
+        NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageURL];
+        //Inject NSData into image with data
+        profileImage = [[UIImage alloc] initWithData:imageData];
+    }
+//TRY THIS NEXT!!!!!!!!!!
+    /*NSURL *url = [NSURL URLWithString:@"<YOUR URL STRING HERE>"];
+     
+     NSData *data = [[NSData alloc] initWithContentsOfURL:url];
+     
+     UIImage *tmpImage = [[UIImage alloc] initWithData:data];
+     
+     yourImageView.image = tmpImage;*/
+//ANOTHER EXAMPLE
+    /*NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: @"http://myurl/mypic.jpg"]];
+     cell.image = [UIImage imageWithData: imageData];*/
     
     //Allocate and reuse cells
     TwitterCell *cell = (TwitterCell *)[tableView dequeueReusableCellWithIdentifier:@"TwitterCell"];
@@ -150,7 +166,7 @@
     //NSString *profileImageString = [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"profile_image_url"];
     //UIImage *profileImage = [UIImage imageNamed:profileImageString];
     
-    //cell.iconImage.image = profileImage;
+    cell.iconImage.image = profileImage;
     
     return cell;
 }
@@ -168,6 +184,10 @@
         detailsViewController.tweetTextString = [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"text"];
         //Send tweet time/date to NSString in DetailViewController for display
         detailsViewController.tweetTimeString = [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"created_at"];
+        //Send profile image to UIImage in DetailViewController for display
+        if (profileImage != nil) {
+            detailsViewController.tweetProfileImage = profileImage;
+        }
     }
 }
 

@@ -25,6 +25,8 @@
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;
 //Declare twitter timeline array
 @property (strong, nonatomic) NSArray *twitterFeedArray;
+//Declare UIImage to hold profile image
+@property (strong, nonatomic) UIImage *profileImage;
 
 @property (strong, nonatomic) NSArray *testArray;
 
