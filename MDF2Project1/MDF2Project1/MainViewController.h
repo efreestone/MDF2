@@ -12,6 +12,8 @@
 //
 
 #import <UIKit/UIKit.h>
+//Import detail view controller
+#import "DetailsViewController.h"
 
 @interface MainViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 
@@ -19,6 +21,10 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *profileButton;
+//Declare table view
+@property (strong, nonatomic) IBOutlet UITableView *myTableView;
+//Declare twitter timeline array
+@property (strong, nonatomic) NSArray *twitterFeedArray;
 
 @property (strong, nonatomic) NSArray *testArray;
 

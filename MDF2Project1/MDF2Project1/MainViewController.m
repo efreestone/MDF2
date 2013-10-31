@@ -28,7 +28,7 @@
 @implementation MainViewController
 
 //Synthesize for getters/setters
-@synthesize refreshButton, addButton;
+@synthesize refreshButton, addButton, profileButton, myTableView, twitterFeedArray;
 
 @synthesize testArray;
 
@@ -76,9 +76,10 @@
                                     //Response code of 200 means the request was successful
                                     if (responseCode == 200) {
                                         //Put JSON object returned into array
-                                        NSArray *twitterFeed = [NSJSONSerialization JSONObjectWithData: responseData options:0 error:nil];
-                                        if (twitterFeed != nil) {
-                                            NSLog(@"%@", [twitterFeed description]);
+                                        twitterFeedArray = [NSJSONSerialization JSONObjectWithData: responseData options:0 error:nil];
+                                        if (twitterFeedArray != nil) {
+                                            NSLog(@"%@", [twitterFeedArray description]);
+                                            [myTableView reloadData];
                                         }
                                     }
                                 }];
@@ -118,19 +119,38 @@
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return [testArray count];
+    if (twitterFeedArray != nil) {
+        return [twitterFeedArray count];
+        NSLog(@"feed count = %lu", (unsigned long)[twitterFeedArray count]);
+    } else {
+        return 0;
+        NSLog(@"Twitter feed is nil");
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    UIImage *profileImage = [[UIImage alloc] init];
+    //Cast a single tweet from twitter feed array into NSDictionary
+    NSDictionary *tweetDictionary = [twitterFeedArray objectAtIndex:indexPath.row];
+    //Grab user dictionary
+    NSDictionary *userDictionary = [tweetDictionary objectForKey:@"user"];
+    /*if (userDictionary != nil) {
+        profileImage = [UIImage imageWithData:[NSData dataWithContentsOfURL:[userDictionary valueForKey:@"profile_image_url"]]];
+        //[UIImage imageWithData:[NSData dataWithContentsOfURL:        [[tweet objectForKey:@"user"]objectForKey:@"profile_image_url"]]];
+    }*/
+    
     //Allocate and reuse cells
     TwitterCell *cell = (TwitterCell *)[tableView dequeueReusableCellWithIdentifier:@"TwitterCell"];
     //Apply text to tweet text label
-    cell.tweetTextLabel.text = (NSString *) [[testArray objectAtIndex:indexPath.row] objectForKey:@"Tweet"];
+    cell.tweetTextLabel.text = (NSString *) [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"text"];
     //Apply text to tweet time label
-    cell.tweetTimeLabel.text = (NSString *) [[testArray objectAtIndex:indexPath.row] objectForKey:@"Time"];
+    cell.tweetTimeLabel.text = (NSString *) [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"created_at"];
     //Apply icon image
-    //cell.iconImage.image = ;
+    //NSString *profileImageString = [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"profile_image_url"];
+    //UIImage *profileImage = [UIImage imageNamed:profileImageString];
+    
+    //cell.iconImage.image = profileImage;
     
     return cell;
 }
@@ -145,9 +165,9 @@
         //Grab destination view controller
         DetailsViewController *detailsViewController = segue.destinationViewController;
         //Send tweet text to NSString in DetailViewController for display
-        detailsViewController.tweetTextString = [[testArray objectAtIndex:indexPath.row] objectForKey:@"Tweet"];
+        detailsViewController.tweetTextString = [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"text"];
         //Send tweet time/date to NSString in DetailViewController for display
-        detailsViewController.tweetTimeString = [[testArray objectAtIndex:indexPath.row] objectForKey:@"Time"];
+        detailsViewController.tweetTimeString = [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"created_at"];
     }
 }
 
