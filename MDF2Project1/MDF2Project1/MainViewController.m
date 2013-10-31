@@ -16,6 +16,8 @@
 #import "TwitterCell.h"
 //Import details view controller
 #import "DetailsViewController.h"
+//Import accounts framework
+#import <Accounts/Accounts.h>
 
 @interface MainViewController ()
 
@@ -40,6 +42,32 @@
 - (void)viewDidLoad
 {
     testArray = [[NSArray alloc] initWithObjects: @{@"Tweet":@"Test 1", @"Time":@"7:55pm Oct 29th, 2103"}, @{@"Tweet":@"Test 2", @"Time":@"7:57pm Oct 29th, 2103"}, @{@"Tweet":@"Test 3", @"Time":@"8:10pm Oct 29th, 2103"}, nil];
+    
+    //Create ACAccountStore to store account details (twitter in this case)
+    ACAccountStore *accountStore = [[ACAccountStore alloc] init];
+    if (accountStore != nil) {
+        //Set account type to twitter
+        ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier: ACAccountTypeIdentifierTwitter];
+        if (accountType != nil) {
+            //Set up request with code block
+            [accountStore requestAccessToAccountsWithType:accountType options:nil completion: ^(BOOL granted, NSError *error){
+                //If access was granted
+                if (granted) {
+                    //Save accounts to array
+                    NSArray *twitterAccounts = [accountStore accountsWithAccountType:accountType];
+                    if (twitterAccounts != nil) {
+                        //Grab currently logged in twitter account
+                        ACAccount *currentAccount = [twitterAccounts objectAtIndex:0];
+                        if (currentAccount != nil) {
+                            
+                        }
+                    }
+                } else {
+                    NSLog(@"User did not grant access");
+                }
+            }];
+        }
+    }
     
     [super viewDidLoad];
 

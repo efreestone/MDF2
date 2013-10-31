@@ -43,7 +43,7 @@
                                     <outlet property="iconImage" destination="gsa-n2-51D" id="kzi-9p-4JX"/>
                                     <outlet property="tweetTextLabel" destination="Mnv-ti-NWc" id="uUM-ch-iz6"/>
                                     <outlet property="tweetTimeLabel" destination="sOh-mt-kQ3" id="xS6-uW-aWe"/>
-                                    <segue destination="UnY-40-BTe" kind="push" id="rnz-6H-7yn"/>
+                                    <segue destination="UnY-40-BTe" kind="push" identifier="DetailView" id="rnz-6H-7yn"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>

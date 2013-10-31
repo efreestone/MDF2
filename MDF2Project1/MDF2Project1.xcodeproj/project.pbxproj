@@ -10,6 +10,7 @@
 		B816675E18208DCF00B985C6 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B816675D18208DCF00B985C6 /* MainViewController.m */; };
 		B81667611820937A00B985C6 /* NavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B81667601820937A00B985C6 /* NavViewController.m */; };
 		B81667641820945D00B985C6 /* TwitterCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B81667631820945D00B985C6 /* TwitterCell.m */; };
+		B82AB5751821E5AC00C86F94 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B82AB5741821E5AC00C86F94 /* Accounts.framework */; };
 		B82C2F251820A40200FABE90 /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C2F241820A40200FABE90 /* DetailsViewController.m */; };
 		B82C2F281820AD8300FABE90 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B82C2F271820AD8300FABE90 /* ProfileViewController.m */; };
 		B835CC28181F15150027AD81 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B835CC27181F15150027AD81 /* Foundation.framework */; };
@@ -45,6 +46,7 @@
 		B81667601820937A00B985C6 /* NavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavViewController.m; sourceTree = "<group>"; };
 		B81667621820945D00B985C6 /* TwitterCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterCell.h; sourceTree = "<group>"; };
 		B81667631820945D00B985C6 /* TwitterCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterCell.m; sourceTree = "<group>"; };
+		B82AB5741821E5AC00C86F94 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
 		B82C2F231820A40200FABE90 /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
 		B82C2F241820A40200FABE90 /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		B82C2F261820AD8300FABE90 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfileViewController.h; sourceTree = "<group>"; };
@@ -74,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B82AB5751821E5AC00C86F94 /* Accounts.framework in Frameworks */,
 				B835CC2A181F15150027AD81 /* CoreGraphics.framework in Frameworks */,
 				B835CC2C181F15150027AD81 /* UIKit.framework in Frameworks */,
 				B835CC28181F15150027AD81 /* Foundation.framework in Frameworks */,
@@ -115,6 +118,7 @@
 		B835CC26181F15150027AD81 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B82AB5741821E5AC00C86F94 /* Accounts.framework */,
 				B835CC27181F15150027AD81 /* Foundation.framework */,
 				B835CC29181F15150027AD81 /* CoreGraphics.framework */,
 				B835CC2B181F15150027AD81 /* UIKit.framework */,
