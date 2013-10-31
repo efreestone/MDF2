@@ -28,7 +28,7 @@
 @implementation MainViewController
 
 //Synthesize for getters/setters
-@synthesize refreshButton, addButton, profileButton, myTableView, twitterFeedArray, profileImage;
+@synthesize refreshButton, addButton, profileButton, myTableView, twitterFeedArray, profileImage, profileImageLarge;
 
 @synthesize testArray;
 
@@ -78,7 +78,7 @@
                                         //Put JSON object returned into array
                                         twitterFeedArray = [NSJSONSerialization JSONObjectWithData: responseData options:0 error:nil];
                                         if (twitterFeedArray != nil) {
-                                            NSLog(@"%@", [twitterFeedArray description]);
+                                            //NSLog(@"%@", [twitterFeedArray description]);
                                             [myTableView reloadData];
                                         }
                                     }
@@ -137,12 +137,20 @@
     if (userDictionary != nil) {
         //Cast image url into string
         NSString *imageString = [NSString stringWithFormat: @"%@", [userDictionary valueForKey:@"profile_image_url"]];
+        //Cast a new image url string removing "_normal" to get profile image in original size for detail view
+        NSString *largeImageString = [imageString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+        //NSLog(@"%@", imageString);
         //Inject url string into NSURL
         NSURL *imageURL = [NSURL URLWithString:imageString];
+        //
+        NSURL *largeImageURL = [NSURL URLWithString:largeImageString];
         //Inject image url into NSData
         NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageURL];
+        
+        NSData *largeImageData = [[NSData alloc] initWithContentsOfURL:largeImageURL];
         //Inject NSData into image with data
         profileImage = [[UIImage alloc] initWithData:imageData];
+        profileImageLarge = [[UIImage alloc] initWithData:largeImageData];
     }
 //TRY THIS NEXT!!!!!!!!!!
     /*NSURL *url = [NSURL URLWithString:@"<YOUR URL STRING HERE>"];
@@ -185,8 +193,8 @@
         //Send tweet time/date to NSString in DetailViewController for display
         detailsViewController.tweetTimeString = [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"created_at"];
         //Send profile image to UIImage in DetailViewController for display
-        if (profileImage != nil) {
-            detailsViewController.tweetProfileImage = profileImage;
+        if (profileImageLarge != nil) {
+            detailsViewController.tweetProfileImage = profileImageLarge;
         }
     }
 }

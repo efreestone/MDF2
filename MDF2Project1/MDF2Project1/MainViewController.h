@@ -27,6 +27,8 @@
 @property (strong, nonatomic) NSArray *twitterFeedArray;
 //Declare UIImage to hold profile image
 @property (strong, nonatomic) UIImage *profileImage;
+//Declare second UIImage to fix display issue on detail view.
+@property (strong, nonatomic) UIImage *profileImageLarge;
 
 @property (strong, nonatomic) NSArray *testArray;
 
