@@ -18,6 +18,8 @@
 #import "DetailsViewController.h"
 //Import accounts framework
 #import <Accounts/Accounts.h>
+//Import social framework
+#import <Social/Social.h>
 
 @interface MainViewController ()
 
@@ -50,16 +52,37 @@
         ACAccountType *accountType = [accountStore accountTypeWithAccountTypeIdentifier: ACAccountTypeIdentifierTwitter];
         if (accountType != nil) {
             //Set up request with code block
-            [accountStore requestAccessToAccountsWithType:accountType options:nil completion: ^(BOOL granted, NSError *error){
+            [accountStore requestAccessToAccountsWithType: accountType options:nil completion: ^(BOOL granted, NSError *error){
                 //If access was granted
                 if (granted) {
                     //Save accounts to array
-                    NSArray *twitterAccounts = [accountStore accountsWithAccountType:accountType];
+                    NSArray *twitterAccounts = [accountStore accountsWithAccountType: accountType];
                     if (twitterAccounts != nil) {
                         //Grab currently logged in twitter account
                         ACAccount *currentAccount = [twitterAccounts objectAtIndex:0];
                         if (currentAccount != nil) {
                             
+                            //Set up URL for timeline request with count set to 8 and retweets included
+                            NSString *userTimelineString = @"https://api.twitter.com/1.1/statuses/user_timeline.json?count=8&include_rts=1";
+                            //Set up request with URL
+                            SLRequest *request = [SLRequest requestForServiceType: SLServiceTypeTwitter requestMethod: SLRequestMethodGET URL: [NSURL URLWithString: userTimelineString] parameters:nil];
+                            if (request != nil) {
+                                //Set account. Twitter 1.1 API requires authentication (user needs to be logged in)
+                                [request setAccount:currentAccount];
+                                //Make request to the server
+                                [request performRequestWithHandler: ^(NSData *responseData, NSHTTPURLResponse *urlResponse, NSError *error){
+                                    //Check status code
+                                    NSInteger responseCode = [urlResponse statusCode];
+                                    //Response code of 200 means the request was successful
+                                    if (responseCode == 200) {
+                                        //Put JSON object returned into array
+                                        NSArray *twitterFeed = [NSJSONSerialization JSONObjectWithData: responseData options:0 error:nil];
+                                        if (twitterFeed != nil) {
+                                            NSLog(@"%@", [twitterFeed description]);
+                                        }
+                                    }
+                                }];
+                            }
                         }
                     }
                 } else {
