@@ -12,8 +12,6 @@
 //
 
 #import <UIKit/UIKit.h>
-//Import detail view controller
-#import "DetailsViewController.h"
 
 @interface MainViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
 

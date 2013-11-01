@@ -132,7 +132,7 @@
 {
     //Cast a single tweet from twitter feed array into NSDictionary
     NSDictionary *tweetDictionary = [twitterFeedArray objectAtIndex:indexPath.row];
-    //Grab user dictionary
+    //Cast user section of tweetDictionary into its own dictionary
     NSDictionary *userDictionary = [tweetDictionary objectForKey:@"user"];
     if (userDictionary != nil) {
         //Cast image url into string
@@ -142,61 +142,40 @@
         //NSLog(@"%@", imageString);
         //Inject url string into NSURL
         NSURL *imageURL = [NSURL URLWithString:imageString];
-        //
         NSURL *largeImageURL = [NSURL URLWithString:largeImageString];
         //Inject image url into NSData
         NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageURL];
-        
         NSData *largeImageData = [[NSData alloc] initWithContentsOfURL:largeImageURL];
         //Inject NSData into image with data
         profileImage = [[UIImage alloc] initWithData:imageData];
+        //profileImageLarge is "original" sized instead of 48X48px of "_normal" image
         profileImageLarge = [[UIImage alloc] initWithData:largeImageData];
     }
-//TRY THIS NEXT!!!!!!!!!!
-    /*NSURL *url = [NSURL URLWithString:@"<YOUR URL STRING HERE>"];
-     
-     NSData *data = [[NSData alloc] initWithContentsOfURL:url];
-     
-     UIImage *tmpImage = [[UIImage alloc] initWithData:data];
-     
-     yourImageView.image = tmpImage;*/
-//ANOTHER EXAMPLE
-    /*NSData * imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: @"http://myurl/mypic.jpg"]];
-     cell.image = [UIImage imageWithData: imageData];*/
+    //Cast time/date from twitter feed array into NSString
+    NSString *dateString = (NSString *) [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"created_at"];
+    //NSLog(@"%@", dateString);
+    //Allocate date formatter
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    //Set format for current date
+    [dateFormatter setDateFormat:@"eee MMM dd HH:mm:ss ZZZZ yyyy"];
+    //Cast string into NSDate
+    NSDate *dateFromString = [dateFormatter dateFromString:dateString];
+    //NSLog(@"NSDate = %@", dateFromString);
+    
+    [dateFormatter setDateFormat:@"eee, MM/dd/yyyy 'at' hh:mm a"];
+    NSString *dateWithNewFormat = [dateFormatter stringFromDate:dateFromString];
+    //NSLog(@"dateWithNewFormat: %@", dateWithNewFormat);
     
     //Allocate and reuse cells
     TwitterCell *cell = (TwitterCell *)[tableView dequeueReusableCellWithIdentifier:@"TwitterCell"];
     //Apply text to tweet text label
     cell.tweetTextLabel.text = (NSString *) [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"text"];
     //Apply text to tweet time label
-    cell.tweetTimeLabel.text = (NSString *) [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"created_at"];
+    cell.tweetTimeLabel.text = dateWithNewFormat;
     //Apply icon image
-    //NSString *profileImageString = [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"profile_image_url"];
-    //UIImage *profileImage = [UIImage imageNamed:profileImageString];
-    
     cell.iconImage.image = profileImage;
     
     return cell;
-}
-
-//Built in function to pass data with segue to display in DetailsViewContoller
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    //Verify identifier of push segue to Details view
-    if ([segue.identifier isEqualToString:@"DetailView"])
-    {
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        //Grab destination view controller
-        DetailsViewController *detailsViewController = segue.destinationViewController;
-        //Send tweet text to NSString in DetailViewController for display
-        detailsViewController.tweetTextString = [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"text"];
-        //Send tweet time/date to NSString in DetailViewController for display
-        detailsViewController.tweetTimeString = [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"created_at"];
-        //Send profile image to UIImage in DetailViewController for display
-        if (profileImageLarge != nil) {
-            detailsViewController.tweetProfileImage = profileImageLarge;
-        }
-    }
 }
 
 //Method for refresh button click
@@ -209,55 +188,40 @@
     
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
-// In a story board-based application, you will often want to do a little preparation before navigation
+//Built in function to pass data with segue to display in DetailsViewContoller
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    //Verify identifier of push segue to Details view
+    if ([segue.identifier isEqualToString:@"DetailView"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        //Grab destination view controller
+        DetailsViewController *detailsViewController = segue.destinationViewController;
+        //Send tweet text to NSString in DetailViewController for display
+        
+        //Cast time/date from twitter feed array into NSString
+        NSString *dateString = (NSString *) [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"created_at"];
+        //NSLog(@"%@", dateString);
+        //Allocate date formatter
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        //Set format for current date
+        [dateFormatter setDateFormat:@"eee MMM dd HH:mm:ss ZZZZ yyyy"]; //MMM dd, yyyy hh:mm:ss a
+        //Cast string into NSDate
+        NSDate *dateFromString = [dateFormatter dateFromString:dateString];
+        //NSLog(@"NSDate = %@", dateFromString);
+        [dateFormatter setDateFormat:@"eee, MM/dd/yyyy 'at' hh:mm a"]; //MM/dd/yyyy HH:mm
+        NSString *dateWithNewFormat = [dateFormatter stringFromDate:dateFromString];
+        
+        detailsViewController.tweetTextString = [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"text"];
+        //Send tweet time/date to NSString in DetailViewController for display
+        detailsViewController.tweetTimeString = dateWithNewFormat;
+        //Send profile image to UIImage in DetailViewController for display
+        if (profileImageLarge != nil) {
+            //profileImageLarge is original sized instead of 48X48px of "_normal" image
+            detailsViewController.tweetProfileImage = profileImageLarge;
+        }
+    }
 }
-
- */
 
 @end
