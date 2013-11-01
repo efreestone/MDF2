@@ -13,15 +13,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
+@interface MainViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
+    float currentProgress;
+}
 
 //Declare refresh, add, and profile buttons
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *profileButton;
 
-@property (strong, nonatomic) IBOutlet UIToolbar *toolBar;
-@property (strong, nonatomic) IBOutlet UIProgressView *progressBar;
+//@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityWheel;
+
+@property (strong, nonatomic) UIAlertView *refreshAlert;
 
 //Declare table view
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;
@@ -34,12 +37,12 @@
 //Declare second UIImage to fix display issue on detail view.
 @property (strong, nonatomic) UIImage *profileImageLarge;
 
-//Declare methods for refresh, add, and profile buttons
+//Declare methods for refresh and add buttons
 -(IBAction)onRefreshClick:(id)sender;
 -(IBAction)onAddClick:(id)sender;
--(IBAction)onProfileClick:(id)sender;
+
 //Declare progress bar method
--(IBAction)animateProgressBar:(id)sender;
+//-(void)animateProgressBar:(id)sender;
 
 //Declare method to get twitter timeline (feed)
 -(void)getTwitterTimeline;

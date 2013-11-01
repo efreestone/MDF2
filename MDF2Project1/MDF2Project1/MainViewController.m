@@ -30,7 +30,7 @@
 @implementation MainViewController
 
 //Synthesize for getters/setters
-@synthesize refreshButton, addButton, profileButton, myTableView, twitterFeedArray, userDictionary, profileImage, profileImageLarge, toolBar;
+@synthesize refreshButton, addButton, profileButton, myTableView, twitterFeedArray, userDictionary, profileImage, profileImageLarge, refreshAlert;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -46,7 +46,16 @@
     //Call getTwitterFeed
     [self getTwitterTimeline];
     
-    //self.tableView.tableFooterView = toolBar;
+    //progressBar = [[UIProgressView alloc] init];
+    
+    refreshAlert = [[UIAlertView alloc] initWithTitle:@"Refreshing..." message:@"One moment please while the Twitter feed refreshes" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    /*if ([twitterFeedArray count] < 10) {
+        progressBar.hidden = false;
+        [self animateProgressBar:nil];
+    } else {
+        progressBar.hidden = true;
+    }*/
     
     [super viewDidLoad];
 
@@ -99,6 +108,7 @@
                                         twitterFeedArray = [NSJSONSerialization JSONObjectWithData: responseData options:0 error:nil];
                                         if (twitterFeedArray != nil) {
                                             //NSLog(@"%@", [twitterFeedArray description]);
+                                            
                                             [myTableView reloadData];
                                         }
                                     }
@@ -116,11 +126,46 @@
 
 #pragma mark - Progress Bar methods
 
--(IBAction)animateProgressBar:(id)sender {
-    
+/*-(void)animateProgressBar:(id)sender {
+    currentProgress = 0.0f;
+    progressBar.progress = currentProgress;
+    [self performSelector:@selector(increaseCurrentProgress) withObject:nil afterDelay:0.1];
 }
 
+-(void)increaseCurrentProgress {
+    currentProgress += 0.1f;
+    progressBar.progress = currentProgress;
+    if (currentProgress < 1.0f) {
+        [self performSelector:@selector(increaseCurrentProgress) withObject:nil afterDelay:0.5];
+    } else {
+        [self performSelector:@selector(dismissProgress) withObject:nil afterDelay:0.5];
+    }
+}
 
+-(void)dismissProgress {
+    //[self progressCompleted];
+}*/
+
+/*static float progress = 0.0f;
+
+-(IBAction)showWithProgress:(id)sender {
+    progress = 0.0f;
+    _progressView.progress = progress;
+    [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3];
+}
+
+-(void)increaseProgress {
+    progress+=0.1f;
+    _progressView.progress = progress;
+    if(progress < 1.0f)
+        [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3];
+    else
+        [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.2f];
+}
+
+-(void)dismiss {
+    [self progressCompleted];
+}*/
 
 
 
@@ -192,12 +237,30 @@
     //Apply icon image
     cell.iconImage.image = profileImage;
     
+    //Dismiss the refresh alert view (does nothing if the alert view isn't currently shown such as initial loading).
+    [self dismissRefreshAlert];
+    
     return cell;
 }
 
+#pragma mark - IBActions and related methods
+
 //Method for refresh button click
 -(IBAction)onRefreshClick:(id)sender {
+    //twitterFeedArray = nil;
     [self getTwitterTimeline];
+    [refreshAlert show];
+    //[refreshAlert show];
+    /*if ([twitterFeedArray count] < 8) {
+        
+        [refreshAlert show];
+    } else {
+        [refreshAlert dismissWithClickedButtonIndex:-1 animated:true];
+    }*/
+}
+//Method to dimiss the refresh alert view after the refresh is complete. Called in
+-(void)dismissRefreshAlert {
+    [refreshAlert dismissWithClickedButtonIndex:-1 animated:true];
 }
 
 //Method for add button click
@@ -212,11 +275,6 @@
     
 }
 
-//Method for profile button click
--(IBAction)onProfileClick:(id)sender {
-    
-}
-
 #pragma mark - Navigation
 
 //Built in function to pass data with segue to display in DetailsViewContoller
@@ -228,27 +286,29 @@
         //Grab destination view controller
         DetailsViewController *detailsViewController = segue.destinationViewController;
         
-        //Cast time/date from twitter feed array into NSString
-        NSString *dateString = (NSString *) [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"created_at"];
-        //NSLog(@"%@", dateString);
-        //Allocate date formatter
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        //Set format for current date
-        [dateFormatter setDateFormat:@"eee MMM dd HH:mm:ss ZZZZ yyyy"]; //MMM dd, yyyy hh:mm:ss a
-        //Cast string into NSDate
-        NSDate *dateFromString = [dateFormatter dateFromString:dateString];
-        //NSLog(@"NSDate = %@", dateFromString);
-        [dateFormatter setDateFormat:@"eee, MM/dd/yyyy 'at' hh:mm a"]; //MM/dd/yyyy HH:mm
-        NSString *dateWithNewFormat = [dateFormatter stringFromDate:dateFromString];
+        if (detailsViewController != nil) {
+            //Cast time/date from twitter feed array into NSString
+            NSString *dateString = (NSString *) [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"created_at"];
+            //NSLog(@"%@", dateString);
+            //Allocate date formatter
+            NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+            //Set format for current date
+            [dateFormatter setDateFormat:@"eee MMM dd HH:mm:ss ZZZZ yyyy"]; //MMM dd, yyyy hh:mm:ss a
+            //Cast string into NSDate
+            NSDate *dateFromString = [dateFormatter dateFromString:dateString];
+            //NSLog(@"NSDate = %@", dateFromString);
+            [dateFormatter setDateFormat:@"eee, MM/dd/yyyy 'at' hh:mm a"]; //MM/dd/yyyy HH:mm
+            NSString *dateWithNewFormat = [dateFormatter stringFromDate:dateFromString];
         
-        //Send tweet text to NSString in DetailViewController for display
-        detailsViewController.tweetTextString = [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"text"];
-        //Send tweet time/date to NSString in DetailViewController for display
-        detailsViewController.tweetTimeString = dateWithNewFormat;
-        //Send profile image to UIImage in DetailViewController for display
-        if (profileImageLarge != nil) {
-            //profileImageLarge is original sized instead of 48X48px of "_normal" image
-            detailsViewController.tweetProfileImage = profileImageLarge;
+            //Send tweet text to NSString in DetailViewController for display
+            detailsViewController.tweetTextString = [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"text"];
+            //Send tweet time/date to NSString in DetailViewController for display
+            detailsViewController.tweetTimeString = dateWithNewFormat;
+            //Send profile image to UIImage in DetailViewController for display
+            if (profileImageLarge != nil) {
+                //profileImageLarge is original sized instead of 48X48px of "_normal" image
+                detailsViewController.tweetProfileImage = profileImageLarge;
+            }
         }
     }
     
@@ -256,27 +316,30 @@
     if ([segue.identifier isEqualToString:@"ShowProfile"]) {
         //Grab destination view controller
         ProfileViewController *profileViewController = segue.destinationViewController;
+            
+        if (profileViewController != nil) {
+            //Send profile image to UIImage in DetailViewController for display
+            if (profileImageLarge != nil) {
+                //profileImageLarge is original sized instead of 48X48px of "_normal" image
+                profileViewController.profileImage = profileImageLarge;
+            }
+            //Send name to NSString in ProfileViewController for display
+            profileViewController.nameString = [userDictionary objectForKey:@"name"];
+            //Send screen name to NSString in ProfileViewController for display
+            profileViewController.screenNameString = [userDictionary objectForKey:@"screen_name"];
+            //Send description to NSString in ProfileViewController for display
+            profileViewController.descriptionString = [userDictionary objectForKey:@"description"];
+            //Send location to NSString in ProfileViewController for display
+            profileViewController.locationString = [userDictionary objectForKey:@"location"];
         
-        //Send profile image to UIImage in DetailViewController for display
-        if (profileImageLarge != nil) {
-            //profileImageLarge is original sized instead of 48X48px of "_normal" image
-            profileViewController.profileImage = profileImageLarge;
+            //Send followers count to NSString in ProfileViewController for display
+            profileViewController.followersString = [NSString stringWithFormat:@"Followers: %@",[userDictionary objectForKey:@"followers_count"]];
+            //Send following count to NSString in ProfileViewController for display
+            profileViewController.followingString = [NSString stringWithFormat:@"Following: %@", [userDictionary objectForKey:@"friends_count"]];
+            //Send statuses count to NSString in ProfileViewController for display
+            profileViewController.statusCountString = [NSString stringWithFormat:@"Number of tweets: %@", [userDictionary objectForKey:@"statuses_count"]];
+            
         }
-        //Send name to NSString in ProfileViewController for display
-        profileViewController.nameString = [userDictionary objectForKey:@"name"];
-        //Send screen name to NSString in ProfileViewController for display
-        profileViewController.screenNameString = [userDictionary objectForKey:@"screen_name"];
-        //Send description to NSString in ProfileViewController for display
-        profileViewController.descriptionString = [userDictionary objectForKey:@"description"];
-        //Send location to NSString in ProfileViewController for display
-        profileViewController.locationString = [userDictionary objectForKey:@"location"];
-        
-        //Send followers count to NSString in ProfileViewController for display
-        profileViewController.followersString = [NSString stringWithFormat:@"Followers: %@",[userDictionary objectForKey:@"followers_count"]];
-        //Send following count to NSString in ProfileViewController for display
-        profileViewController.followingString = [NSString stringWithFormat:@"Following: %@", [userDictionary objectForKey:@"friends_count"]];
-        //Send statuses count to NSString in ProfileViewController for display
-        profileViewController.statusCountString = [NSString stringWithFormat:@"Number of tweets: %@", [userDictionary objectForKey:@"statuses_count"]];
     }
 }
 
