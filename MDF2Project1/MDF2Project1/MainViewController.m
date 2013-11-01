@@ -30,7 +30,7 @@
 @implementation MainViewController
 
 //Synthesize for getters/setters
-@synthesize refreshButton, addButton, profileButton, myTableView, twitterFeedArray, userDictionary, profileImage, profileImageLarge, refreshAlert;
+@synthesize refreshButton, addButton, profileButton, myTableView, twitterFeedArray, userDictionary, profileImage, profileImageLarge, loadingAlert;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -48,7 +48,11 @@
     
     //progressBar = [[UIProgressView alloc] init];
     
-    refreshAlert = [[UIAlertView alloc] initWithTitle:@"Refreshing..." message:@"One moment please while the Twitter feed refreshes" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    //Allocate alert view
+    loadingAlert = [[UIAlertView alloc] initWithTitle:@"Loading..." message:@"One moment please while the Twitter feed loads. This alert will auto-dismiss when complete." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    //Show loading alert. Auto-dismisses oncing loading is done
+    [loadingAlert show];
     
     /*if ([twitterFeedArray count] < 10) {
         progressBar.hidden = false;
@@ -238,7 +242,7 @@
     cell.iconImage.image = profileImage;
     
     //Dismiss the refresh alert view (does nothing if the alert view isn't currently shown such as initial loading).
-    [self dismissRefreshAlert];
+    [self dismissLoadingAlert];
     
     return cell;
 }
@@ -247,20 +251,12 @@
 
 //Method for refresh button click
 -(IBAction)onRefreshClick:(id)sender {
-    //twitterFeedArray = nil;
     [self getTwitterTimeline];
-    [refreshAlert show];
-    //[refreshAlert show];
-    /*if ([twitterFeedArray count] < 8) {
-        
-        [refreshAlert show];
-    } else {
-        [refreshAlert dismissWithClickedButtonIndex:-1 animated:true];
-    }*/
+    [loadingAlert show];
 }
-//Method to dimiss the refresh alert view after the refresh is complete. Called in
--(void)dismissRefreshAlert {
-    [refreshAlert dismissWithClickedButtonIndex:-1 animated:true];
+//Method to dimiss the loading alert view after the refresh is complete. Called in cellForRowAtIndexPath
+-(void)dismissLoadingAlert {
+    [loadingAlert dismissWithClickedButtonIndex:-1 animated:true];
 }
 
 //Method for add button click

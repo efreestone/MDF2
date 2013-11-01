@@ -23,8 +23,8 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *profileButton;
 
 //@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityWheel;
-
-@property (strong, nonatomic) UIAlertView *refreshAlert;
+//Declare loading alert view. Displays on initial load and refresh
+@property (strong, nonatomic) UIAlertView *loadingAlert;
 
 //Declare table view
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;
@@ -39,6 +39,8 @@
 
 //Declare methods for refresh and add buttons
 -(IBAction)onRefreshClick:(id)sender;
+//Method used to dismiss loading alert view. Called in cellForRowAtIndexPath
+-(void)dismissLoadingAlert;
 -(IBAction)onAddClick:(id)sender;
 
 //Declare progress bar method
