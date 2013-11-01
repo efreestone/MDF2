@@ -296,15 +296,17 @@
             [dateFormatter setDateFormat:@"eee, MM/dd/yyyy 'at' hh:mm a"]; //MM/dd/yyyy HH:mm
             NSString *dateWithNewFormat = [dateFormatter stringFromDate:dateFromString];
         
-            //Send tweet text to NSString in DetailViewController for display
-            detailsViewController.tweetTextString = [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"text"];
-            //Send tweet time/date to NSString in DetailViewController for display
-            detailsViewController.tweetTimeString = dateWithNewFormat;
             //Send profile image to UIImage in DetailViewController for display
             if (profileImageLarge != nil) {
                 //profileImageLarge is original sized instead of 48X48px of "_normal" image
                 detailsViewController.tweetProfileImage = profileImageLarge;
             }
+            //Send screen name to NSString in DetailViewController for display
+            detailsViewController.screenNameString = [NSString stringWithFormat:@"@%@", [userDictionary objectForKey:@"screen_name"]];
+            //Send tweet text to NSString in DetailViewController for display
+            detailsViewController.tweetTextString = [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"text"];
+            //Send tweet time/date to NSString in DetailViewController for display
+            detailsViewController.tweetTimeString = dateWithNewFormat;
         }
     }
     
@@ -322,7 +324,7 @@
             //Send name to NSString in ProfileViewController for display
             profileViewController.nameString = [userDictionary objectForKey:@"name"];
             //Send screen name to NSString in ProfileViewController for display
-            profileViewController.screenNameString = [userDictionary objectForKey:@"screen_name"];
+            profileViewController.screenNameString = [NSString stringWithFormat:@"@%@", [userDictionary objectForKey:@"screen_name"]];
             //Send description to NSString in ProfileViewController for display
             profileViewController.descriptionString = [userDictionary objectForKey:@"description"];
             //Send location to NSString in ProfileViewController for display
