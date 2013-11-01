@@ -19,20 +19,27 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *profileButton;
+
+@property (strong, nonatomic) IBOutlet UIToolbar *toolBar;
+@property (strong, nonatomic) IBOutlet UIProgressView *progressBar;
+
 //Declare table view
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;
 //Declare twitter timeline array
 @property (strong, nonatomic) NSArray *twitterFeedArray;
+//Declare dictionary of user object from twitterFeedArray
+@property (strong, nonatomic) NSDictionary *userDictionary;
 //Declare UIImage to hold profile image
 @property (strong, nonatomic) UIImage *profileImage;
 //Declare second UIImage to fix display issue on detail view.
 @property (strong, nonatomic) UIImage *profileImageLarge;
 
-@property (strong, nonatomic) NSArray *testArray;
-
-//Declare methods for refresh and add buttons
+//Declare methods for refresh, add, and profile buttons
 -(IBAction)onRefreshClick:(id)sender;
 -(IBAction)onAddClick:(id)sender;
+-(IBAction)onProfileClick:(id)sender;
+//Declare progress bar method
+-(IBAction)animateProgressBar:(id)sender;
 
 //Declare method to get twitter timeline (feed)
 -(void)getTwitterTimeline;

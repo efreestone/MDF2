@@ -34,9 +34,10 @@
 - (void)viewDidLoad
 {
     //Set text and image to labels from objects passed from Main View Controller
+    iconImage.image = tweetProfileImage;
     tweetTextLabel.text = tweetTextString;
     tweetTimeLabel.text = tweetTimeString;
-    iconImage.image = tweetProfileImage;
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }

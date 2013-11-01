@@ -16,6 +16,8 @@
 #import "TwitterCell.h"
 //Import details view controller
 #import "DetailsViewController.h"
+//Import profile view controller
+#import "ProfileViewController.h"
 //Import accounts framework
 #import <Accounts/Accounts.h>
 //Import social framework
@@ -28,9 +30,7 @@
 @implementation MainViewController
 
 //Synthesize for getters/setters
-@synthesize refreshButton, addButton, profileButton, myTableView, twitterFeedArray, profileImage, profileImageLarge;
-
-@synthesize testArray;
+@synthesize refreshButton, addButton, profileButton, myTableView, twitterFeedArray, userDictionary, profileImage, profileImageLarge, toolBar;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -45,6 +45,8 @@
 {
     //Call getTwitterFeed
     [self getTwitterTimeline];
+    
+    //self.tableView.tableFooterView = toolBar;
     
     [super viewDidLoad];
 
@@ -96,7 +98,7 @@
                                         //Put JSON object returned into array
                                         twitterFeedArray = [NSJSONSerialization JSONObjectWithData: responseData options:0 error:nil];
                                         if (twitterFeedArray != nil) {
-                                            NSLog(@"%@", [twitterFeedArray description]);
+                                            //NSLog(@"%@", [twitterFeedArray description]);
                                             [myTableView reloadData];
                                         }
                                     }
@@ -111,6 +113,16 @@
         }
     }
 }
+
+#pragma mark - Progress Bar methods
+
+-(IBAction)animateProgressBar:(id)sender {
+    
+}
+
+
+
+
 
 #pragma mark - Table view data source
 
@@ -137,10 +149,11 @@
     //Cast a single tweet from twitter feed array into NSDictionary
     NSDictionary *tweetDictionary = [twitterFeedArray objectAtIndex:indexPath.row];
     //Cast user section of tweetDictionary into its own dictionary
-    NSDictionary *userDictionary = [tweetDictionary objectForKey:@"user"];
+    userDictionary = [tweetDictionary objectForKey:@"user"];
+    //NSLog(@"%@", [userDictionary description]);
     if (userDictionary != nil) {
         //Cast image url into string
-        NSString *imageString = [NSString stringWithFormat: @"%@", [userDictionary valueForKey:@"profile_image_url"]];
+        NSString *imageString = [NSString stringWithFormat: @"%@", [userDictionary objectForKey:@"profile_image_url"]];
         //Cast a new image url string removing "_normal" to get profile image in original size for detail view
         NSString *largeImageString = [imageString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
         //NSLog(@"%@", imageString);
@@ -199,6 +212,11 @@
     
 }
 
+//Method for profile button click
+-(IBAction)onProfileClick:(id)sender {
+    
+}
+
 #pragma mark - Navigation
 
 //Built in function to pass data with segue to display in DetailsViewContoller
@@ -209,7 +227,6 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         //Grab destination view controller
         DetailsViewController *detailsViewController = segue.destinationViewController;
-        //Send tweet text to NSString in DetailViewController for display
         
         //Cast time/date from twitter feed array into NSString
         NSString *dateString = (NSString *) [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"created_at"];
@@ -224,6 +241,7 @@
         [dateFormatter setDateFormat:@"eee, MM/dd/yyyy 'at' hh:mm a"]; //MM/dd/yyyy HH:mm
         NSString *dateWithNewFormat = [dateFormatter stringFromDate:dateFromString];
         
+        //Send tweet text to NSString in DetailViewController for display
         detailsViewController.tweetTextString = [[twitterFeedArray objectAtIndex:indexPath.row] objectForKey:@"text"];
         //Send tweet time/date to NSString in DetailViewController for display
         detailsViewController.tweetTimeString = dateWithNewFormat;
@@ -232,6 +250,33 @@
             //profileImageLarge is original sized instead of 48X48px of "_normal" image
             detailsViewController.tweetProfileImage = profileImageLarge;
         }
+    }
+    
+    //Verify identifier of push segue to Profile view
+    if ([segue.identifier isEqualToString:@"ShowProfile"]) {
+        //Grab destination view controller
+        ProfileViewController *profileViewController = segue.destinationViewController;
+        
+        //Send profile image to UIImage in DetailViewController for display
+        if (profileImageLarge != nil) {
+            //profileImageLarge is original sized instead of 48X48px of "_normal" image
+            profileViewController.profileImage = profileImageLarge;
+        }
+        //Send name to NSString in ProfileViewController for display
+        profileViewController.nameString = [userDictionary objectForKey:@"name"];
+        //Send screen name to NSString in ProfileViewController for display
+        profileViewController.screenNameString = [userDictionary objectForKey:@"screen_name"];
+        //Send description to NSString in ProfileViewController for display
+        profileViewController.descriptionString = [userDictionary objectForKey:@"description"];
+        //Send location to NSString in ProfileViewController for display
+        profileViewController.locationString = [userDictionary objectForKey:@"location"];
+        
+        //Send followers count to NSString in ProfileViewController for display
+        profileViewController.followersString = [NSString stringWithFormat:@"Followers: %@",[userDictionary objectForKey:@"followers_count"]];
+        //Send following count to NSString in ProfileViewController for display
+        profileViewController.followingString = [NSString stringWithFormat:@"Following: %@", [userDictionary objectForKey:@"friends_count"]];
+        //Send statuses count to NSString in ProfileViewController for display
+        profileViewController.statusCountString = [NSString stringWithFormat:@"Number of tweets: %@", [userDictionary objectForKey:@"statuses_count"]];
     }
 }
 

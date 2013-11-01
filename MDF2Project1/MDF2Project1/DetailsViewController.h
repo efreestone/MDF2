@@ -15,7 +15,7 @@
 
 @interface DetailsViewController : UIViewController
 
-//Declare table view cell items
+//Declare tweet items
 @property (strong, nonatomic) IBOutlet UIImageView *iconImage;
 @property (strong, nonatomic) IBOutlet UILabel *tweetTextLabel;
 @property (strong, nonatomic) IBOutlet UILabel *tweetTimeLabel;

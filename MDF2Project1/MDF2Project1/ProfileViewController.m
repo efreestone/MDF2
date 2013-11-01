@@ -19,6 +19,12 @@
 
 @implementation ProfileViewController
 
+//Synthesize IBOutlets for getters/setters
+@synthesize iconImage, nameLabel, screenNameLabel, descriptionLabel, locationLabel, followersLabel, followingLabel, statusCountLabel;
+
+//Synthesize strings/image for getters/setters
+@synthesize profileImage, nameString, screenNameString, descriptionString, locationString, followersString, followingString, statusCountString;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -30,6 +36,16 @@
 
 - (void)viewDidLoad
 {
+    //Set text and image to labels from objects passed from Main View Controller
+    iconImage.image = profileImage;
+    nameLabel.text = nameString;
+    screenNameLabel.text = screenNameString;
+    descriptionLabel.text = descriptionString;
+    locationLabel.text = locationString;
+    followersLabel.text = followersString;
+    followingLabel.text = followingString;
+    statusCountLabel.text = statusCountString;
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
