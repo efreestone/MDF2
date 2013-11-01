@@ -43,8 +43,26 @@
 
 - (void)viewDidLoad
 {
-    testArray = [[NSArray alloc] initWithObjects: @{@"Tweet":@"Test 1", @"Time":@"7:55pm Oct 29th, 2103"}, @{@"Tweet":@"Test 2", @"Time":@"7:57pm Oct 29th, 2103"}, @{@"Tweet":@"Test 3", @"Time":@"8:10pm Oct 29th, 2103"}, nil];
+    //Call getTwitterFeed
+    [self getTwitterTimeline];
     
+    [super viewDidLoad];
+
+    // Uncomment the following line to preserve selection between presentations.
+    // self.clearsSelectionOnViewWillAppear = NO;
+ 
+    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
+    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+- (void)didReceiveMemoryWarning
+{
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+//Create custom method for grabbing twitter timeline so it can be called when needed
+-(void)getTwitterTimeline {
     //Create ACAccountStore to store account details (twitter in this case)
     ACAccountStore *accountStore = [[ACAccountStore alloc] init];
     if (accountStore != nil) {
@@ -78,7 +96,7 @@
                                         //Put JSON object returned into array
                                         twitterFeedArray = [NSJSONSerialization JSONObjectWithData: responseData options:0 error:nil];
                                         if (twitterFeedArray != nil) {
-                                            //NSLog(@"%@", [twitterFeedArray description]);
+                                            NSLog(@"%@", [twitterFeedArray description]);
                                             [myTableView reloadData];
                                         }
                                     }
@@ -92,20 +110,6 @@
             }];
         }
     }
-    
-    [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
-
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 #pragma mark - Table view data source
@@ -180,11 +184,18 @@
 
 //Method for refresh button click
 -(IBAction)onRefreshClick:(id)sender {
-    
+    [self getTwitterTimeline];
 }
 
 //Method for add button click
 -(IBAction)onAddClick:(id)sender {
+    //Create instance of SLComposeViewController
+    SLComposeViewController *slComposeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
+    if (slComposeViewController != nil) {
+        [slComposeViewController setInitialText:@"This is a test"];
+        
+        [self presentViewController:slComposeViewController animated:true completion:nil];
+    }
     
 }
 

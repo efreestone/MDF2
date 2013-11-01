@@ -33,4 +33,8 @@
 //Declare methods for refresh and add buttons
 -(IBAction)onRefreshClick:(id)sender;
 -(IBAction)onAddClick:(id)sender;
+
+//Declare method to get twitter timeline (feed)
+-(void)getTwitterTimeline;
+
 @end

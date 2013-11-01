@@ -117,7 +117,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="dLr-tY-ORX">
                             <connections>
-                                <action selector="onAddClick:" destination="lqP-xr-ylG" id="D3N-gv-mfL"/>
+                                <action selector="onAddClick:" destination="lqP-xr-ylG" id="3IH-hl-qVg"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
