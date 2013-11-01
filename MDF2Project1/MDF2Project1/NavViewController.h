@@ -4,15 +4,15 @@
 // October 28th, 2013
 
 //
-//  ViewController.h
+//  NavViewController.h
 //  MDF2Project1
 //
-//  Created by Elijah Freestone on 10/28/13.
+//  Created by Elijah Freestone on 10/29/13.
 //  Copyright (c) 2013 Elijah Freestone. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface NavViewController : UINavigationController
 
 @end
