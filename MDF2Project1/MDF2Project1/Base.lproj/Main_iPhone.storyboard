@@ -53,7 +53,7 @@
             </objects>
             <point key="canvasLocation" x="1081" y="-689"/>
         </scene>
-        <!--Main View Controller-->
+        <!--Main View Controller - Twitter Feed-->
         <scene sceneID="F3Y-Bd-MeS">
             <objects>
                 <tableViewController id="lqP-xr-ylG" customClass="MainViewController" sceneMemberID="viewController">
@@ -115,8 +115,7 @@
                         </connections>
                     </tableView>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="MBN-sb-AjN">
-                        <nil key="title"/>
+                    <navigationItem key="navigationItem" title="Twitter Feed" id="MBN-sb-AjN">
                         <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="CDS-hK-nZN">
                             <connections>
                                 <action selector="onRefreshClick:" destination="lqP-xr-ylG" id="lCY-68-dY7"/>
