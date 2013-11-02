@@ -46,28 +46,13 @@
     //Call getTwitterFeed
     [self getTwitterTimeline];
     
-    //progressBar = [[UIProgressView alloc] init];
-    
     //Allocate alert view
     loadingAlert = [[UIAlertView alloc] initWithTitle:@"Loading..." message:@"One moment please while the Twitter feed loads. This alert will auto-dismiss when complete." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
-    //Show loading alert. Auto-dismisses oncing loading is done
+    //Show loading alert. Auto-dismisses once loading is done (dismissed in cellForRowAtIndexPath)
     [loadingAlert show];
     
-    /*if ([twitterFeedArray count] < 10) {
-        progressBar.hidden = false;
-        [self animateProgressBar:nil];
-    } else {
-        progressBar.hidden = true;
-    }*/
-    
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning
@@ -127,51 +112,6 @@
         }
     }
 }
-
-#pragma mark - Progress Bar methods
-
-/*-(void)animateProgressBar:(id)sender {
-    currentProgress = 0.0f;
-    progressBar.progress = currentProgress;
-    [self performSelector:@selector(increaseCurrentProgress) withObject:nil afterDelay:0.1];
-}
-
--(void)increaseCurrentProgress {
-    currentProgress += 0.1f;
-    progressBar.progress = currentProgress;
-    if (currentProgress < 1.0f) {
-        [self performSelector:@selector(increaseCurrentProgress) withObject:nil afterDelay:0.5];
-    } else {
-        [self performSelector:@selector(dismissProgress) withObject:nil afterDelay:0.5];
-    }
-}
-
--(void)dismissProgress {
-    //[self progressCompleted];
-}*/
-
-/*static float progress = 0.0f;
-
--(IBAction)showWithProgress:(id)sender {
-    progress = 0.0f;
-    _progressView.progress = progress;
-    [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3];
-}
-
--(void)increaseProgress {
-    progress+=0.1f;
-    _progressView.progress = progress;
-    if(progress < 1.0f)
-        [self performSelector:@selector(increaseProgress) withObject:nil afterDelay:0.3];
-    else
-        [self performSelector:@selector(dismiss) withObject:nil afterDelay:0.2f];
-}
-
--(void)dismiss {
-    [self progressCompleted];
-}*/
-
-
 
 #pragma mark - Table view data source
 

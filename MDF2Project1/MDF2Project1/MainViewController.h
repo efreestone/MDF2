@@ -42,9 +42,6 @@
 -(void)dismissLoadingAlert;
 -(IBAction)onAddClick:(id)sender;
 
-//Declare progress bar method
-//-(void)animateProgressBar:(id)sender;
-
 //Declare method to get twitter timeline (feed)
 -(void)getTwitterTimeline;
 
