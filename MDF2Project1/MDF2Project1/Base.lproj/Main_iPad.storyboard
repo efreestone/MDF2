@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
     </dependencies>
     <scenes>
-        <!--Main View Controller-->
+        <!--Main View Controller - Twitter Feed-->
         <scene sceneID="im3-zr-RE4">
             <objects>
                 <tableViewController id="1HU-HB-EPh" customClass="MainViewController" sceneMemberID="viewController">
@@ -65,7 +65,7 @@
                             <outlet property="delegate" destination="1HU-HB-EPh" id="6WW-SO-2Fc"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Rcf-IP-v26">
+                    <navigationItem key="navigationItem" title="Twitter Feed" id="Rcf-IP-v26">
                         <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="HrH-O6-eyc">
                             <connections>
                                 <action selector="onRefreshClick:" destination="1HU-HB-EPh" id="7WZ-l7-P70"/>

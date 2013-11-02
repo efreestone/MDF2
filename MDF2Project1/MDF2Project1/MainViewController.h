@@ -22,7 +22,6 @@
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *profileButton;
 
-//@property (strong, nonatomic) IBOutlet UIActivityIndicatorView *activityWheel;
 //Declare loading alert view. Displays on initial load and refresh
 @property (strong, nonatomic) UIAlertView *loadingAlert;
 

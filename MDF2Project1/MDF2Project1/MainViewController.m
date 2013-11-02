@@ -196,9 +196,13 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //Cast a single tweet from twitter feed array into NSDictionary
-    NSDictionary *tweetDictionary = [twitterFeedArray objectAtIndex:indexPath.row];
+    //This works fine, however it creates 8 tweet dictionaries. I only need one so I'm grabbing the first tweet instead.
+    //NSDictionary *tweetDictionary = [twitterFeedArray objectAtIndex:indexPath.row];
+    //Cast the the first tweet object from twitterFeedArray for extracting the "user" object
+    NSDictionary *firstTweetDict = [twitterFeedArray objectAtIndex:0];
     //Cast user section of tweetDictionary into its own dictionary
-    userDictionary = [tweetDictionary objectForKey:@"user"];
+    //It seemed more efficient to use the data already pulled for the user info instead of making a new request to "GET users"
+    userDictionary = [firstTweetDict objectForKey:@"user"];
     //NSLog(@"%@", [userDictionary description]);
     if (userDictionary != nil) {
         //Cast image url into string
@@ -264,7 +268,7 @@
     //Create instance of SLComposeViewController
     SLComposeViewController *slComposeViewController = [SLComposeViewController composeViewControllerForServiceType:SLServiceTypeTwitter];
     if (slComposeViewController != nil) {
-        [slComposeViewController setInitialText:@"This is a test"];
+        [slComposeViewController setInitialText:@"Posted From MDF2 1311 Project 1"];
         
         [self presentViewController:slComposeViewController animated:true completion:nil];
     }
