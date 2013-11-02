@@ -15,13 +15,15 @@
 
 @interface DetailsViewController : UIViewController
 
-//Declare table view cell items
+//Declare tweet items
 @property (strong, nonatomic) IBOutlet UIImageView *iconImage;
+@property (strong, nonatomic) IBOutlet UILabel *screenNameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *tweetTextLabel;
 @property (strong, nonatomic) IBOutlet UILabel *tweetTimeLabel;
 //Declare strings to hold tweet details and image
+@property (strong, nonatomic) UIImage *tweetProfileImage;
+@property (strong, nonatomic) NSString *screenNameString;
 @property (strong, nonatomic) NSString *tweetTextString;
 @property (strong, nonatomic) NSString *tweetTimeString;
-@property (strong, nonatomic) UIImage *tweetProfileImage;
 
 @end

@@ -13,25 +13,33 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
+@interface MainViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource> {
+    float currentProgress;
+}
 
 //Declare refresh, add, and profile buttons
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *refreshButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *addButton;
 @property (strong, nonatomic) IBOutlet UIBarButtonItem *profileButton;
+
+//Declare loading alert view. Displays on initial load and refresh
+@property (strong, nonatomic) UIAlertView *loadingAlert;
+
 //Declare table view
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;
 //Declare twitter timeline array
 @property (strong, nonatomic) NSArray *twitterFeedArray;
+//Declare dictionary of user object from twitterFeedArray
+@property (strong, nonatomic) NSDictionary *userDictionary;
 //Declare UIImage to hold profile image
 @property (strong, nonatomic) UIImage *profileImage;
 //Declare second UIImage to fix display issue on detail view.
 @property (strong, nonatomic) UIImage *profileImageLarge;
 
-@property (strong, nonatomic) NSArray *testArray;
-
 //Declare methods for refresh and add buttons
 -(IBAction)onRefreshClick:(id)sender;
+//Method used to dismiss loading alert view. Called in cellForRowAtIndexPath
+-(void)dismissLoadingAlert;
 -(IBAction)onAddClick:(id)sender;
 
 //Declare method to get twitter timeline (feed)
