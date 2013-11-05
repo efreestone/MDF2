@@ -10,6 +10,9 @@
 
 @implementation CustomCollectionCell
 
+//Synthesize for getters/setters
+@synthesize profileImageView, userNameLabel;
+
 - (id)initWithFrame:(CGRect)frame
 {
     self = [super initWithFrame:frame];
@@ -27,5 +30,10 @@
     // Drawing code
 }
 */
+
+-(void)refreshCellData:(UIImage *)image titleString:(NSString *)titleString {
+    profileImageView.image = image;
+    userNameLabel.text = titleString;
+}
 
 @end

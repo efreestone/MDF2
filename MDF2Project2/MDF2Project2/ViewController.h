@@ -13,6 +13,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
+{
+    //IBOutlet UICollectionView *collectionView;
+}
+
+@property (strong, nonatomic) IBOutlet UICollectionView *myCollectionView;
 
 @end

@@ -10,4 +10,11 @@
 
 @interface CustomCollectionCell : UICollectionViewCell
 
+//Declare profile image view and username label
+@property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
+@property (strong, nonatomic) IBOutlet UILabel *userNameLabel;
+
+//Declare custom method to refresh cell data
+-(void)refreshCellData:(UIImage *)image titleString:(NSString *)titleString;
+
 @end
