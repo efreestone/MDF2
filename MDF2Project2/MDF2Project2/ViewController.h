@@ -14,10 +14,13 @@
 #import <UIKit/UIKit.h>
 
 @interface ViewController : UIViewController <UICollectionViewDelegate, UICollectionViewDataSource>
-{
-    //IBOutlet UICollectionView *collectionView;
-}
 
+//Declare collection view
 @property (strong, nonatomic) IBOutlet UICollectionView *myCollectionView;
+//Declare twitter users array
+@property (strong, nonatomic) NSArray *twitterUsersArray;
+
+//Declare custom method to grab Twitter followers
+-(void)getTwitterUsers;
 
 @end
