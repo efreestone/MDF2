@@ -34,6 +34,9 @@
     if (cellNib != nil) {
         [myCollectionView registerNib:cellNib forCellWithReuseIdentifier:@"CustomCell"];
     }
+    
+    [self getTwitterUsers];
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -46,7 +49,7 @@
 
 #pragma mark - Twitter call
 
-//Create custom method for grabbing twitter timeline so it can be called when needed
+//Create custom method for grabbing twitter friends so it can be called when needed (modified from project 1)
 -(void)getTwitterUsers {
     //Create ACAccountStore to store account details (twitter in this case)
     ACAccountStore *accountStore = [[ACAccountStore alloc] init];
@@ -65,10 +68,10 @@
                         ACAccount *currentAccount = [twitterAccounts objectAtIndex:0];
                         if (currentAccount != nil) {
                             
-                            //Set up URL for timeline request with count set to 8 and retweets included
-                            NSString *userTimelineString = @"https://api.twitter.com/1.1/statuses/user_timeline.json?count=8&include_rts=1";
+                            //Set up URL for friends request with status skipped
+                            NSString *friendListString = @"https://api.twitter.com/1.1/friends/list.json?cursor=-1&skip_status=true&include_user_entities=false";
                             //Set up request with URL
-                            SLRequest *request = [SLRequest requestForServiceType: SLServiceTypeTwitter requestMethod: SLRequestMethodGET URL: [NSURL URLWithString: userTimelineString] parameters:nil];
+                            SLRequest *request = [SLRequest requestForServiceType: SLServiceTypeTwitter requestMethod: SLRequestMethodGET URL: [NSURL URLWithString: friendListString] parameters:nil];
                             if (request != nil) {
                                 //Set account. Twitter 1.1 API requires authentication (user needs to be logged in)
                                 [request setAccount:currentAccount];
@@ -81,7 +84,7 @@
                                         //Put JSON object returned into array
                                         twitterUsersArray = [NSJSONSerialization JSONObjectWithData: responseData options:0 error:nil];
                                         if (twitterUsersArray != nil) {
-                                            //NSLog(@"%@", [twitterFeedArray description]);
+                                            NSLog(@"%@", [twitterUsersArray description]);
                                             
                                             //[myTableView reloadData];
                                         }
@@ -100,28 +103,33 @@
 
 #pragma mark - Collection View Data Source
 
-//Built in function to set number of cells in a section
+//Built in method to set number of cells in a section
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return 51;
 }
 
-//Built in function to set number of sections in collection view
+//Built in method to set number of sections in collection view
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
     return 1;
 }
 
-//Built in function to allocate and reuse collection view cells
+//Built in method to allocate and reuse collection view cells
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     CustomCollectionCell *cell = [myCollectionView dequeueReusableCellWithReuseIdentifier:@"CustomCell" forIndexPath:indexPath];
     //NSLog(@"celForItem is working");
     if (cell != nil) {
-        NSLog(@"cell is created");
-        NSString *imageName = [NSString stringWithFormat:@"test_image%ld", ((indexPath.row % 4) + 1)];
+        //NSLog(@"cell is created");
+        NSString *imageName = [NSString stringWithFormat:@"test_image%d", ((indexPath.row % 4) + 1)];
         [cell refreshCellData:[UIImage imageNamed:imageName] titleString:[NSString stringWithFormat: @"cell %ld", (long)indexPath.row]];
         return cell;
     }
     
     return nil;
+}
+
+//Built in method to grab which cell was selected and send the info to details view
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
 }
 
 

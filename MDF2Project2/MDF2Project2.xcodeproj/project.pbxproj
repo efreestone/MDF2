@@ -16,6 +16,9 @@
 		B8262FA11828691200DDC0C5 /* test_image4.png in Resources */ = {isa = PBXBuildFile; fileRef = B8262F9D1828691200DDC0C5 /* test_image4.png */; };
 		B836949D1829AE2C00B2248F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B836949C1829AE2C00B2248F /* Social.framework */; };
 		B836949F1829AE3D00B2248F /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B836949E1829AE3D00B2248F /* Accounts.framework */; };
+		B83694A31829C24700B2248F /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B83694A11829C24700B2248F /* DetailsViewController.m */; };
+		B83694A41829C24700B2248F /* DetailsView_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = B83694A21829C24700B2248F /* DetailsView_iPhone.xib */; };
+		B83694A61829C28300B2248F /* DetailsView_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B83694A51829C28300B2248F /* DetailsView_iPad.xib */; };
 		B86913641825D012008A992B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86913631825D012008A992B /* Foundation.framework */; };
 		B86913661825D012008A992B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86913651825D012008A992B /* CoreGraphics.framework */; };
 		B86913681825D012008A992B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86913671825D012008A992B /* UIKit.framework */; };
@@ -53,6 +56,10 @@
 		B8262F9D1828691200DDC0C5 /* test_image4.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_image4.png; sourceTree = "<group>"; };
 		B836949C1829AE2C00B2248F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		B836949E1829AE3D00B2248F /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		B83694A01829C24700B2248F /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		B83694A11829C24700B2248F /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
+		B83694A21829C24700B2248F /* DetailsView_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsView_iPhone.xib; sourceTree = "<group>"; };
+		B83694A51829C28300B2248F /* DetailsView_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsView_iPad.xib; sourceTree = "<group>"; };
 		B86913601825D012008A992B /* MDF2Project2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDF2Project2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B86913631825D012008A992B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B86913651825D012008A992B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -158,6 +165,10 @@
 				B869137E1825D012008A992B /* Images.xcassets */,
 				B869136A1825D012008A992B /* Supporting Files */,
 				B8262F991828691200DDC0C5 /* images */,
+				B83694A01829C24700B2248F /* DetailsViewController.h */,
+				B83694A11829C24700B2248F /* DetailsViewController.m */,
+				B83694A21829C24700B2248F /* DetailsView_iPhone.xib */,
+				B83694A51829C28300B2248F /* DetailsView_iPad.xib */,
 			);
 			path = MDF2Project2;
 			sourceTree = "<group>";
@@ -269,11 +280,13 @@
 			files = (
 				B817B1CE1828ABBC007E0C98 /* CustomCollectionCell.xib in Resources */,
 				B8262FA11828691200DDC0C5 /* test_image4.png in Resources */,
+				B83694A61829C28300B2248F /* DetailsView_iPad.xib in Resources */,
 				B817B1CC1828A92A007E0C98 /* ViewController_iPhone.xib in Resources */,
 				B8262F9E1828691200DDC0C5 /* test_image1.png in Resources */,
 				B8262F9F1828691200DDC0C5 /* test_image2.png in Resources */,
 				B869137F1825D012008A992B /* Images.xcassets in Resources */,
 				B8C6D7121828B8050041754C /* ViewController_iPad.xib in Resources */,
+				B83694A41829C24700B2248F /* DetailsView_iPhone.xib in Resources */,
 				B8262FA01828691200DDC0C5 /* test_image3.png in Resources */,
 				B869136E1825D012008A992B /* InfoPlist.strings in Resources */,
 			);
@@ -295,6 +308,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8262F91182859A200DDC0C5 /* CustomCollectionCell.m in Sources */,
+				B83694A31829C24700B2248F /* DetailsViewController.m in Sources */,
 				B869137D1825D012008A992B /* ViewController.m in Sources */,
 				B86913741825D012008A992B /* AppDelegate.m in Sources */,
 				B86913701825D012008A992B /* main.m in Sources */,
