@@ -28,7 +28,7 @@
 @implementation ViewController
 
 //Synthesize for getters/setters
-@synthesize myCollectionView, twitterUsersArray;
+@synthesize myCollectionView, twitterUsersDict, profileImage, profileImageLarge, followerDictionary, countDictionary, userNameString;
 
 - (void)viewDidLoad
 {
@@ -84,11 +84,22 @@
                                     //Response code of 200 means the request was successful
                                     if (responseCode == 200) {
                                         //Put JSON object returned into array
-                                        twitterUsersArray = [NSJSONSerialization JSONObjectWithData: responseData options:0 error:nil];
-                                        if (twitterUsersArray != nil) {
-                                            NSLog(@"%@", [twitterUsersArray description]);
+                                        twitterUsersDict = [NSJSONSerialization JSONObjectWithData: responseData options:0 error:nil];
+                                        if (twitterUsersDict != nil) {
+                                            //NSLog(@"%@", [twitterUsersArray description]);
                                             
-                                            //[myTableView reloadData];
+                                            countDictionary = [twitterUsersDict objectForKey:@"users"];
+                                            //NSLog(@"%@", [userDictionary description]);
+                                            
+                                            //NSLog(@"twitterUserArray count = %lu", (unsigned long)[twitterUsersArray count]);
+                                            /*if ([userDictionary isKindOfClass: [NSArray class]]) {
+                                                //NSLog(@"is NSArray");
+                                                followerInfo = [[NSMutableArray alloc] init];
+                                                [followerInfo addObject:userDictionary];
+                                                NSLog(@"followerInfo: %@", [followerInfo description]);
+                                            }*/
+                                            
+                                            [myCollectionView reloadData];
                                         }
                                     }
                                 }];
@@ -107,7 +118,14 @@
 
 //Built in method to set number of cells in a section
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
-    return 51;
+    // Return the number of rows in the section.
+    if (twitterUsersDict != nil) {
+        return [countDictionary count];
+        //NSLog(@"feed count = %lu", (unsigned long)[twitterUsersArray count]);
+    } else {
+        return 0;
+        NSLog(@"Twitter feed is nil");
+    }
 }
 
 //Built in method to set number of sections in collection view
@@ -117,12 +135,39 @@
 
 //Built in method to allocate and reuse collection view cells
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+    //Split twitterUsersDict into individual dictionaries for each user item.
+    followerDictionary = [[twitterUsersDict objectForKey:@"users"] objectAtIndex:indexPath.row];
+    //NSLog(@"%d", [userDictionary count]);
+    //userDictionary = [firstTweetDict objectForKey:@"user"];
+    //NSLog(@"%@", [userDictionary description]);
+    
     CustomCollectionCell *cell = [myCollectionView dequeueReusableCellWithReuseIdentifier:@"CustomCell" forIndexPath:indexPath];
     //NSLog(@"celForItem is working");
     if (cell != nil) {
+        if (followerDictionary != nil) {
+            //Cast image url into string
+            NSString *imageString = [NSString stringWithFormat:@"%@", [followerDictionary objectForKey:@"profile_image_url"]];
+            //Cast a new image url string removing "_normal" to get profile image in original size for detail view
+            NSString *largeImageString = [imageString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+            //NSLog(@"%@", imageString);
+            //Inject url string into NSURL
+            NSURL *imageURL = [NSURL URLWithString:imageString];
+            NSURL *largeImageURL = [NSURL URLWithString:largeImageString];
+            //Inject image url into NSData
+            NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageURL];
+            NSData *largeImageData = [[NSData alloc] initWithContentsOfURL:largeImageURL];
+            //Inject NSData into image with data
+            profileImage = [[UIImage alloc] initWithData:imageData];
+            //profileImageLarge is "original" sized instead of 48X48px of "_normal" image
+            profileImageLarge = [[UIImage alloc] initWithData:largeImageData];
+            
+            //Cast username into string
+            userNameString = [NSString stringWithFormat:@"%@", [followerDictionary objectForKey:@"screen_name"]];
+        }
         //NSLog(@"cell is created");
-        NSString *imageName = [NSString stringWithFormat:@"test_image%d", ((indexPath.row % 4) + 1)];
-        [cell refreshCellData:[UIImage imageNamed:imageName] titleString:[NSString stringWithFormat: @"cell %ld", (long)indexPath.row]];
+        [cell refreshCellData:profileImage titleString:[NSString stringWithFormat: @"@%@", userNameString]];
+        //NSString *imageName = [NSString stringWithFormat:@"test_image%d", ((indexPath.row % 4) + 1)];
+        //[cell refreshCellData:[UIImage imageNamed:imageName] titleString:[NSString stringWithFormat: @"cell %ld", (long)indexPath.row]];
         return cell;
     }
     
@@ -131,6 +176,8 @@
 
 //Built in method to grab which cell was selected and send the info to details view
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    //Split twitterUsersDict into individual dictionaries for each user item.
+    followerDictionary = [[twitterUsersDict objectForKey:@"users"] objectAtIndex:indexPath.row];
     //Allocate detail view with nibs for either device
     DetailsViewController *detailsView_iPhone = [[DetailsViewController alloc] initWithNibName:@"DetailsView_iPhone" bundle:nil];
     DetailsViewController *detailsView_iPad = [[DetailsViewController alloc] initWithNibName:@"DetailsView_iPad" bundle:nil];
@@ -139,11 +186,15 @@
         //Device is iPhone
         if (detailsView_iPhone != nil) {
             [self presentViewController:detailsView_iPhone animated:TRUE completion:nil];
+            detailsView_iPhone.profileImageView.image = profileImageLarge;
+            detailsView_iPhone.userNameLabel.text = [NSString stringWithFormat:@"@%@", [followerDictionary objectForKey:@"screen_name"]];
         }
     } else {
         //Device is iPad
         if (detailsView_iPad != nil) {
-            
+            [self presentViewController:detailsView_iPad animated:TRUE completion:nil];
+            detailsView_iPad.profileImageView.image = profileImageLarge;
+            detailsView_iPad.userNameLabel.text = [NSString stringWithFormat:@"@%@", [followerDictionary objectForKey:@"screen_name"]];
         }
     }
 }

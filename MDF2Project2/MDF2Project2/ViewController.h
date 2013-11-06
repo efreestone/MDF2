@@ -18,7 +18,18 @@
 //Declare collection view
 @property (strong, nonatomic) IBOutlet UICollectionView *myCollectionView;
 //Declare twitter users array
-@property (strong, nonatomic) NSArray *twitterUsersArray;
+@property (strong, nonatomic) NSDictionary *twitterUsersDict;
+
+//Declare UIImage to hold profile image
+@property (strong, nonatomic) UIImage *profileImage;
+//Declare second UIImage to fix display issue on detail view.
+@property (strong, nonatomic) UIImage *profileImageLarge;
+
+@property (strong, nonatomic) NSDictionary *followerDictionary;
+
+@property (strong, nonatomic) NSString *userNameString;
+
+@property (strong, nonatomic) NSDictionary *countDictionary;
 
 //Declare custom method to grab Twitter followers
 -(void)getTwitterUsers;
