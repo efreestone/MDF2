@@ -14,6 +14,8 @@
 #import "ViewController.h"
 //Import custom cell
 #import "CustomCollectionCell.h"
+//Import detail view
+#import "DetailsViewController.h"
 //Import accounts framework
 #import <Accounts/Accounts.h>
 //Import social framework
@@ -129,8 +131,26 @@
 
 //Built in method to grab which cell was selected and send the info to details view
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
+    //Allocate detail view with nibs for either device
+    DetailsViewController *detailsView_iPhone = [[DetailsViewController alloc] initWithNibName:@"DetailsView_iPhone" bundle:nil];
+    DetailsViewController *detailsView_iPad = [[DetailsViewController alloc] initWithNibName:@"DetailsView_iPad" bundle:nil];
+    //Check device type
+    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
+        //Device is iPhone
+        if (detailsView_iPhone != nil) {
+            [self presentViewController:detailsView_iPhone animated:TRUE completion:nil];
+        }
+    } else {
+        //Device is iPad
+        if (detailsView_iPad != nil) {
+            
+        }
+    }
 }
+
+#pragma mark - Methods for button clicks
+
+
 
 
 

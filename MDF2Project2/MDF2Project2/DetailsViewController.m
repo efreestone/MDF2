@@ -40,4 +40,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+//onClose method to dismiss detail view
+-(IBAction)onClose:(id)sender {
+    [self dismissViewControllerAnimated:true completion:nil];
+}
+
 @end

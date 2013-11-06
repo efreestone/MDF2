@@ -15,4 +15,12 @@
 
 @interface DetailsViewController : UIViewController
 
+//Declare image, label, and close button
+@property (strong, nonatomic) IBOutlet UIImageView *profileImageView;
+@property (strong, nonatomic) IBOutlet UILabel *userNameLabel;
+@property (strong, nonatomic) IBOutlet UIButton *closeButton;
+
+//Declare onClose method for close button
+-(IBAction)onClose:(id)sender;
+
 @end
