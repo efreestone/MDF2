@@ -28,7 +28,7 @@
 @implementation ViewController
 
 //Synthesize for getters/setters
-@synthesize myCollectionView, twitterUsersDict, profileImage, profileImageLarge, followerDictionary, countDictionary, userNameString;
+@synthesize myCollectionView, twitterUsersDict, profileImage, profileImageLarge, followerDictionary, countDictionary, userNameString, followerInfo, cellNumber;
 
 - (void)viewDidLoad
 {
@@ -89,6 +89,8 @@
                                             //NSLog(@"%@", [twitterUsersArray description]);
                                             
                                             countDictionary = [twitterUsersDict objectForKey:@"users"];
+                                            followerInfo = [countDictionary valueForKey:@"screen_name"];
+                                            NSLog(@"%@", [followerInfo description]);
                                             //NSLog(@"%@", [userDictionary description]);
                                             
                                             //NSLog(@"twitterUserArray count = %lu", (unsigned long)[twitterUsersArray count]);
@@ -114,13 +116,48 @@
     }
 }
 
+-(void)splitUserDictionary {
+    //NSIndexPath *indexPath = [[NSIndexPath alloc] init];
+    //followerDictionary = [[twitterUsersDict objectForKey:@"users"] objectAtIndex:indexPath.row];
+    //followerInfo = [[NSMutableArray alloc] initWithCapacity:20];
+    if (followerDictionary != nil) {
+        
+        //Cast image url into string
+        NSString *imageString = [NSString stringWithFormat:@"%@", [followerDictionary objectForKey:@"profile_image_url"]];
+        //Cast a new image url string removing "_normal" to get profile image in original size for detail view
+        NSString *largeImageString = [imageString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+        //NSLog(@"%@", imageString);
+        //Inject url string into NSURL
+        NSURL *imageURL = [NSURL URLWithString:imageString];
+        NSURL *largeImageURL = [NSURL URLWithString:largeImageString];
+        //Inject image url into NSData
+        NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageURL];
+        NSData *largeImageData = [[NSData alloc] initWithContentsOfURL:largeImageURL];
+        //Inject NSData into image with data
+        profileImage = [[UIImage alloc] initWithData:imageData];
+        //profileImageLarge is "original" sized instead of 48X48px of "_normal" image
+        profileImageLarge = [[UIImage alloc] initWithData:largeImageData];
+        
+        //Cast username into string
+        userNameString = [NSString stringWithFormat:@"%@", [followerDictionary objectForKey:@"screen_name"]];
+    }
+    /*for (int i = 0; i <= [countDictionary count]; i++)
+    {
+        [followerInfo insertObject:userNameString atIndex:i];
+        //NSLog(@"followerInfo: %lu", (unsigned long)[followerInfo count]);
+    }
+    //[followerInfo insertObject:userNameString atIndex:cellNumber];
+    NSLog(@"followerInfo: %@", [followerInfo description]);*/
+    //return followerDictionary;
+}
+
 #pragma mark - Collection View Data Source
 
 //Built in method to set number of cells in a section
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     if (twitterUsersDict != nil) {
-        return [countDictionary count];
+        return [followerInfo count];
         //NSLog(@"feed count = %lu", (unsigned long)[twitterUsersArray count]);
     } else {
         return 0;
@@ -139,14 +176,17 @@
     followerDictionary = [[twitterUsersDict objectForKey:@"users"] objectAtIndex:indexPath.row];
     //NSLog(@"%d", [userDictionary count]);
     //userDictionary = [firstTweetDict objectForKey:@"user"];
-    //NSLog(@"%@", [userDictionary description]);
+    [self splitUserDictionary];
+    //NSLog(@"%@", [followerDictionary description]);
     
     CustomCollectionCell *cell = [myCollectionView dequeueReusableCellWithReuseIdentifier:@"CustomCell" forIndexPath:indexPath];
     //NSLog(@"celForItem is working");
     if (cell != nil) {
         if (followerDictionary != nil) {
+            [self splitUserDictionary];
+            //NSLog(@"followerDictionary = %@", [followerDictionary description]);
             //Cast image url into string
-            NSString *imageString = [NSString stringWithFormat:@"%@", [followerDictionary objectForKey:@"profile_image_url"]];
+            /*NSString *imageString = [NSString stringWithFormat:@"%@", [followerDictionary objectForKey:@"profile_image_url"]];
             //Cast a new image url string removing "_normal" to get profile image in original size for detail view
             NSString *largeImageString = [imageString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
             //NSLog(@"%@", imageString);
@@ -162,10 +202,10 @@
             profileImageLarge = [[UIImage alloc] initWithData:largeImageData];
             
             //Cast username into string
-            userNameString = [NSString stringWithFormat:@"%@", [followerDictionary objectForKey:@"screen_name"]];
+            userNameString = [NSString stringWithFormat:@"%@", [followerDictionary objectForKey:@"screen_name"]];*/
         }
         //NSLog(@"cell is created");
-        [cell refreshCellData:profileImage titleString:[NSString stringWithFormat: @"@%@", userNameString]];
+        [cell refreshCellData:profileImageLarge titleString:[NSString stringWithFormat: @"@%@", userNameString]];
         //NSString *imageName = [NSString stringWithFormat:@"test_image%d", ((indexPath.row % 4) + 1)];
         //[cell refreshCellData:[UIImage imageNamed:imageName] titleString:[NSString stringWithFormat: @"cell %ld", (long)indexPath.row]];
         return cell;
@@ -176,8 +216,11 @@
 
 //Built in method to grab which cell was selected and send the info to details view
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    
     //Split twitterUsersDict into individual dictionaries for each user item.
     followerDictionary = [[twitterUsersDict objectForKey:@"users"] objectAtIndex:indexPath.row];
+    [self splitUserDictionary];
     //Allocate detail view with nibs for either device
     DetailsViewController *detailsView_iPhone = [[DetailsViewController alloc] initWithNibName:@"DetailsView_iPhone" bundle:nil];
     DetailsViewController *detailsView_iPad = [[DetailsViewController alloc] initWithNibName:@"DetailsView_iPad" bundle:nil];
@@ -187,7 +230,7 @@
         if (detailsView_iPhone != nil) {
             [self presentViewController:detailsView_iPhone animated:TRUE completion:nil];
             detailsView_iPhone.profileImageView.image = profileImageLarge;
-            detailsView_iPhone.userNameLabel.text = [NSString stringWithFormat:@"@%@", [followerDictionary objectForKey:@"screen_name"]];
+            detailsView_iPhone.userNameLabel.text = [NSString stringWithFormat:@"@%@", [followerInfo objectAtIndex:indexPath.row]];
         }
     } else {
         //Device is iPad
@@ -198,13 +241,5 @@
         }
     }
 }
-
-#pragma mark - Methods for button clicks
-
-
-
-
-
-
 
 @end
