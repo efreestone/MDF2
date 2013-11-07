@@ -35,6 +35,10 @@
 //Declare loading alert view. Displays on initial load and refresh
 @property (strong, nonatomic) UIAlertView *loadingAlert;
 
+@property (strong, nonatomic) NSMutableDictionary *urlDictionary;
+
+@property (strong, nonatomic) NSString *passedScreenName;
+
 //Declare custom method to grab Twitter followers
 -(void)getTwitterUsers;
 //Declare custom method to split follower dictionary into individual user objects

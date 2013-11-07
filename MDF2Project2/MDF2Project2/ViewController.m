@@ -30,7 +30,7 @@
 @implementation ViewController
 
 //Synthesize for getters/setters
-@synthesize myCollectionView, twitterUsersDict, profileImageLarge, usersDictionary, followerNames, imageURLArray, passedImageString, loadingAlert;
+@synthesize myCollectionView, twitterUsersDict, profileImageLarge, usersDictionary, followerNames, imageURLArray, passedImageString, loadingAlert, urlDictionary, passedScreenName;
 
 - (void)viewDidLoad
 {
@@ -40,6 +40,8 @@
         //Register custom cell nib
         [myCollectionView registerNib:cellNib forCellWithReuseIdentifier:@"CustomCell"];
     }
+    
+    urlDictionary = [[NSMutableDictionary alloc] initWithCapacity:20];
     
     //Allocate alert view
     loadingAlert = [[UIAlertView alloc] initWithTitle:@"Loading..." message:@"One moment please while your Twitter Friends load. This alert will auto-dismiss when complete." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -56,6 +58,7 @@
         [self getTwitterUsers];
     }
     
+    NSLog(@"urlDictionary = %@", [urlDictionary description]);
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -115,7 +118,7 @@
                                             //NSLog(@"%@", [followerNames description]);
                                             
                                             imageURLArray = [usersDictionary valueForKey:@"profile_image_url"];
-                                            NSLog(@"%@", [imageURLArray description]);
+                                            //NSLog(@"%@", [imageURLArray description]);
                                             [myCollectionView reloadData];
                                         }
                                     }
@@ -147,7 +150,10 @@
         //Inject NSData into image with data
         //profileImageLarge is "original" sized instead of 48X48px of "_normal" image
         profileImageLarge = [[UIImage alloc] initWithData:largeImageData];
+        //[UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
     }
+    [urlDictionary setObject:profileImageLarge forKey:passedScreenName];
+    //NSLog(@"urlDictionary = %@", [urlDictionary description]);
 }
 
 #pragma mark - Collection View Data Source
@@ -173,20 +179,30 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     //Cast single image url string and pass to grabUserImage
     passedImageString = [imageURLArray objectAtIndex:indexPath.row];
-    [self grabUserImage];
+    //Cast single screen name and pass to grabUserImage and use as key. Also used to access images in urlDictionary.
+    passedScreenName = [followerNames objectAtIndex:indexPath.row];
+    //[self grabUserImage];
     
     CustomCollectionCell *cell = [myCollectionView dequeueReusableCellWithReuseIdentifier:@"CustomCell" forIndexPath:indexPath];
     //NSLog(@"celForItem is working");
     if (cell != nil) {
-        if (imageURLArray != nil) {
-            [self grabUserImage];
-            
-            //Dismiss the refresh alert view (does nothing if the alert view isn't currently shown such as initial loading).
-            [self dismissLoadingAlert];
+        //Check if the image exists in urlDictionary
+        if ([urlDictionary objectForKey:passedScreenName] == nil) {
+            if (imageURLArray != nil) {
+                //Call method to grab image and add it to urlDictionary
+                [self grabUserImage];
+                //Call refresh method in custom cell view
+                [cell refreshCellData:[urlDictionary objectForKey:passedScreenName] titleString:[NSString stringWithFormat: @"@%@", passedScreenName]];
+            }
+        } else {
+            //NSLog(@"cell is created");
+            //Call refresh method in custom cell view
+            [cell refreshCellData:[urlDictionary objectForKey:passedScreenName] titleString:[NSString stringWithFormat: @"@%@", passedScreenName]];
+        
+            NSLog(@"urlDictionary cell = %@", [urlDictionary description]);
         }
-        //NSLog(@"cell is created");
-        [cell refreshCellData:profileImageLarge titleString:[NSString stringWithFormat: @"@%@", [followerNames objectAtIndex:indexPath.row]]];
-
+        //Dismiss the refresh alert view (does nothing if the alert view isn't currently shown such as initial loading).
+        [self dismissLoadingAlert];
         return cell;
     }
     return nil;
@@ -196,7 +212,9 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
     //Cast single image url string and pass to grabUserImage
     passedImageString = [imageURLArray objectAtIndex:indexPath.row];
-    [self grabUserImage];
+    //Cast single screen name and pass to grabUserImage and use as key. Also used to access images in urlDictionary.
+    passedScreenName = [followerNames objectAtIndex:indexPath.row];
+    //[self grabUserImage];
     //Allocate detail view with nibs for either device
     DetailsViewController *detailsView_iPhone = [[DetailsViewController alloc] initWithNibName:@"DetailsView_iPhone" bundle:nil];
     DetailsViewController *detailsView_iPad = [[DetailsViewController alloc] initWithNibName:@"DetailsView_iPad" bundle:nil];
@@ -205,15 +223,15 @@
         //Device is iPhone
         if (detailsView_iPhone != nil) {
             [self presentViewController:detailsView_iPhone animated:TRUE completion:nil];
-            detailsView_iPhone.profileImageView.image = profileImageLarge;
-            detailsView_iPhone.userNameLabel.text = [NSString stringWithFormat:@"@%@", [followerNames objectAtIndex:indexPath.row]];
+            detailsView_iPhone.profileImageView.image = [urlDictionary objectForKey:passedScreenName];
+            detailsView_iPhone.userNameLabel.text = [NSString stringWithFormat:@"@%@", passedScreenName];
         }
     } else {
         //Device is iPad
         if (detailsView_iPad != nil) {
             [self presentViewController:detailsView_iPad animated:TRUE completion:nil];
-            detailsView_iPad.profileImageView.image = profileImageLarge;
-            detailsView_iPad.userNameLabel.text = [NSString stringWithFormat:@"@%@", [followerNames objectAtIndex:indexPath.row]];
+            detailsView_iPad.profileImageView.image = [urlDictionary objectForKey:passedScreenName];
+            detailsView_iPad.userNameLabel.text = [NSString stringWithFormat:@"@%@", passedScreenName];
         }
     }
 }
