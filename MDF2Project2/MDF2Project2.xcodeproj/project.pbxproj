@@ -19,6 +19,8 @@
 		B83694A31829C24700B2248F /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B83694A11829C24700B2248F /* DetailsViewController.m */; };
 		B83694A41829C24700B2248F /* DetailsView_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = B83694A21829C24700B2248F /* DetailsView_iPhone.xib */; };
 		B83694A61829C28300B2248F /* DetailsView_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = B83694A51829C28300B2248F /* DetailsView_iPad.xib */; };
+		B85000AC182B38A1009AECE6 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B85000AB182B38A1009AECE6 /* SystemConfiguration.framework */; };
+		B85000C9182B3944009AECE6 /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = B85000BF182B3944009AECE6 /* Reachability.m */; };
 		B86913641825D012008A992B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86913631825D012008A992B /* Foundation.framework */; };
 		B86913661825D012008A992B /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86913651825D012008A992B /* CoreGraphics.framework */; };
 		B86913681825D012008A992B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86913671825D012008A992B /* UIKit.framework */; };
@@ -60,6 +62,9 @@
 		B83694A11829C24700B2248F /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 		B83694A21829C24700B2248F /* DetailsView_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsView_iPhone.xib; sourceTree = "<group>"; };
 		B83694A51829C28300B2248F /* DetailsView_iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailsView_iPad.xib; sourceTree = "<group>"; };
+		B85000AB182B38A1009AECE6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		B85000BE182B3944009AECE6 /* Reachability.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reachability.h; sourceTree = "<group>"; };
+		B85000BF182B3944009AECE6 /* Reachability.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reachability.m; sourceTree = "<group>"; };
 		B86913601825D012008A992B /* MDF2Project2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDF2Project2.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B86913631825D012008A992B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B86913651825D012008A992B /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -86,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B85000AC182B38A1009AECE6 /* SystemConfiguration.framework in Frameworks */,
 				B836949F1829AE3D00B2248F /* Accounts.framework in Frameworks */,
 				B836949D1829AE2C00B2248F /* Social.framework in Frameworks */,
 				B86913661825D012008A992B /* CoreGraphics.framework in Frameworks */,
@@ -118,6 +124,15 @@
 			path = images;
 			sourceTree = "<group>";
 		};
+		B85000AD182B3944009AECE6 /* Reachability */ = {
+			isa = PBXGroup;
+			children = (
+				B85000BE182B3944009AECE6 /* Reachability.h */,
+				B85000BF182B3944009AECE6 /* Reachability.m */,
+			);
+			path = Reachability;
+			sourceTree = "<group>";
+		};
 		B86913571825D012008A992B = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +155,7 @@
 		B86913621825D012008A992B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B85000AB182B38A1009AECE6 /* SystemConfiguration.framework */,
 				B836949E1829AE3D00B2248F /* Accounts.framework */,
 				B836949C1829AE2C00B2248F /* Social.framework */,
 				B86913631825D012008A992B /* Foundation.framework */,
@@ -169,6 +185,7 @@
 				B83694A11829C24700B2248F /* DetailsViewController.m */,
 				B83694A21829C24700B2248F /* DetailsView_iPhone.xib */,
 				B83694A51829C28300B2248F /* DetailsView_iPad.xib */,
+				B85000AD182B3944009AECE6 /* Reachability */,
 			);
 			path = MDF2Project2;
 			sourceTree = "<group>";
@@ -311,6 +328,7 @@
 				B83694A31829C24700B2248F /* DetailsViewController.m in Sources */,
 				B869137D1825D012008A992B /* ViewController.m in Sources */,
 				B86913741825D012008A992B /* AppDelegate.m in Sources */,
+				B85000C9182B3944009AECE6 /* Reachability.m in Sources */,
 				B86913701825D012008A992B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

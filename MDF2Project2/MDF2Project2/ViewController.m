@@ -20,6 +20,8 @@
 #import <Accounts/Accounts.h>
 //Import social framework
 #import <Social/Social.h>
+//Import Reachability (from Apple but not a framework)
+#import "Reachability.h"
 
 @interface ViewController ()
 
@@ -32,26 +34,35 @@
 
 - (void)viewDidLoad
 {
+    //Create nib for registration
     UINib *cellNib = [UINib nibWithNibName:@"CustomCollectionCell" bundle:nil];
     if (cellNib != nil) {
+        //Register custom cell nib
         [myCollectionView registerNib:cellNib forCellWithReuseIdentifier:@"CustomCell"];
     }
     
     //Allocate alert view
     loadingAlert = [[UIAlertView alloc] initWithTitle:@"Loading..." message:@"One moment please while your Twitter Friends load. This alert will auto-dismiss when complete." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
-    //Show loading alert. Auto-dismisses once loading is done (dismissed in cellForRowAtIndexPath)
-    [loadingAlert show];
-    
-    [self getTwitterUsers];
+    //Check connectivity before sending twitter request. Modified/refactored from Apple example
+    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus currentNetworkStatus = [networkReachability currentReachabilityStatus];
+    if (currentNetworkStatus == NotReachable) {
+        [self noConnectionAlert];
+    } else {
+        //Show loading alert. Auto-dismisses once loading is done (dismissed in cellForRowAtIndexPath)
+        [loadingAlert show];
+        //Call twitter request method
+        [self getTwitterUsers];
+    }
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
--(void)viewWillAppear:(BOOL)animated {
+/*-(void)viewWillAppear:(BOOL)animated {
     [self getTwitterUsers];
-}
+}*/
 
 - (void)didReceiveMemoryWarning
 {
@@ -220,6 +231,13 @@
     UIAlertView *deniedAlert = [[UIAlertView alloc] initWithTitle:@"Access Denied!" message:@"Access to Twitter was denied. Please approve access if you would like to use this app. Go to \"Settings/Twitter\" and flip switch next to \"MDF2Project@\". Thanks." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     //Show alert
     [deniedAlert show];
+}
+
+//Method to create and show alert view if there is no internet connectivity
+-(void)noConnectionAlert {
+    UIAlertView *connectionAlert = [[UIAlertView alloc] initWithTitle:@"No Connection!" message:@"There is no Internet Connection. Please turn on WiFi and try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    //Show alert
+    [connectionAlert show];
 }
 
 @end
