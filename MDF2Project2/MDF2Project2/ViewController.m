@@ -28,7 +28,7 @@
 @implementation ViewController
 
 //Synthesize for getters/setters
-@synthesize myCollectionView, twitterUsersDict, profileImage, profileImageLarge, followerDictionary, countDictionary, userNameString, followerInfo, cellNumber;
+@synthesize myCollectionView, twitterUsersDict, profileImage, profileImageLarge, followerDictionary, usersDictionary, userNameString, followerNames, imageURLArray, passedImageString, loadingAlert;
 
 - (void)viewDidLoad
 {
@@ -37,10 +37,20 @@
         [myCollectionView registerNib:cellNib forCellWithReuseIdentifier:@"CustomCell"];
     }
     
+    //Allocate alert view
+    loadingAlert = [[UIAlertView alloc] initWithTitle:@"Loading..." message:@"One moment please while the Twitter feed loads. This alert will auto-dismiss when complete." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    
+    //Show loading alert. Auto-dismisses once loading is done (dismissed in cellForRowAtIndexPath)
+    [loadingAlert show];
+    
     [self getTwitterUsers];
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+}
+
+-(void)viewWillAppear:(BOOL)animated {
+    [self getTwitterUsers];
 }
 
 - (void)didReceiveMemoryWarning
@@ -87,20 +97,14 @@
                                         twitterUsersDict = [NSJSONSerialization JSONObjectWithData: responseData options:0 error:nil];
                                         if (twitterUsersDict != nil) {
                                             //NSLog(@"%@", [twitterUsersArray description]);
+                                            //Grab "users" object from twitterUsersDictionary
+                                            usersDictionary = [twitterUsersDict objectForKey:@"users"];
+                                            //Grab value for "screen_name" of each user and put in an array
+                                            followerNames = [usersDictionary valueForKey:@"screen_name"];
+                                            //NSLog(@"%@", [followerNames description]);
                                             
-                                            countDictionary = [twitterUsersDict objectForKey:@"users"];
-                                            followerInfo = [countDictionary valueForKey:@"screen_name"];
-                                            NSLog(@"%@", [followerInfo description]);
-                                            //NSLog(@"%@", [userDictionary description]);
-                                            
-                                            //NSLog(@"twitterUserArray count = %lu", (unsigned long)[twitterUsersArray count]);
-                                            /*if ([userDictionary isKindOfClass: [NSArray class]]) {
-                                                //NSLog(@"is NSArray");
-                                                followerInfo = [[NSMutableArray alloc] init];
-                                                [followerInfo addObject:userDictionary];
-                                                NSLog(@"followerInfo: %@", [followerInfo description]);
-                                            }*/
-                                            
+                                            imageURLArray = [usersDictionary valueForKey:@"profile_image_url"];
+                                            NSLog(@"%@", [imageURLArray description]);
                                             [myCollectionView reloadData];
                                         }
                                     }
@@ -110,36 +114,39 @@
                     }
                 } else {
                     NSLog(@"User did not grant access");
+                    [self twitterDeniedAlert];
+                    [self dismissLoadingAlert];
                 }
             }];
         }
     }
 }
 
--(void)splitUserDictionary {
+-(void)grabUserImage {
     //NSIndexPath *indexPath = [[NSIndexPath alloc] init];
     //followerDictionary = [[twitterUsersDict objectForKey:@"users"] objectAtIndex:indexPath.row];
     //followerInfo = [[NSMutableArray alloc] initWithCapacity:20];
-    if (followerDictionary != nil) {
+    if (imageURLArray != nil) {
         
         //Cast image url into string
-        NSString *imageString = [NSString stringWithFormat:@"%@", [followerDictionary objectForKey:@"profile_image_url"]];
-        //Cast a new image url string removing "_normal" to get profile image in original size for detail view
-        NSString *largeImageString = [imageString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
+        //NSString *imageString = passedImageString;
+        //NSString *imageString = [NSString stringWithFormat:@"%@", [followerDictionary objectForKey:@"profile_image_url"]];
+        //Cast a new image url string removing "_normal" to get profile image in original size
+        NSString *largeImageString = [passedImageString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
         //NSLog(@"%@", imageString);
         //Inject url string into NSURL
-        NSURL *imageURL = [NSURL URLWithString:imageString];
+        //NSURL *imageURL = [NSURL URLWithString:imageString];
         NSURL *largeImageURL = [NSURL URLWithString:largeImageString];
         //Inject image url into NSData
-        NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageURL];
+        //NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageURL];
         NSData *largeImageData = [[NSData alloc] initWithContentsOfURL:largeImageURL];
         //Inject NSData into image with data
-        profileImage = [[UIImage alloc] initWithData:imageData];
+        //profileImage = [[UIImage alloc] initWithData:imageData];
         //profileImageLarge is "original" sized instead of 48X48px of "_normal" image
         profileImageLarge = [[UIImage alloc] initWithData:largeImageData];
         
         //Cast username into string
-        userNameString = [NSString stringWithFormat:@"%@", [followerDictionary objectForKey:@"screen_name"]];
+        //userNameString = [NSString stringWithFormat:@"%@", [followerDictionary objectForKey:@"screen_name"]];
     }
     /*for (int i = 0; i <= [countDictionary count]; i++)
     {
@@ -157,8 +164,11 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     if (twitterUsersDict != nil) {
-        return [followerInfo count];
+        //Dismiss the refresh alert view (does nothing if the alert view isn't currently shown such as initial loading).
+        [self dismissLoadingAlert];
+        
         //NSLog(@"feed count = %lu", (unsigned long)[twitterUsersArray count]);
+        return [followerNames count];
     } else {
         return 0;
         NSLog(@"Twitter feed is nil");
@@ -173,39 +183,23 @@
 //Built in method to allocate and reuse collection view cells
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
     //Split twitterUsersDict into individual dictionaries for each user item.
-    followerDictionary = [[twitterUsersDict objectForKey:@"users"] objectAtIndex:indexPath.row];
-    //NSLog(@"%d", [userDictionary count]);
-    //userDictionary = [firstTweetDict objectForKey:@"user"];
-    [self splitUserDictionary];
+    //followerDictionary = [[twitterUsersDict objectForKey:@"users"] objectAtIndex:indexPath.row];
+    
+    passedImageString = [imageURLArray objectAtIndex:indexPath.row];
+    [self grabUserImage];
     //NSLog(@"%@", [followerDictionary description]);
     
     CustomCollectionCell *cell = [myCollectionView dequeueReusableCellWithReuseIdentifier:@"CustomCell" forIndexPath:indexPath];
     //NSLog(@"celForItem is working");
     if (cell != nil) {
-        if (followerDictionary != nil) {
-            [self splitUserDictionary];
-            //NSLog(@"followerDictionary = %@", [followerDictionary description]);
-            //Cast image url into string
-            /*NSString *imageString = [NSString stringWithFormat:@"%@", [followerDictionary objectForKey:@"profile_image_url"]];
-            //Cast a new image url string removing "_normal" to get profile image in original size for detail view
-            NSString *largeImageString = [imageString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
-            //NSLog(@"%@", imageString);
-            //Inject url string into NSURL
-            NSURL *imageURL = [NSURL URLWithString:imageString];
-            NSURL *largeImageURL = [NSURL URLWithString:largeImageString];
-            //Inject image url into NSData
-            NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageURL];
-            NSData *largeImageData = [[NSData alloc] initWithContentsOfURL:largeImageURL];
-            //Inject NSData into image with data
-            profileImage = [[UIImage alloc] initWithData:imageData];
-            //profileImageLarge is "original" sized instead of 48X48px of "_normal" image
-            profileImageLarge = [[UIImage alloc] initWithData:largeImageData];
+        if (imageURLArray != nil) {
+            [self grabUserImage];
             
-            //Cast username into string
-            userNameString = [NSString stringWithFormat:@"%@", [followerDictionary objectForKey:@"screen_name"]];*/
+            //Cast single username into string
+            userNameString = [followerNames objectAtIndex:indexPath.row];
         }
         //NSLog(@"cell is created");
-        [cell refreshCellData:profileImageLarge titleString:[NSString stringWithFormat: @"@%@", userNameString]];
+        [cell refreshCellData:profileImageLarge titleString:[NSString stringWithFormat: @"@%@", [followerNames objectAtIndex:indexPath.row]]];
         //NSString *imageName = [NSString stringWithFormat:@"test_image%d", ((indexPath.row % 4) + 1)];
         //[cell refreshCellData:[UIImage imageNamed:imageName] titleString:[NSString stringWithFormat: @"cell %ld", (long)indexPath.row]];
         return cell;
@@ -219,8 +213,9 @@
     
     
     //Split twitterUsersDict into individual dictionaries for each user item.
-    followerDictionary = [[twitterUsersDict objectForKey:@"users"] objectAtIndex:indexPath.row];
-    [self splitUserDictionary];
+    //followerDictionary = [[twitterUsersDict objectForKey:@"users"] objectAtIndex:indexPath.row];
+    passedImageString = [imageURLArray objectAtIndex:indexPath.row];
+    [self grabUserImage];
     //Allocate detail view with nibs for either device
     DetailsViewController *detailsView_iPhone = [[DetailsViewController alloc] initWithNibName:@"DetailsView_iPhone" bundle:nil];
     DetailsViewController *detailsView_iPad = [[DetailsViewController alloc] initWithNibName:@"DetailsView_iPad" bundle:nil];
@@ -230,16 +225,31 @@
         if (detailsView_iPhone != nil) {
             [self presentViewController:detailsView_iPhone animated:TRUE completion:nil];
             detailsView_iPhone.profileImageView.image = profileImageLarge;
-            detailsView_iPhone.userNameLabel.text = [NSString stringWithFormat:@"@%@", [followerInfo objectAtIndex:indexPath.row]];
+            detailsView_iPhone.userNameLabel.text = [NSString stringWithFormat:@"@%@", [followerNames objectAtIndex:indexPath.row]];
         }
     } else {
         //Device is iPad
         if (detailsView_iPad != nil) {
             [self presentViewController:detailsView_iPad animated:TRUE completion:nil];
             detailsView_iPad.profileImageView.image = profileImageLarge;
-            detailsView_iPad.userNameLabel.text = [NSString stringWithFormat:@"@%@", [followerDictionary objectForKey:@"screen_name"]];
+            detailsView_iPad.userNameLabel.text = [NSString stringWithFormat:@"@%@", [followerNames objectAtIndex:indexPath.row]];
         }
     }
+}
+
+#pragma mark - Alert view related code
+
+//Method to dimiss the loading alert view after the refresh is complete. Called in cellForRowAtIndexPath
+-(void)dismissLoadingAlert {
+    [loadingAlert dismissWithClickedButtonIndex:-1 animated:true];
+}
+
+//Method to create and show alert if twitter access was denied
+-(void)twitterDeniedAlert {
+    //Allocate alert view
+    UIAlertView *deniedAlert = [[UIAlertView alloc] initWithTitle:@"Access Denied!" message:@"Access to Twitter was denied. Please approve access if you would like to use this app. Go to \"Settings/Twitter\" and flip switch next to \"MDF2Project@\". Thanks." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    //Show alert
+    [deniedAlert show];
 }
 
 @end

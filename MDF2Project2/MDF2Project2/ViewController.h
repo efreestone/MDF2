@@ -29,16 +29,25 @@
 
 @property (strong, nonatomic) NSString *userNameString;
 
-@property (strong, nonatomic) NSDictionary *countDictionary;
+@property (strong, nonatomic) NSDictionary *usersDictionary;
 
-@property (strong, nonatomic) NSMutableArray *followerInfo;
+@property (strong, nonatomic) NSArray *followerNames;
 
-@property (nonatomic) int cellNumber;
+@property (strong, nonatomic) NSArray *imageURLArray;
+
+@property (strong, nonatomic) NSString *passedImageString;
+
+//Declare loading alert view. Displays on initial load and refresh
+@property (strong, nonatomic) UIAlertView *loadingAlert;
 
 //Declare custom method to grab Twitter followers
 -(void)getTwitterUsers;
 //Declare custom method to split follower dictionary into individual user objects
--(void)splitUserDictionary;
+-(void)grabUserImage;
+//Method used to dismiss loading alert view. Called in cellForRowAtIndexPath
+-(void)dismissLoadingAlert;
+//Method to create twitter denied alert if access is denied
+-(void)twitterDeniedAlert;
 
 
 
