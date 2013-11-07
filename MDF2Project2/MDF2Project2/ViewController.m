@@ -28,7 +28,7 @@
 @implementation ViewController
 
 //Synthesize for getters/setters
-@synthesize myCollectionView, twitterUsersDict, profileImage, profileImageLarge, followerDictionary, usersDictionary, userNameString, followerNames, imageURLArray, passedImageString, loadingAlert;
+@synthesize myCollectionView, twitterUsersDict, profileImageLarge, usersDictionary, followerNames, imageURLArray, passedImageString, loadingAlert;
 
 - (void)viewDidLoad
 {
@@ -163,16 +163,12 @@
     //Cast single image url string and pass to grabUserImage
     passedImageString = [imageURLArray objectAtIndex:indexPath.row];
     [self grabUserImage];
-    //NSLog(@"%@", [followerDictionary description]);
     
     CustomCollectionCell *cell = [myCollectionView dequeueReusableCellWithReuseIdentifier:@"CustomCell" forIndexPath:indexPath];
     //NSLog(@"celForItem is working");
     if (cell != nil) {
         if (imageURLArray != nil) {
             [self grabUserImage];
-            
-            //Cast single username into string
-            userNameString = [followerNames objectAtIndex:indexPath.row];
             
             //Dismiss the refresh alert view (does nothing if the alert view isn't currently shown such as initial loading).
             [self dismissLoadingAlert];

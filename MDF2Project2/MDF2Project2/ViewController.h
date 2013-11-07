@@ -19,22 +19,17 @@
 @property (strong, nonatomic) IBOutlet UICollectionView *myCollectionView;
 //Declare twitter users dictionary (directly from parsing)
 @property (strong, nonatomic) NSDictionary *twitterUsersDict;
-
-//Declare UIImage to hold profile image
-@property (strong, nonatomic) UIImage *profileImage;
-//Declare second UIImage to fix display issue on detail view.
-@property (strong, nonatomic) UIImage *profileImageLarge;
 //Declare second dictionary to hold "users" object from twitterUsersDictionary
-@property (strong, nonatomic) NSDictionary *followerDictionary;
-
-@property (strong, nonatomic) NSString *userNameString;
-
 @property (strong, nonatomic) NSDictionary *usersDictionary;
 
+//Declare second UIImage to fix display issue on detail view.
+@property (strong, nonatomic) UIImage *profileImageLarge;
+
+//Declare array to hold screen names for all users
 @property (strong, nonatomic) NSArray *followerNames;
-
+//Declare array to hold image urls for all users
 @property (strong, nonatomic) NSArray *imageURLArray;
-
+//Declare string to pass single username to grabUserImage
 @property (strong, nonatomic) NSString *passedImageString;
 
 //Declare loading alert view. Displays on initial load and refresh
