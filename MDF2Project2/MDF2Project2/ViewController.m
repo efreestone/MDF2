@@ -38,7 +38,7 @@
     }
     
     //Allocate alert view
-    loadingAlert = [[UIAlertView alloc] initWithTitle:@"Loading..." message:@"One moment please while the Twitter feed loads. This alert will auto-dismiss when complete." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    loadingAlert = [[UIAlertView alloc] initWithTitle:@"Loading..." message:@"One moment please while your Twitter Friends load. This alert will auto-dismiss when complete." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
     //Show loading alert. Auto-dismisses once loading is done (dismissed in cellForRowAtIndexPath)
     [loadingAlert show];
@@ -122,40 +122,21 @@
     }
 }
 
+//Custom method to get profile image
 -(void)grabUserImage {
-    //NSIndexPath *indexPath = [[NSIndexPath alloc] init];
-    //followerDictionary = [[twitterUsersDict objectForKey:@"users"] objectAtIndex:indexPath.row];
-    //followerInfo = [[NSMutableArray alloc] initWithCapacity:20];
     if (imageURLArray != nil) {
         
-        //Cast image url into string
-        //NSString *imageString = passedImageString;
-        //NSString *imageString = [NSString stringWithFormat:@"%@", [followerDictionary objectForKey:@"profile_image_url"]];
         //Cast a new image url string removing "_normal" to get profile image in original size
         NSString *largeImageString = [passedImageString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
-        //NSLog(@"%@", imageString);
+        //NSLog(@"%@", largeImageString);
         //Inject url string into NSURL
-        //NSURL *imageURL = [NSURL URLWithString:imageString];
         NSURL *largeImageURL = [NSURL URLWithString:largeImageString];
         //Inject image url into NSData
-        //NSData *imageData = [[NSData alloc] initWithContentsOfURL:imageURL];
         NSData *largeImageData = [[NSData alloc] initWithContentsOfURL:largeImageURL];
         //Inject NSData into image with data
-        //profileImage = [[UIImage alloc] initWithData:imageData];
         //profileImageLarge is "original" sized instead of 48X48px of "_normal" image
         profileImageLarge = [[UIImage alloc] initWithData:largeImageData];
-        
-        //Cast username into string
-        //userNameString = [NSString stringWithFormat:@"%@", [followerDictionary objectForKey:@"screen_name"]];
     }
-    /*for (int i = 0; i <= [countDictionary count]; i++)
-    {
-        [followerInfo insertObject:userNameString atIndex:i];
-        //NSLog(@"followerInfo: %lu", (unsigned long)[followerInfo count]);
-    }
-    //[followerInfo insertObject:userNameString atIndex:cellNumber];
-    NSLog(@"followerInfo: %@", [followerInfo description]);*/
-    //return followerDictionary;
 }
 
 #pragma mark - Collection View Data Source
@@ -164,9 +145,6 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     if (twitterUsersDict != nil) {
-        //Dismiss the refresh alert view (does nothing if the alert view isn't currently shown such as initial loading).
-        [self dismissLoadingAlert];
-        
         //NSLog(@"feed count = %lu", (unsigned long)[twitterUsersArray count]);
         return [followerNames count];
     } else {
@@ -182,9 +160,7 @@
 
 //Built in method to allocate and reuse collection view cells
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    //Split twitterUsersDict into individual dictionaries for each user item.
-    //followerDictionary = [[twitterUsersDict objectForKey:@"users"] objectAtIndex:indexPath.row];
-    
+    //Cast single image url string and pass to grabUserImage
     passedImageString = [imageURLArray objectAtIndex:indexPath.row];
     [self grabUserImage];
     //NSLog(@"%@", [followerDictionary description]);
@@ -197,23 +173,21 @@
             
             //Cast single username into string
             userNameString = [followerNames objectAtIndex:indexPath.row];
+            
+            //Dismiss the refresh alert view (does nothing if the alert view isn't currently shown such as initial loading).
+            [self dismissLoadingAlert];
         }
         //NSLog(@"cell is created");
         [cell refreshCellData:profileImageLarge titleString:[NSString stringWithFormat: @"@%@", [followerNames objectAtIndex:indexPath.row]]];
-        //NSString *imageName = [NSString stringWithFormat:@"test_image%d", ((indexPath.row % 4) + 1)];
-        //[cell refreshCellData:[UIImage imageNamed:imageName] titleString:[NSString stringWithFormat: @"cell %ld", (long)indexPath.row]];
+
         return cell;
     }
-    
     return nil;
 }
 
 //Built in method to grab which cell was selected and send the info to details view
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
-    
-    
-    //Split twitterUsersDict into individual dictionaries for each user item.
-    //followerDictionary = [[twitterUsersDict objectForKey:@"users"] objectAtIndex:indexPath.row];
+    //Cast single image url string and pass to grabUserImage
     passedImageString = [imageURLArray objectAtIndex:indexPath.row];
     [self grabUserImage];
     //Allocate detail view with nibs for either device
