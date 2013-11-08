@@ -9,6 +9,17 @@
 /* Begin PBXBuildFile section */
 		B817B1CC1828A92A007E0C98 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = B817B1CB1828A92A007E0C98 /* ViewController_iPhone.xib */; };
 		B817B1CE1828ABBC007E0C98 /* CustomCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B817B1CD1828ABBC007E0C98 /* CustomCollectionCell.xib */; };
+		B817D311182C681400718C2D /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B817D308182C681300718C2D /* Default-568h@2x.png */; };
+		B817D312182C681400718C2D /* Default-Portrait@2x~iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = B817D309182C681300718C2D /* Default-Portrait@2x~iPad.png */; };
+		B817D313182C681400718C2D /* Default-Portrait~iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = B817D30A182C681300718C2D /* Default-Portrait~iPad.png */; };
+		B817D314182C681400718C2D /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B817D30B182C681300718C2D /* Default.png */; };
+		B817D315182C681400718C2D /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B817D30C182C681300718C2D /* Default@2x.png */; };
+		B817D316182C681400718C2D /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = B817D30D182C681300718C2D /* Icon-76.png */; };
+		B817D317182C681400718C2D /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B817D30E182C681300718C2D /* Icon-76@2x.png */; };
+		B817D318182C681400718C2D /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B817D30F182C681400718C2D /* Icon.png */; };
+		B817D319182C681400718C2D /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B817D310182C681400718C2D /* Icon@2x.png */; };
+		B817D31C182C699800718C2D /* iPad@2x-background.png in Resources */ = {isa = PBXBuildFile; fileRef = B817D31A182C699800718C2D /* iPad@2x-background.png */; };
+		B817D31D182C699800718C2D /* iPhone-568@2x-background.png in Resources */ = {isa = PBXBuildFile; fileRef = B817D31B182C699800718C2D /* iPhone-568@2x-background.png */; };
 		B8262F91182859A200DDC0C5 /* CustomCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8262F90182859A200DDC0C5 /* CustomCollectionCell.m */; };
 		B8262F9E1828691200DDC0C5 /* test_image1.png in Resources */ = {isa = PBXBuildFile; fileRef = B8262F9A1828691200DDC0C5 /* test_image1.png */; };
 		B8262F9F1828691200DDC0C5 /* test_image2.png in Resources */ = {isa = PBXBuildFile; fileRef = B8262F9B1828691200DDC0C5 /* test_image2.png */; };
@@ -50,6 +61,17 @@
 /* Begin PBXFileReference section */
 		B817B1CB1828A92A007E0C98 /* ViewController_iPhone.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController_iPhone.xib; sourceTree = "<group>"; };
 		B817B1CD1828ABBC007E0C98 /* CustomCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomCollectionCell.xib; sourceTree = "<group>"; };
+		B817D308182C681300718C2D /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		B817D309182C681300718C2D /* Default-Portrait@2x~iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~iPad.png"; sourceTree = "<group>"; };
+		B817D30A182C681300718C2D /* Default-Portrait~iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~iPad.png"; sourceTree = "<group>"; };
+		B817D30B182C681300718C2D /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		B817D30C182C681300718C2D /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		B817D30D182C681300718C2D /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
+		B817D30E182C681300718C2D /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@2x.png"; sourceTree = "<group>"; };
+		B817D30F182C681400718C2D /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		B817D310182C681400718C2D /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		B817D31A182C699800718C2D /* iPad@2x-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPad@2x-background.png"; sourceTree = "<group>"; };
+		B817D31B182C699800718C2D /* iPhone-568@2x-background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "iPhone-568@2x-background.png"; sourceTree = "<group>"; };
 		B8262F8F182859A200DDC0C5 /* CustomCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomCollectionCell.h; sourceTree = "<group>"; };
 		B8262F90182859A200DDC0C5 /* CustomCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomCollectionCell.m; sourceTree = "<group>"; };
 		B8262F9A1828691200DDC0C5 /* test_image1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = test_image1.png; sourceTree = "<group>"; };
@@ -116,6 +138,17 @@
 		B8262F991828691200DDC0C5 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				B817D31A182C699800718C2D /* iPad@2x-background.png */,
+				B817D31B182C699800718C2D /* iPhone-568@2x-background.png */,
+				B817D308182C681300718C2D /* Default-568h@2x.png */,
+				B817D309182C681300718C2D /* Default-Portrait@2x~iPad.png */,
+				B817D30A182C681300718C2D /* Default-Portrait~iPad.png */,
+				B817D30B182C681300718C2D /* Default.png */,
+				B817D30C182C681300718C2D /* Default@2x.png */,
+				B817D30D182C681300718C2D /* Icon-76.png */,
+				B817D30E182C681300718C2D /* Icon-76@2x.png */,
+				B817D30F182C681400718C2D /* Icon.png */,
+				B817D310182C681400718C2D /* Icon@2x.png */,
 				B8262F9A1828691200DDC0C5 /* test_image1.png */,
 				B8262F9B1828691200DDC0C5 /* test_image2.png */,
 				B8262F9C1828691200DDC0C5 /* test_image3.png */,
@@ -295,13 +328,24 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B817D315182C681400718C2D /* Default@2x.png in Resources */,
 				B817B1CE1828ABBC007E0C98 /* CustomCollectionCell.xib in Resources */,
+				B817D31C182C699800718C2D /* iPad@2x-background.png in Resources */,
 				B8262FA11828691200DDC0C5 /* test_image4.png in Resources */,
 				B83694A61829C28300B2248F /* DetailsView_iPad.xib in Resources */,
+				B817D313182C681400718C2D /* Default-Portrait~iPad.png in Resources */,
+				B817D314182C681400718C2D /* Default.png in Resources */,
+				B817D312182C681400718C2D /* Default-Portrait@2x~iPad.png in Resources */,
 				B817B1CC1828A92A007E0C98 /* ViewController_iPhone.xib in Resources */,
+				B817D31D182C699800718C2D /* iPhone-568@2x-background.png in Resources */,
 				B8262F9E1828691200DDC0C5 /* test_image1.png in Resources */,
+				B817D319182C681400718C2D /* Icon@2x.png in Resources */,
+				B817D311182C681400718C2D /* Default-568h@2x.png in Resources */,
+				B817D318182C681400718C2D /* Icon.png in Resources */,
+				B817D317182C681400718C2D /* Icon-76@2x.png in Resources */,
 				B8262F9F1828691200DDC0C5 /* test_image2.png in Resources */,
 				B869137F1825D012008A992B /* Images.xcassets in Resources */,
+				B817D316182C681400718C2D /* Icon-76.png in Resources */,
 				B8C6D7121828B8050041754C /* ViewController_iPad.xib in Resources */,
 				B83694A41829C24700B2248F /* DetailsView_iPhone.xib in Resources */,
 				B8262FA01828691200DDC0C5 /* test_image3.png in Resources */,
@@ -448,8 +492,6 @@
 		B86913961825D012008A992B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MDF2Project2/MDF2Project2-Prefix.pch";
 				INFOPLIST_FILE = "MDF2Project2/MDF2Project2-Info.plist";
@@ -461,8 +503,6 @@
 		B86913971825D012008A992B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "MDF2Project2/MDF2Project2-Prefix.pch";
 				INFOPLIST_FILE = "MDF2Project2/MDF2Project2-Info.plist";
