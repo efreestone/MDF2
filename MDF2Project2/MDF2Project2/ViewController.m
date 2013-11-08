@@ -30,7 +30,7 @@
 @implementation ViewController
 
 //Synthesize for getters/setters
-@synthesize myCollectionView, twitterUsersDict, profileImageLarge, usersDictionary, followerNames, imageURLArray, passedImageString, loadingAlert, urlDictionary, passedScreenName;
+@synthesize myCollectionView, twitterUsersDict, profileImageLarge, usersDictionary, followerNames, imageURLArray, passedImageString, loadingAlert, imageDictionary, passedScreenName, retryButton;
 
 - (void)viewDidLoad
 {
@@ -41,24 +41,16 @@
         [myCollectionView registerNib:cellNib forCellWithReuseIdentifier:@"CustomCell"];
     }
     
-    urlDictionary = [[NSMutableDictionary alloc] initWithCapacity:20];
+    //Allocate mutable dictionary to hold images with keys
+    imageDictionary = [[NSMutableDictionary alloc] initWithCapacity:20];
     
     //Allocate alert view
     loadingAlert = [[UIAlertView alloc] initWithTitle:@"Loading..." message:@"One moment please while your Twitter Friends load. This alert will auto-dismiss when complete." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     
-    //Check connectivity before sending twitter request. Modified/refactored from Apple example
-    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
-    NetworkStatus currentNetworkStatus = [networkReachability currentReachabilityStatus];
-    if (currentNetworkStatus == NotReachable) {
-        [self noConnectionAlert];
-    } else {
-        //Show loading alert. Auto-dismisses once loading is done (dismissed in cellForRowAtIndexPath)
-        [loadingAlert show];
-        //Call twitter request method
-        [self getTwitterUsers];
-    }
+    //Call checkConnection. Calls getTwitterUsers if connection succeeds
+    [self checkConnection];
     
-    NSLog(@"urlDictionary = %@", [urlDictionary description]);
+    //NSLog(@"urlDictionary = %@", [imageDictionary description]);
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -73,7 +65,7 @@
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Twitter call
+#pragma mark - Twitter and connection related methods
 
 //Create custom method for grabbing twitter friends so it can be called when needed (modified from project 1)
 -(void)getTwitterUsers {
@@ -87,6 +79,9 @@
             [accountStore requestAccessToAccountsWithType: accountType options:nil completion: ^(BOOL granted, NSError *error){
                 //If access was granted
                 if (granted) {
+                    //Disable and hide retry button
+                    retryButton.enabled = false;
+                    retryButton.hidden = true;
                     //Save accounts to array
                     NSArray *twitterAccounts = [accountStore accountsWithAccountType: accountType];
                     if (twitterAccounts != nil) {
@@ -128,11 +123,37 @@
                     }
                 } else {
                     NSLog(@"User did not grant access");
+                    //Enable and show retry button
+                    retryButton.enabled = true;
+                    retryButton.hidden = false;
+                    
+                    //Show denied alert and hide loading alert
                     [self twitterDeniedAlert];
                     [self dismissLoadingAlert];
                 }
             }];
         }
+    }
+}
+
+//Custom method to check internet connection. Also calls getTwitterUsers
+-(void)checkConnection {
+    //Check connectivity before sending twitter request. Modified/refactored from Apple example
+    Reachability *networkReachability = [Reachability reachabilityForInternetConnection];
+    NetworkStatus currentNetworkStatus = [networkReachability currentReachabilityStatus];
+    //If connection failed
+    if (currentNetworkStatus == NotReachable) {
+        //Enable and show retry button
+        retryButton.enabled = true;
+        retryButton.hidden = false;
+        //Show no connection alert
+        [self noConnectionAlert];
+    } else {
+        //Show loading alert. Auto-dismisses once loading is done (dismissed in cellForRowAtIndexPath)
+        //[loadingAlert show];
+        [self showLoadingAlert];
+        //Call twitter request method
+        [self getTwitterUsers];
     }
 }
 
@@ -152,7 +173,7 @@
         profileImageLarge = [[UIImage alloc] initWithData:largeImageData];
         //[UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
     }
-    [urlDictionary setObject:profileImageLarge forKey:passedScreenName];
+    [imageDictionary setObject:profileImageLarge forKey:passedScreenName];
     //NSLog(@"urlDictionary = %@", [urlDictionary description]);
 }
 
@@ -187,19 +208,19 @@
     //NSLog(@"celForItem is working");
     if (cell != nil) {
         //Check if the image exists in urlDictionary
-        if ([urlDictionary objectForKey:passedScreenName] == nil) {
+        if ([imageDictionary objectForKey:passedScreenName] == nil) {
             if (imageURLArray != nil) {
                 //Call method to grab image and add it to urlDictionary
                 [self grabUserImage];
                 //Call refresh method in custom cell view
-                [cell refreshCellData:[urlDictionary objectForKey:passedScreenName] titleString:[NSString stringWithFormat: @"@%@", passedScreenName]];
+                [cell refreshCellData:[imageDictionary objectForKey:passedScreenName] titleString:[NSString stringWithFormat: @"@%@", passedScreenName]];
             }
         } else {
             //NSLog(@"cell is created");
             //Call refresh method in custom cell view
-            [cell refreshCellData:[urlDictionary objectForKey:passedScreenName] titleString:[NSString stringWithFormat: @"@%@", passedScreenName]];
+            [cell refreshCellData:[imageDictionary objectForKey:passedScreenName] titleString:[NSString stringWithFormat: @"@%@", passedScreenName]];
         
-            NSLog(@"urlDictionary cell = %@", [urlDictionary description]);
+            NSLog(@"urlDictionary cell = %@", [imageDictionary description]);
         }
         //Dismiss the refresh alert view (does nothing if the alert view isn't currently shown such as initial loading).
         [self dismissLoadingAlert];
@@ -223,20 +244,27 @@
         //Device is iPhone
         if (detailsView_iPhone != nil) {
             [self presentViewController:detailsView_iPhone animated:TRUE completion:nil];
-            detailsView_iPhone.profileImageView.image = [urlDictionary objectForKey:passedScreenName];
+            detailsView_iPhone.profileImageView.image = [imageDictionary objectForKey:passedScreenName];
             detailsView_iPhone.userNameLabel.text = [NSString stringWithFormat:@"@%@", passedScreenName];
         }
     } else {
         //Device is iPad
         if (detailsView_iPad != nil) {
             [self presentViewController:detailsView_iPad animated:TRUE completion:nil];
-            detailsView_iPad.profileImageView.image = [urlDictionary objectForKey:passedScreenName];
+            detailsView_iPad.profileImageView.image = [imageDictionary objectForKey:passedScreenName];
             detailsView_iPad.userNameLabel.text = [NSString stringWithFormat:@"@%@", passedScreenName];
         }
     }
 }
 
 #pragma mark - Alert view related code
+
+-(void)showLoadingAlert {
+    [loadingAlert show];
+    //Disable and hide retry button
+    retryButton.enabled = false;
+    retryButton.hidden = true;
+}
 
 //Method to dimiss the loading alert view after the refresh is complete. Called in cellForRowAtIndexPath
 -(void)dismissLoadingAlert {
@@ -245,17 +273,25 @@
 
 //Method to create and show alert if twitter access was denied
 -(void)twitterDeniedAlert {
+    //Enable and show retry button
+    retryButton.enabled = true;
+    retryButton.hidden = false;
     //Allocate alert view
-    UIAlertView *deniedAlert = [[UIAlertView alloc] initWithTitle:@"Access Denied!" message:@"Access to Twitter was denied. Please approve access if you would like to use this app. Go to \"Settings/Twitter\" and flip switch next to \"MDF2Project@\". Thanks." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *deniedAlert = [[UIAlertView alloc] initWithTitle:@"Access Denied!" message:@"Access to Twitter was denied. Please approve access if you would like to use this app. Go to \"Settings/Twitter\", flip switch next to \"MDF2Project@\" and tap Retry." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     //Show alert
     [deniedAlert show];
 }
 
 //Method to create and show alert view if there is no internet connectivity
 -(void)noConnectionAlert {
-    UIAlertView *connectionAlert = [[UIAlertView alloc] initWithTitle:@"No Connection!" message:@"There is no Internet Connection. Please turn on WiFi and try again" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *connectionAlert = [[UIAlertView alloc] initWithTitle:@"No Connection!" message:@"There is no Internet Connection. Please turn on WiFi and tap Retry." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     //Show alert
     [connectionAlert show];
+}
+
+//Method to retry connection and/or twitter access
+-(IBAction)onRetryClick:(id)sender {
+    [self checkConnection];
 }
 
 @end

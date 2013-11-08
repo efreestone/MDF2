@@ -17,28 +17,35 @@
 
 //Declare collection view
 @property (strong, nonatomic) IBOutlet UICollectionView *myCollectionView;
+//Declare retry button. Only shown and active after connection fails or twitter access denied
+@property (strong, nonatomic) IBOutlet UIButton *retryButton;
+
 //Declare twitter users dictionary (directly from parsing)
 @property (strong, nonatomic) NSDictionary *twitterUsersDict;
 //Declare second dictionary to hold "users" object from twitterUsersDictionary
 @property (strong, nonatomic) NSDictionary *usersDictionary;
-
-//Declare second UIImage to fix display issue on detail view.
-@property (strong, nonatomic) UIImage *profileImageLarge;
+//Declare mutable dictionary to hold images with keys (cache)
+@property (strong, nonatomic) NSMutableDictionary *imageDictionary;
 
 //Declare array to hold screen names for all users
 @property (strong, nonatomic) NSArray *followerNames;
 //Declare array to hold image urls for all users
 @property (strong, nonatomic) NSArray *imageURLArray;
-//Declare string to pass single username to grabUserImage
+//Declare string to pass single image url string between methods
 @property (strong, nonatomic) NSString *passedImageString;
+//Declare string used to pass single screen names between methods
+@property (strong, nonatomic) NSString *passedScreenName;
+//Declare UIImage for "original" sized profile images. Passed into urlDictionary
+@property (strong, nonatomic) UIImage *profileImageLarge;
 
 //Declare loading alert view. Displays on initial load and refresh
 @property (strong, nonatomic) UIAlertView *loadingAlert;
 
-@property (strong, nonatomic) NSMutableDictionary *urlDictionary;
+//Declare IBAction method to retry connection and/or twitter access request
+-(IBAction)onRetryClick:(id)sender;
 
-@property (strong, nonatomic) NSString *passedScreenName;
-
+//Declare custom method to check internet connection
+-(void)checkConnection;
 //Declare custom method to grab Twitter followers
 -(void)getTwitterUsers;
 //Declare custom method to split follower dictionary into individual user objects
