@@ -55,10 +55,6 @@
 	// Do any additional setup after loading the view, typically from a nib.
 }
 
-/*-(void)viewWillAppear:(BOOL)animated {
-    [self getTwitterUsers];
-}*/
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
@@ -111,7 +107,7 @@
                                             //Grab value for "screen_name" of each user and put in an array
                                             followerNames = [usersDictionary valueForKey:@"screen_name"];
                                             //NSLog(@"%@", [followerNames description]);
-                                            
+                                            //Grab image url strings for each user and put in a dictionary
                                             imageURLArray = [usersDictionary valueForKey:@"profile_image_url"];
                                             //NSLog(@"%@", [imageURLArray description]);
                                             [myCollectionView reloadData];
@@ -157,10 +153,9 @@
     }
 }
 
-//Custom method to get profile image
+//Custom method to get profile image and add it to mutable dictionary
 -(void)grabUserImage {
     if (imageURLArray != nil) {
-        
         //Cast a new image url string removing "_normal" to get profile image in original size
         NSString *largeImageString = [passedImageString stringByReplacingOccurrencesOfString:@"_normal" withString:@""];
         //NSLog(@"%@", largeImageString);
@@ -173,6 +168,7 @@
         profileImageLarge = [[UIImage alloc] initWithData:largeImageData];
         //[UIImage imageWithData:[NSData dataWithContentsOfURL:url]];
     }
+    //Insert image into NSMutableDictionary as a sudo-cache.
     [imageDictionary setObject:profileImageLarge forKey:passedScreenName];
     //NSLog(@"urlDictionary = %@", [urlDictionary description]);
 }
@@ -183,7 +179,7 @@
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     // Return the number of rows in the section.
     if (twitterUsersDict != nil) {
-        //NSLog(@"feed count = %lu", (unsigned long)[twitterUsersArray count]);
+        //NSLog(@"feed count = %lu", (unsigned long)[twitterUsersDict count]);
         return [followerNames count];
     } else {
         return 0;
@@ -202,7 +198,6 @@
     passedImageString = [imageURLArray objectAtIndex:indexPath.row];
     //Cast single screen name and pass to grabUserImage and use as key. Also used to access images in urlDictionary.
     passedScreenName = [followerNames objectAtIndex:indexPath.row];
-    //[self grabUserImage];
     
     CustomCollectionCell *cell = [myCollectionView dequeueReusableCellWithReuseIdentifier:@"CustomCell" forIndexPath:indexPath];
     //NSLog(@"celForItem is working");
@@ -222,7 +217,7 @@
         
             NSLog(@"urlDictionary cell = %@", [imageDictionary description]);
         }
-        //Dismiss the refresh alert view (does nothing if the alert view isn't currently shown such as initial loading).
+        //Dismiss the loading alert view (does nothing if the alert view isn't currently shown).
         [self dismissLoadingAlert];
         return cell;
     }
@@ -235,7 +230,7 @@
     passedImageString = [imageURLArray objectAtIndex:indexPath.row];
     //Cast single screen name and pass to grabUserImage and use as key. Also used to access images in urlDictionary.
     passedScreenName = [followerNames objectAtIndex:indexPath.row];
-    //[self grabUserImage];
+
     //Allocate detail view with nibs for either device
     DetailsViewController *detailsView_iPhone = [[DetailsViewController alloc] initWithNibName:@"DetailsView_iPhone" bundle:nil];
     DetailsViewController *detailsView_iPad = [[DetailsViewController alloc] initWithNibName:@"DetailsView_iPad" bundle:nil];
@@ -289,8 +284,9 @@
     [connectionAlert show];
 }
 
-//Method to retry connection and/or twitter access
+//Method to retry connection and/or twitter access. Fires when retry button is clicked
 -(IBAction)onRetryClick:(id)sender {
+    //Call checkConnection which in turn calls getTwitterUsers
     [self checkConnection];
 }
 

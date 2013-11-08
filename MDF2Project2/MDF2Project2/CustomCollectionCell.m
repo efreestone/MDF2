@@ -31,6 +31,7 @@
 }
 */
 
+//Custom method to refresh cells and apply image/username (from collection view video)
 -(void)refreshCellData:(UIImage *)image titleString:(NSString *)titleString {
     profileImageView.image = image;
     userNameLabel.text = titleString;
