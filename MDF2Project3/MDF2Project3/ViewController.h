@@ -1,3 +1,8 @@
+// Elijah Freestone
+// MDF2 1311
+// Project 3
+// November 9th, 2013
+
 //
 //  ViewController.h
 //  MDF2Project3

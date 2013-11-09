@@ -1,3 +1,8 @@
+// Elijah Freestone
+// MDF2 1311
+// Project 3
+// November 9th, 2013
+
 //
 //  AppDelegate.m
 //  MDF2Project3
