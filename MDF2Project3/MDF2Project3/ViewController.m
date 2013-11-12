@@ -33,14 +33,32 @@
 
 //onClick method fired by all three buttons on toolbar
 -(IBAction)onClick:(id)sender {
-    //UIBarButtonItem *buttonClicked = (UIBarButtonItem *)sender;
+    //Cast button sender into UIButton
     UIButton *buttonClicked = (UIButton *)sender;
-    if (buttonClicked.tag == 0) {
-        NSLog(@"Camera button clicked");
-    } else if (buttonClicked.tag == 1) {
-        NSLog(@"Album button clicked");
-    } else if (buttonClicked.tag == 2) {
-        NSLog(@"Video button clicked");
+    //Create instance of image picker
+    UIImagePickerController *pickerController = [[UIImagePickerController alloc] init];
+    if (pickerController != nil) {
+        //Camera button
+        if (buttonClicked.tag == 0) {
+            NSLog(@"Camera button clicked");
+        //Album button
+        } else if (buttonClicked.tag == 1) {
+            //Set source type to photo library
+            pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            
+            //Set delegate
+            pickerController.delegate = self;
+            
+            //Set editing
+            pickerController.allowsEditing = false;
+            
+            //Present picker controller
+            [self presentViewController:pickerController animated:true completion:nil];
+            NSLog(@"Album button clicked");
+        //Video button
+        } else if (buttonClicked.tag == 2) {
+            NSLog(@"Video button clicked");
+        }
     }
 }
 

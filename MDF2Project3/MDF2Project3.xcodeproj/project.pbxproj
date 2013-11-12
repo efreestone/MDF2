@@ -474,6 +474,7 @@
 				B86EB1F2182EC8EA009BF4AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B86EB1F3182EC8EA009BF4AC /* Build configuration list for PBXNativeTarget "MDF2Project3Tests" */ = {
 			isa = XCConfigurationList;
@@ -482,6 +483,7 @@
 				B86EB1F5182EC8EA009BF4AC /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -13,7 +13,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 //Declare image views
 @property (strong, nonatomic) IBOutlet UIImageView *originalImageView;
