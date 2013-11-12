@@ -15,4 +15,11 @@
 
 @interface ViewController : UIViewController
 
+//Declare image views
+@property (strong, nonatomic) IBOutlet UIImageView *originalImageView;
+@property (strong, nonatomic) IBOutlet UIImageView *editedImageView;
+
+//Declare IBAction button click method
+-(IBAction)onClick:(id)sender;
+
 @end
