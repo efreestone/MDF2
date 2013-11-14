@@ -20,7 +20,10 @@
 @end
 
 @implementation ViewController {
+    //Declare photos view controller locally
     PhotosViewController *photosViewController;
+    //BOOL used for shouldPerformSegueWithIdentifier
+    BOOL shouldPushSegueOccur;
 }
 
 //Synthesize for getters/setters
@@ -28,7 +31,11 @@
 
 - (void)viewDidLoad
 {
+    //Initialize/allocate photos view controller
+    
     photosViewController = [[PhotosViewController alloc] init];
+    //Set default of BOOL used for shouldPerformSegueWithIdentifier
+    shouldPushSegueOccur = YES;
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -60,7 +67,9 @@
                 [self presentViewController:pickerController animated:true completion:nil];
                 NSLog(@"Camera button clicked");
             } else {
-                [self noCameraAlertView];
+                //Set BOOL to NO to stop segue to photos view
+                shouldPushSegueOccur = NO;
+                //[self noCameraAlertView];
                 NSLog(@"Camera not available");
             }
         //Album button
@@ -79,7 +88,8 @@
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 NSLog(@"Video button clicked");
             } else {
-                [self noCameraAlertView];
+                //Set BOOL to NO to stop segue to photos view
+                shouldPushSegueOccur = NO;
                 NSLog(@"Camera not available");
             }
         }
@@ -118,12 +128,29 @@
 #pragma mark - alert 
 
 -(void)noCameraAlertView {
+    //Override push to photos view. Because I am using storyboards, data pass to photos view doesn't work without prepareForSegue and the push is initiated with the albums button.
+    //[self.navigationController popViewControllerAnimated:true];
+    
     UIAlertView *noCameraAlert = [[UIAlertView alloc] initWithTitle:@"No Camera!" message:@"We're sorry, but your device does not have a camera available to take pictures or movies." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [noCameraAlert show];
 }
 
 #pragma mark - segue
 
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    if ([identifier isEqualToString:@"CameraView"] || [identifier isEqualToString:@"VideoView"]) {
+        //BOOL segueShouldOccur = YES|NO; // you determine this
+        if (shouldPushSegueOccur == NO) {
+            [self noCameraAlertView];
+            // prevent segue from occurring
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+//Built in function to pass data with segue to another view controller
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     //Verify identifier of push segue to photos view from album
