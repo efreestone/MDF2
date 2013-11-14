@@ -1,3 +1,8 @@
+// Elijah Freestone
+// MDF2 1311
+// Project 3
+// November 9th, 2013
+
 //
 //  PhotosViewController.m
 //  MDF2Project3
@@ -7,12 +12,17 @@
 //
 
 #import "PhotosViewController.h"
+//Import view controller
+#import "ViewController.h"
 
 @interface PhotosViewController ()
 
 @end
 
 @implementation PhotosViewController
+
+//Synthesize for getters/setters
+@synthesize originalImageView, editedImageView, passedSelectedImage, passedEditedImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -25,6 +35,10 @@
 
 - (void)viewDidLoad
 {
+    //Set image views with images passed from ViewController
+    originalImageView.image = passedSelectedImage;
+    editedImageView.image = passedEditedImage;
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }
@@ -33,6 +47,52 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - save image and cancel
+
+//Save selector method
+-(void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    //An error has occurred while saving
+    if (error != nil) {
+        [self errorAlertView];
+        NSLog(@"%@", [error description]);
+    } else {
+        [self savedAlertView];
+        NSLog(@"Save was successful");
+        [self.navigationController popViewControllerAnimated:true];
+    }
+}
+
+//Save image. Fired when save button is pressed
+-(IBAction)onSaveImage:(id)sender {
+    UIImageWriteToSavedPhotosAlbum(passedEditedImage, self, @selector(image: didFinishSavingWithError: contextInfo:), nil);
+}
+
+//Cancel image. Fired when cancel button is pressed
+-(IBAction)onCancel:(id)sender {
+    passedSelectedImage = nil;
+    passedEditedImage = nil;
+    
+    [self.navigationController popViewControllerAnimated:true];
+}
+
+#pragma mark - alert view
+
+//Method to create and show error alert view
+-(void)errorAlertView {
+    //Create error alert
+    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"An error occurred while attempting to save image. Please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    //Show error alert
+    [errorAlert show];
+}
+
+//Method to create and show save successful alert view
+-(void)savedAlertView {
+    //Create saved alert
+    UIAlertView *savedAlert = [[UIAlertView alloc] initWithTitle:@"Save Successful!" message:@"The image was saved successfully." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    //Show alert
+    [savedAlert show];
 }
 
 @end

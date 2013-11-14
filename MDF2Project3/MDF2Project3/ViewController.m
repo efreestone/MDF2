@@ -12,18 +12,24 @@
 //
 
 #import "ViewController.h"
+//Import photos view controller
+#import "PhotosViewController.h"
 
 @interface ViewController ()
 
 @end
 
-@implementation ViewController
+@implementation ViewController {
+    PhotosViewController *photosViewController;
+}
 
 //Synthesize for getters/setters
-@synthesize originalImageView, editedImageView;
+@synthesize originalImageView, editedImageView, originalImageLabel, editedImageLabel, cameraButton, albumButton, videoButton, selectedImage, editedImage;
 
 - (void)viewDidLoad
 {
+    photosViewController = [[PhotosViewController alloc] init];
+    
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
@@ -46,8 +52,8 @@
             NSLog(@"Camera button clicked");
         //Album button
         } else if (buttonClicked.tag == 1) {
-            //Set source type to photo library
-            pickerController.sourceType = UIImagePickerControllerSourceTypePhotoLibrary;
+            //Set source type to saved photos album. "Camera Roll" in the case of my iPad
+            pickerController.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
             //Set delegate
             pickerController.delegate = self;
             //Set editing
@@ -67,18 +73,17 @@
 //Built in method to capture media selection
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     //Cast selected image into a UIImage
-    UIImage *selectedImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    selectedImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
+    //photosViewController = [[PhotosViewController alloc] init];
     if (selectedImage != nil) {
-        //Set original image view as selected image
-        originalImageView.image = selectedImage;
+        
+        photosViewController.passedSelectedImage = selectedImage;
     }
     //Cast edited image into a UIImage
-    UIImage *editedImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
-    if (editedImageView != nil) {
-        //Set edited image view as edited image
-        editedImageView.image = editedImage;
-        //Save image to album
-        UIImageWriteToSavedPhotosAlbum(editedImage, self, @selector(image: didFinishSavingWithError: contextInfo:), nil);
+    editedImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
+    if (editedImage != nil) {
+
+        photosViewController.passedEditedImage = editedImage;
     }
     //Dismiss picker view
     [picker dismissViewControllerAnimated:true completion:nil];
@@ -90,34 +95,22 @@
     [picker dismissViewControllerAnimated:true completion:nil];
 }
 
-//Save selector method
--(void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
-    //An error has occurred while saving
-    if (error != nil) {
-        [self errorAlertView];
-        NSLog(@"%@", [error description]);
-    } else {
-        [self savedAlertView];
-        NSLog(@"Save was successful");
+
+#pragma mark - segue
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    //Verify identifier of push segue to Details view
+    if ([segue.identifier isEqualToString:@"PhotoView"]) {
+        //Grab destination view controller
+        photosViewController = segue.destinationViewController;
+        
+        if (photosViewController != nil) {
+            //These are set in didFinishPickingMediaWithInfo
+            //photosViewController.passedSelectedImage = selectedImage;
+            //photosViewController.passedEditedImage = editedImage;
+        }
     }
-}
-
-#pragma mark - alert view 
-
-//Method to create and show error alert view
--(void)errorAlertView {
-    //Create error alert
-    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"An error occurred while attempting to save image. Please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    //Show error alert
-    [errorAlert show];
-}
-
-//Method to create and show save successful alert view
--(void)savedAlertView {
-    //Create saved alert
-    UIAlertView *savedAlert = [[UIAlertView alloc] initWithTitle:@"Save Successful!" message:@"The image was saved successfully." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    //Show alert
-    [savedAlert show];
 }
 
 @end

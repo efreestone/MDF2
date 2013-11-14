@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B84A9A9B183434F600F40F4F /* album-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B84A9A98183434F600F40F4F /* album-icon.png */; };
+		B84A9A9C183434F600F40F4F /* camera-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B84A9A99183434F600F40F4F /* camera-icon.png */; };
+		B84A9A9D183434F600F40F4F /* video-icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B84A9A9A183434F600F40F4F /* video-icon.png */; };
+		B84A9AA018343B0F00F40F4F /* PhotosViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B84A9A9F18343B0F00F40F4F /* PhotosViewController.m */; };
 		B86EB1BF182EC8EA009BF4AC /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86EB1BE182EC8EA009BF4AC /* Foundation.framework */; };
 		B86EB1C1182EC8EA009BF4AC /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86EB1C0182EC8EA009BF4AC /* CoreGraphics.framework */; };
 		B86EB1C3182EC8EA009BF4AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86EB1C2182EC8EA009BF4AC /* UIKit.framework */; };
@@ -35,6 +39,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B84A9A98183434F600F40F4F /* album-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album-icon.png"; sourceTree = "<group>"; };
+		B84A9A99183434F600F40F4F /* camera-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-icon.png"; sourceTree = "<group>"; };
+		B84A9A9A183434F600F40F4F /* video-icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-icon.png"; sourceTree = "<group>"; };
+		B84A9A9E18343B0F00F40F4F /* PhotosViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotosViewController.h; sourceTree = "<group>"; };
+		B84A9A9F18343B0F00F40F4F /* PhotosViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotosViewController.m; sourceTree = "<group>"; };
 		B86EB1BB182EC8EA009BF4AC /* MDF2Project3.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDF2Project3.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B86EB1BE182EC8EA009BF4AC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B86EB1C0182EC8EA009BF4AC /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -81,6 +90,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		B84A9A97183434F600F40F4F /* images */ = {
+			isa = PBXGroup;
+			children = (
+				B84A9A98183434F600F40F4F /* album-icon.png */,
+				B84A9A99183434F600F40F4F /* camera-icon.png */,
+				B84A9A9A183434F600F40F4F /* video-icon.png */,
+			);
+			path = images;
+			sourceTree = "<group>";
+		};
 		B86EB1B2182EC8EA009BF4AC = {
 			isa = PBXGroup;
 			children = (
@@ -121,7 +140,10 @@
 				B86EB1D6182EC8EA009BF4AC /* ViewController.h */,
 				B86EB1D7182EC8EA009BF4AC /* ViewController.m */,
 				B86EB1D9182EC8EA009BF4AC /* Images.xcassets */,
+				B84A9A97183434F600F40F4F /* images */,
 				B86EB1C5182EC8EA009BF4AC /* Supporting Files */,
+				B84A9A9E18343B0F00F40F4F /* PhotosViewController.h */,
+				B84A9A9F18343B0F00F40F4F /* PhotosViewController.m */,
 			);
 			path = MDF2Project3;
 			sourceTree = "<group>";
@@ -232,7 +254,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				B86EB1D5182EC8EA009BF4AC /* Main_iPad.storyboard in Resources */,
+				B84A9A9B183434F600F40F4F /* album-icon.png in Resources */,
 				B86EB1DA182EC8EA009BF4AC /* Images.xcassets in Resources */,
+				B84A9A9C183434F600F40F4F /* camera-icon.png in Resources */,
+				B84A9A9D183434F600F40F4F /* video-icon.png in Resources */,
 				B86EB1D2182EC8EA009BF4AC /* Main_iPhone.storyboard in Resources */,
 				B86EB1C9182EC8EA009BF4AC /* InfoPlist.strings in Resources */,
 			);
@@ -254,6 +279,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B86EB1D8182EC8EA009BF4AC /* ViewController.m in Sources */,
+				B84A9AA018343B0F00F40F4F /* PhotosViewController.m in Sources */,
 				B86EB1CF182EC8EA009BF4AC /* AppDelegate.m in Sources */,
 				B86EB1CB182EC8EA009BF4AC /* main.m in Sources */,
 			);

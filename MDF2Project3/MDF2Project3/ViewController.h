@@ -12,14 +12,31 @@
 //
 
 #import <UIKit/UIKit.h>
+//Import photos view controller
+#import "PhotosViewController.h"
+
 
 @interface ViewController : UIViewController <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 //Declare image views
 @property (strong, nonatomic) IBOutlet UIImageView *originalImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *editedImageView;
+//Declare labels
+@property (strong, nonatomic) IBOutlet UILabel *originalImageLabel;
+@property (strong, nonatomic) IBOutlet UILabel *editedImageLabel;
+//Declare camera, album, and video buttons
+@property (strong, nonatomic) IBOutlet UIButton *cameraButton;
+@property (strong, nonatomic) IBOutlet UIButton *albumButton;
+@property (strong, nonatomic) IBOutlet UIButton *videoButton;
 
-//Declare IBAction button click method
+//Declare images
+@property (strong, nonatomic) UIImage *selectedImage;
+@property (strong, nonatomic) UIImage *editedImage;
+
+//Declare instance of photos view controller
+//@property (strong, nonatomic)
+
+//Declare IBAction button click method for camera, album, or video
 -(IBAction)onClick:(id)sender;
 
 @end
