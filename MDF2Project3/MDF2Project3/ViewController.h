@@ -27,9 +27,6 @@
 @property (strong, nonatomic) UIImage *selectedImage;
 @property (strong, nonatomic) UIImage *editedImage;
 
-//Declare instance of photos view controller
-//@property (strong, nonatomic)
-
 //Declare IBAction button click method for camera, album, or video
 -(IBAction)onClick:(id)sender;
 

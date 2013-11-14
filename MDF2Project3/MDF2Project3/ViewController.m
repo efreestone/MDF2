@@ -121,36 +121,38 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     //Dismiss picker view
     [picker dismissViewControllerAnimated:true completion:nil];
-    //Override push to photos view. Because I am using storyboards, data pass to photos view doesn't work without prepareForSegue and the push is initiated with the albums button.
+    //Override push to photos view. Because I am using storyboards, data pass to photos view doesn't work without prepareForSegue and the push is initiated with the albums button. Segue already occured so shouldPerformSegue won't work here.
     [self.navigationController popViewControllerAnimated:true];
 }
 
 #pragma mark - alert 
 
 -(void)noCameraAlertView {
-    //Override push to photos view. Because I am using storyboards, data pass to photos view doesn't work without prepareForSegue and the push is initiated with the albums button.
-    //[self.navigationController popViewControllerAnimated:true];
-    
+    //Create alert
     UIAlertView *noCameraAlert = [[UIAlertView alloc] initWithTitle:@"No Camera!" message:@"We're sorry, but your device does not have a camera available to take pictures or movies." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    //Show alert
     [noCameraAlert show];
 }
 
 #pragma mark - segue
 
+//Built in method to cancel/allow a segue to occur
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    //Check if segue is from camera or video
     if ([identifier isEqualToString:@"CameraView"] || [identifier isEqualToString:@"VideoView"]) {
-        //BOOL segueShouldOccur = YES|NO; // you determine this
+        //shouldPushOccur is BOOL set to NO if camera is not available
         if (shouldPushSegueOccur == NO) {
+            //Show no camera alert
             [self noCameraAlertView];
-            // prevent segue from occurring
+            //Cancel segue to photos view
             return NO;
         }
     }
-    
+    //Allow segue if camera is available
     return YES;
 }
 
-//Built in function to pass data with segue to another view controller
+//Built in method to pass data with segue to another view controller
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     //Verify identifier of push segue to photos view from album
