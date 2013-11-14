@@ -22,7 +22,7 @@
 @implementation PhotosViewController
 
 //Synthesize for getters/setters
-@synthesize originalImageView, editedImageView, passedSelectedImage, passedEditedImage;
+@synthesize originalImageView, editedImageView, passedSelectedImage, passedEditedImage, editedLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,6 +38,11 @@
     //Set image views with images passed from ViewController
     originalImageView.image = passedSelectedImage;
     editedImageView.image = passedEditedImage;
+    
+    //Check if passed edited image is nil and hide edited label if true
+    if (passedEditedImage == nil) {
+        editedLabel.hidden = true;
+    }
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
@@ -66,6 +71,10 @@
 
 //Save image. Fired when save button is pressed
 -(IBAction)onSaveImage:(id)sender {
+    //Check if edited image is nil and cast passed selected image into it if true. This is for saving images taken from the camera when there is no edited image.
+    if (passedEditedImage == nil) {
+        passedEditedImage = passedSelectedImage;
+    }
     UIImageWriteToSavedPhotosAlbum(passedEditedImage, self, @selector(image: didFinishSavingWithError: contextInfo:), nil);
 }
 
@@ -82,7 +91,7 @@
 //Method to create and show error alert view
 -(void)errorAlertView {
     //Create error alert
-    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"An error occurred while attempting to save image. Please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"An error occurred while attempting to save the image. Please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     //Show error alert
     [errorAlert show];
 }

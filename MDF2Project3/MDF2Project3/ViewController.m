@@ -24,7 +24,7 @@
 }
 
 //Synthesize for getters/setters
-@synthesize originalImageView, editedImageView, originalImageLabel, editedImageLabel, cameraButton, albumButton, videoButton, selectedImage, editedImage;
+@synthesize cameraButton, albumButton, videoButton, selectedImage, editedImage;
 
 - (void)viewDidLoad
 {
@@ -49,15 +49,20 @@
     if (pickerController != nil) {
         //Camera button
         if (buttonClicked.tag == 0) {
-            //Set source type to camera
-            pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-            //Set delegate
-            pickerController.delegate = self;
-            //Set editing
-            pickerController.allowsEditing = false;
-            //Present picker controller
-            [self presentViewController:pickerController animated:true completion:nil];
-            NSLog(@"Camera button clicked");
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                //Set source type to camera
+                pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+                //Set delegate
+                pickerController.delegate = self;
+                //Set editing
+                pickerController.allowsEditing = false;
+                //Present picker controller
+                [self presentViewController:pickerController animated:true completion:nil];
+                NSLog(@"Camera button clicked");
+            } else {
+                [self noCameraAlertView];
+                NSLog(@"Camera not available");
+            }
         //Album button
         } else if (buttonClicked.tag == 1) {
             //Set source type to saved photos album. "Camera Roll" in the case of my iPad
@@ -71,7 +76,12 @@
             NSLog(@"Album button clicked");
         //Video button
         } else if (buttonClicked.tag == 2) {
-            NSLog(@"Video button clicked");
+            if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                NSLog(@"Video button clicked");
+            } else {
+                [self noCameraAlertView];
+                NSLog(@"Camera not available");
+            }
         }
     }
 }
@@ -84,13 +94,13 @@
     selectedImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
     //photosViewController = [[PhotosViewController alloc] init];
     if (selectedImage != nil) {
-        
+        //Pass image to UIImage in photos view
         photosViewController.passedSelectedImage = selectedImage;
     }
     //Cast edited image into a UIImage
     editedImage = [info objectForKey:@"UIImagePickerControllerEditedImage"];
     if (editedImage != nil) {
-
+        //Pass image to UIImage in photos view
         photosViewController.passedEditedImage = editedImage;
     }
     //Dismiss picker view
@@ -105,12 +115,18 @@
     [self.navigationController popViewControllerAnimated:true];
 }
 
+#pragma mark - alert 
+
+-(void)noCameraAlertView {
+    UIAlertView *noCameraAlert = [[UIAlertView alloc] initWithTitle:@"No Camera!" message:@"We're sorry, but your device does not have a camera available to take pictures or movies." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [noCameraAlert show];
+}
 
 #pragma mark - segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    //Verify identifier of push segue to photos view
+    //Verify identifier of push segue to photos view from album
     if ([segue.identifier isEqualToString:@"PhotoView"]) {
         //Grab destination view controller
         photosViewController = segue.destinationViewController;
@@ -119,6 +135,16 @@
             //These are set in didFinishPickingMediaWithInfo
             //photosViewController.passedSelectedImage = selectedImage;
             //photosViewController.passedEditedImage = editedImage;
+        }
+    }
+    //Verify identifier of push segue to photos view from camera
+    if ([segue.identifier isEqualToString:@"CameraView"]) {
+        //Grab destination view controller
+        photosViewController = segue.destinationViewController;
+        
+        if (photosViewController != nil) {
+            //These are set in didFinishPickingMediaWithInfo
+            //photosViewController.passedSelectedImage = selectedImage;
         }
     }
 }

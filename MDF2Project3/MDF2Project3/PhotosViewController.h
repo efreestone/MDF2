@@ -21,6 +21,8 @@
 //Declare images passed from ViewController
 @property (strong, nonatomic) UIImage *passedSelectedImage;
 @property (strong, nonatomic) UIImage *passedEditedImage;
+//Declare edited image label to hide when coming from camera
+@property (strong, nonatomic) IBOutlet UILabel *editedLabel;
 
 //Declare IBAction methods for save and cancel
 -(IBAction)onSaveImage:(id)sender;
