@@ -49,6 +49,14 @@
     if (pickerController != nil) {
         //Camera button
         if (buttonClicked.tag == 0) {
+            //Set source type to camera
+            pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+            //Set delegate
+            pickerController.delegate = self;
+            //Set editing
+            pickerController.allowsEditing = false;
+            //Present picker controller
+            [self presentViewController:pickerController animated:true completion:nil];
             NSLog(@"Camera button clicked");
         //Album button
         } else if (buttonClicked.tag == 1) {
@@ -93,6 +101,8 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     //Dismiss picker view
     [picker dismissViewControllerAnimated:true completion:nil];
+    //Override push to photos view. Because I am using storyboards, data pass to photos view doesn't work without prepareForSegue and the push is initiated with the albums button.
+    [self.navigationController popViewControllerAnimated:true];
 }
 
 
@@ -100,7 +110,7 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    //Verify identifier of push segue to Details view
+    //Verify identifier of push segue to photos view
     if ([segue.identifier isEqualToString:@"PhotoView"]) {
         //Grab destination view controller
         photosViewController = segue.destinationViewController;
