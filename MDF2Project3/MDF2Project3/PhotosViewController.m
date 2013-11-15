@@ -42,7 +42,7 @@
     originalImageView.image = passedSelectedImage;
     editedImageView.image = passedEditedImage;
     
-    //Check if passed edited image is nil and hide edited label and buttons if true
+    //Check if passed edited image is nil and hide edited label and buttons if true. Only true if coming from album
     if (passedEditedImage == nil) {
         editedLabel.hidden = true;
         saveButton.hidden = true;
@@ -66,13 +66,15 @@
     //An error has occurred while saving
     if (error != nil) {
         [self errorAlertView];
-        NSLog(@"%@", [error description]);
+        //NSLog(@"%@", [error description]);
     } else {
+        //Check if an alert view is already showing. alertShowing is a BOOL that is set to YES when savedAlertView is called
         if (alertShowing == NO) {
+            //Call method to show saved alert
             [self savedAlertView];
         }
         
-        NSLog(@"Save was successful");
+        //NSLog(@"Save was successful");
         [self.navigationController popViewControllerAnimated:true];
     }
 }

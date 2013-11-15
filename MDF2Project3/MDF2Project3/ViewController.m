@@ -69,11 +69,11 @@
                 pickerController.allowsEditing = true;
                 //Present picker controller in camera mode
                 [self presentViewController:pickerController animated:true completion:nil];
-                NSLog(@"Camera button clicked");
+                //NSLog(@"Camera button clicked");
             } else {
                 //Set BOOL to NO to stop segue to photos view
                 shouldPushSegueOccur = NO;
-                NSLog(@"Camera not available");
+                //NSLog(@"Camera not available");
             }
         //Album button
         } else if (buttonClicked.tag == 1) {
@@ -87,7 +87,7 @@
             pickerController.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:pickerController.sourceType];
             //Present picker controller in album mode
             [self presentViewController:pickerController animated:true completion:nil];
-            NSLog(@"Album button clicked");
+            //NSLog(@"Album button clicked");
         //Video button
         } else if (buttonClicked.tag == 2) {
             //Make sure camera is available
@@ -104,11 +104,11 @@
                 pickerController.mediaTypes = [NSArray arrayWithObjects:(NSString *)kUTTypeMovie, nil];
                 //Present picker controller in video mode
                 [self presentViewController:pickerController animated:true completion:nil];
-                NSLog(@"Video button clicked");
+                //NSLog(@"Video button clicked");
             } else {
                 //Show no camera alert
                 [self noCameraAlertView];
-                NSLog(@"Camera not available");
+                //NSLog(@"Camera not available");
             }
         }
     }
@@ -135,7 +135,7 @@
     if (urlString != nil) {
         //Change url to file path string
         videoPath = [urlString path];
-        //Video save is moved to saveVideoAlertView and only saved if "save" is clicked in the alert view
+        //Video save is moved to alertView:clickedButtonAtIndex and only saved if "save" is clicked in the alert view
         //UISaveVideoAtPathToSavedPhotosAlbum(videoPath, self, @selector(video: didFinishSavingWithError: contextInfo:), nil);
         //Dismiss photo view. This is to override push to photo view triggered by album button. Only hit if a video is selected in the album
         [self.navigationController popViewControllerAnimated:true];
@@ -151,11 +151,11 @@
     if (error != nil) {
         //Show error alert
         [self errorAlertView];
-        NSLog(@"Error saving file");
+        //NSLog(@"Error saving file");
     } else {
         //Show saved alert
         [self saveSuccessfulAlertView];
-        NSLog(@"Save was completed");
+        //NSLog(@"Save was completed");
     }
 }
 
@@ -163,7 +163,7 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker {
     //Dismiss picker view
     [picker dismissViewControllerAnimated:true completion:nil];
-    //Override push to photos view. Because I am using storyboards, data pass to photos view doesn't work without prepareForSegue and the push is initiated with the albums button. Segue already occured so shouldPerformSegue won't work here.
+    //Override push to photos view. Because I am using storyboards, data pass to photos view doesn't work without prepareForSegue and the push is initiated with the album and camera buttons. Segue already occured so shouldPerformSegue won't work here.
     [self.navigationController popViewControllerAnimated:true];
 }
 
@@ -179,13 +179,17 @@
 
 //Create and show save video alert. Pressings save adds the video to the album
 -(void)saveVideoAlertView {
+    //Create save video alert w/ delegate set to self to detect button click
     UIAlertView *saveVideoAlert = [[UIAlertView alloc] initWithTitle:@"Save video?" message:@"Would you like to save your video to your album?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save", nil];
+    //Show save video alert
     [saveVideoAlert show];
 }
 
 //Create and show save successful alert
 -(void)saveSuccessfulAlertView {
+    //Create saved alert
     UIAlertView *saveSuccessfulAlert = [[UIAlertView alloc] initWithTitle:@"Saved!" message:@"Your video was successfully saved to your album" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    //Show saved alert
     [saveSuccessfulAlert show];
 }
 
@@ -200,8 +204,9 @@
 //Built in method to grab button index selected for an alert view. Index 1 (save) saves the video
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (buttonIndex == 1) {
+        //Save video to album
         UISaveVideoAtPathToSavedPhotosAlbum(videoPath, self, @selector(video: didFinishSavingWithError: contextInfo:), nil);
-        
+        //NSLog(@"Video saved");
     }
 }
 
@@ -210,7 +215,7 @@
 //Built in method to cancel/allow a segue to occur
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     //Check if segue is from camera
-    if ([identifier isEqualToString:@"CameraView"]) { // || [identifier isEqualToString:@"PhotoView"]
+    if ([identifier isEqualToString:@"CameraView"]) {
         //shouldPushOccur is BOOL set to NO if camera is not available
         if (shouldPushSegueOccur == NO) {
             //Show no camera alert
