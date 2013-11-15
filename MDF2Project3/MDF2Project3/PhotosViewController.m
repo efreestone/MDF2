@@ -47,7 +47,6 @@
         editedLabel.hidden = true;
         saveButton.hidden = true;
         cancelButton.hidden = true;
-        originalImageView.frame = CGRectMake(20.0f, 99.0f, 600.0f, 600.0f);
     }
     
     [super viewDidLoad];
@@ -80,10 +79,10 @@
 
 //Save image. Fired when save button is pressed
 -(IBAction)onSaveImage:(id)sender {
-    //Save edited image
-    UIImageWriteToSavedPhotosAlbum(passedEditedImage, self, @selector(image: didFinishSavingWithError: contextInfo:), nil);
     //Save original image
     UIImageWriteToSavedPhotosAlbum(passedSelectedImage, self, @selector(image: didFinishSavingWithError: contextInfo:), nil);
+    //Save edited image
+    UIImageWriteToSavedPhotosAlbum(passedEditedImage, self, @selector(image: didFinishSavingWithError: contextInfo:), nil);
 }
 
 //Cancel image. Fired when cancel button is pressed

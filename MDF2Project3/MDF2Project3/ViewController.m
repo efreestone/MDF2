@@ -36,7 +36,6 @@
 - (void)viewDidLoad
 {
     //Initialize/allocate photos view controller
-    
     photosViewController = [[PhotosViewController alloc] init];
     //Set default of BOOL used for shouldPerformSegueWithIdentifier
     shouldPushSegueOccur = YES;
@@ -74,7 +73,6 @@
             } else {
                 //Set BOOL to NO to stop segue to photos view
                 shouldPushSegueOccur = NO;
-                //[self noCameraAlertView];
                 NSLog(@"Camera not available");
             }
         //Album button
@@ -211,8 +209,8 @@
 
 //Built in method to cancel/allow a segue to occur
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
-    //Check if segue is from camera or video
-    if ([identifier isEqualToString:@"CameraView"] || [identifier isEqualToString:@"PhotoView"]) {
+    //Check if segue is from camera
+    if ([identifier isEqualToString:@"CameraView"]) { // || [identifier isEqualToString:@"PhotoView"]
         //shouldPushOccur is BOOL set to NO if camera is not available
         if (shouldPushSegueOccur == NO) {
             //Show no camera alert
