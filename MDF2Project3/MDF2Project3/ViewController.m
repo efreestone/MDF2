@@ -101,7 +101,7 @@
                 //Set video quality
                 pickerController.videoQuality = UIImagePickerControllerQualityTypeMedium;
                 //Set media types
-                pickerController.mediaTypes = [NSArray arrayWithObjects:(NSString *)kUTTypeMovie, kUTTypeVideo, nil];
+                pickerController.mediaTypes = [NSArray arrayWithObjects:(NSString *)kUTTypeMovie, nil];
                 //Present picker controller in video mode
                 [self presentViewController:pickerController animated:true completion:nil];
                 NSLog(@"Video button clicked");
