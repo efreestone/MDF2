@@ -26,6 +26,7 @@
 		B86EB1E3182EC8EA009BF4AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86EB1C2182EC8EA009BF4AC /* UIKit.framework */; };
 		B86EB1EB182EC8EA009BF4AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B86EB1E9182EC8EA009BF4AC /* InfoPlist.strings */; };
 		B86EB1ED182EC8EA009BF4AC /* MDF2Project3Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B86EB1EC182EC8EA009BF4AC /* MDF2Project3Tests.m */; };
+		B892EDA618357C44001F6DBD /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B892EDA518357C44001F6DBD /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +65,7 @@
 		B86EB1E8182EC8EA009BF4AC /* MDF2Project3Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MDF2Project3Tests-Info.plist"; sourceTree = "<group>"; };
 		B86EB1EA182EC8EA009BF4AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B86EB1EC182EC8EA009BF4AC /* MDF2Project3Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDF2Project3Tests.m; sourceTree = "<group>"; };
+		B892EDA518357C44001F6DBD /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B892EDA618357C44001F6DBD /* MobileCoreServices.framework in Frameworks */,
 				B86EB1C1182EC8EA009BF4AC /* CoreGraphics.framework in Frameworks */,
 				B86EB1C3182EC8EA009BF4AC /* UIKit.framework in Frameworks */,
 				B86EB1BF182EC8EA009BF4AC /* Foundation.framework in Frameworks */,
@@ -122,6 +125,7 @@
 		B86EB1BD182EC8EA009BF4AC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B892EDA518357C44001F6DBD /* MobileCoreServices.framework */,
 				B86EB1BE182EC8EA009BF4AC /* Foundation.framework */,
 				B86EB1C0182EC8EA009BF4AC /* CoreGraphics.framework */,
 				B86EB1C2182EC8EA009BF4AC /* UIKit.framework */,

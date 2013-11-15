@@ -18,11 +18,15 @@
 //Declare image views
 @property (strong, nonatomic) IBOutlet UIImageView *originalImageView;
 @property (strong, nonatomic) IBOutlet UIImageView *editedImageView;
+//Declare edited image label to hide when coming from album
+@property (strong, nonatomic) IBOutlet UILabel *editedLabel;
+//Declare ave and cancel buttons
+@property (strong, nonatomic) IBOutlet UIButton *saveButton;
+@property (strong, nonatomic) IBOutlet UIButton *cancelButton;
 //Declare images passed from ViewController
 @property (strong, nonatomic) UIImage *passedSelectedImage;
 @property (strong, nonatomic) UIImage *passedEditedImage;
-//Declare edited image label to hide when coming from camera
-@property (strong, nonatomic) IBOutlet UILabel *editedLabel;
+
 
 //Declare IBAction methods for save and cancel
 -(IBAction)onSaveImage:(id)sender;

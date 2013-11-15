@@ -19,10 +19,13 @@
 
 @end
 
-@implementation PhotosViewController
+@implementation PhotosViewController {
+    //BOOL to determine if saved alert is showing
+    BOOL alertShowing;
+}
 
 //Synthesize for getters/setters
-@synthesize originalImageView, editedImageView, passedSelectedImage, passedEditedImage, editedLabel;
+@synthesize originalImageView, editedImageView, editedLabel, saveButton, cancelButton, passedSelectedImage, passedEditedImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,9 +42,12 @@
     originalImageView.image = passedSelectedImage;
     editedImageView.image = passedEditedImage;
     
-    //Check if passed edited image is nil and hide edited label if true
+    //Check if passed edited image is nil and hide edited label and buttons if true
     if (passedEditedImage == nil) {
         editedLabel.hidden = true;
+        saveButton.hidden = true;
+        cancelButton.hidden = true;
+        originalImageView.frame = CGRectMake(20.0f, 99.0f, 600.0f, 600.0f);
     }
     
     [super viewDidLoad];
@@ -63,7 +69,10 @@
         [self errorAlertView];
         NSLog(@"%@", [error description]);
     } else {
-        [self savedAlertView];
+        if (alertShowing == NO) {
+            [self savedAlertView];
+        }
+        
         NSLog(@"Save was successful");
         [self.navigationController popViewControllerAnimated:true];
     }
@@ -71,18 +80,18 @@
 
 //Save image. Fired when save button is pressed
 -(IBAction)onSaveImage:(id)sender {
-    //Check if edited image is nil and cast passed selected image into it if true. This is for saving images taken from the camera when there is no edited image.
-    if (passedEditedImage == nil) {
-        passedEditedImage = passedSelectedImage;
-    }
+    //Save edited image
     UIImageWriteToSavedPhotosAlbum(passedEditedImage, self, @selector(image: didFinishSavingWithError: contextInfo:), nil);
+    //Save original image
+    UIImageWriteToSavedPhotosAlbum(passedSelectedImage, self, @selector(image: didFinishSavingWithError: contextInfo:), nil);
 }
 
 //Cancel image. Fired when cancel button is pressed
 -(IBAction)onCancel:(id)sender {
+    //Nil out UIImages.
     passedSelectedImage = nil;
     passedEditedImage = nil;
-    
+    //Dismiss photos view
     [self.navigationController popViewControllerAnimated:true];
 }
 
@@ -98,6 +107,8 @@
 
 //Method to create and show save successful alert view
 -(void)savedAlertView {
+    //Set BOOL alertShow to YES. This is to stop savedAlert from appearing twice when saving both photos
+    alertShowing = YES;
     //Create saved alert
     UIAlertView *savedAlert = [[UIAlertView alloc] initWithTitle:@"Save Successful!" message:@"The image was saved successfully." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     //Show alert

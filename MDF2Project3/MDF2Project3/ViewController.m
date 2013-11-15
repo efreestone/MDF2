@@ -14,6 +14,8 @@
 #import "ViewController.h"
 //Import photos view controller
 #import "PhotosViewController.h"
+//Import mobile core services
+#import <MobileCoreServices/MobileCoreServices.h>
 
 @interface ViewController ()
 
@@ -24,6 +26,8 @@
     PhotosViewController *photosViewController;
     //BOOL used for shouldPerformSegueWithIdentifier
     BOOL shouldPushSegueOccur;
+    //NSString for file path of video
+    NSString *videoPath;
 }
 
 //Synthesize for getters/setters
@@ -56,14 +60,15 @@
     if (pickerController != nil) {
         //Camera button
         if (buttonClicked.tag == 0) {
+            //Make sure camera is available
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
                 //Set source type to camera
                 pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
                 //Set delegate
                 pickerController.delegate = self;
                 //Set editing
-                pickerController.allowsEditing = false;
-                //Present picker controller
+                pickerController.allowsEditing = true;
+                //Present picker controller in camera mode
                 [self presentViewController:pickerController animated:true completion:nil];
                 NSLog(@"Camera button clicked");
             } else {
@@ -79,17 +84,32 @@
             //Set delegate
             pickerController.delegate = self;
             //Set editing
-            pickerController.allowsEditing = true;
-            //Present picker controller
+            pickerController.allowsEditing = false;
+            //Set media tupes to include video in album
+            pickerController.mediaTypes = [UIImagePickerController availableMediaTypesForSourceType:pickerController.sourceType];
+            //Present picker controller in album mode
             [self presentViewController:pickerController animated:true completion:nil];
             NSLog(@"Album button clicked");
         //Video button
         } else if (buttonClicked.tag == 2) {
+            //Make sure camera is available
             if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+                //Set source type to camera
+                pickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+                //Set delegate
+                pickerController.delegate = self;
+                //Set editing
+                pickerController.allowsEditing = false;
+                //Set video quality
+                pickerController.videoQuality = UIImagePickerControllerQualityTypeMedium;
+                //Set media types
+                pickerController.mediaTypes = [NSArray arrayWithObjects:(NSString *)kUTTypeMovie, kUTTypeVideo, nil];
+                //Present picker controller in video mode
+                [self presentViewController:pickerController animated:true completion:nil];
                 NSLog(@"Video button clicked");
             } else {
-                //Set BOOL to NO to stop segue to photos view
-                shouldPushSegueOccur = NO;
+                //Show no camera alert
+                [self noCameraAlertView];
                 NSLog(@"Camera not available");
             }
         }
@@ -102,7 +122,6 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info {
     //Cast selected image into a UIImage
     selectedImage = [info objectForKey:@"UIImagePickerControllerOriginalImage"];
-    //photosViewController = [[PhotosViewController alloc] init];
     if (selectedImage != nil) {
         //Pass image to UIImage in photos view
         photosViewController.passedSelectedImage = selectedImage;
@@ -113,8 +132,32 @@
         //Pass image to UIImage in photos view
         photosViewController.passedEditedImage = editedImage;
     }
+    //Grab url for video
+    NSURL *urlString = [info valueForKey:UIImagePickerControllerMediaURL];
+    if (urlString != nil) {
+        //Change url to file path string
+        videoPath = [urlString path];
+        //Video save is moved to saveVideoAlertView and only saved if "save" is clicked in the alert view
+        //UISaveVideoAtPathToSavedPhotosAlbum(videoPath, self, @selector(video: didFinishSavingWithError: contextInfo:), nil);
+        [self.navigationController popViewControllerAnimated:true];
+        [self saveVideoAlertView];
+    }
     //Dismiss picker view
     [picker dismissViewControllerAnimated:true completion:nil];
+    //NSLog(@"%@", [info description]);
+}
+
+//Save selector method
+-(void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
+    if (error != nil) {
+        //Show error alert
+        [self errorAlertView];
+        NSLog(@"Error saving file");
+    } else {
+        //Show saved alert
+        [self saveSuccessfulAlertView];
+        NSLog(@"Save was completed");
+    }
 }
 
 //Built in method to capture cancel button selection in picker
@@ -127,6 +170,7 @@
 
 #pragma mark - alert 
 
+//Create and show no camera alert
 -(void)noCameraAlertView {
     //Create alert
     UIAlertView *noCameraAlert = [[UIAlertView alloc] initWithTitle:@"No Camera!" message:@"We're sorry, but your device does not have a camera available to take pictures or movies." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -134,12 +178,40 @@
     [noCameraAlert show];
 }
 
+//Create and show save video alert. Pressings save adds the video to the album
+-(void)saveVideoAlertView {
+    UIAlertView *saveVideoAlert = [[UIAlertView alloc] initWithTitle:@"Save video?" message:@"Would you like to save your video to your album?" delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Save", nil];
+    [saveVideoAlert show];
+}
+
+//Create and show save successful alert
+-(void)saveSuccessfulAlertView {
+    UIAlertView *saveSuccessfulAlert = [[UIAlertView alloc] initWithTitle:@"Saved!" message:@"Your video was successfully saved to your album" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [saveSuccessfulAlert show];
+}
+
+//Create and show error alert view
+-(void)errorAlertView {
+    //Create error alert
+    UIAlertView *errorAlert = [[UIAlertView alloc] initWithTitle:@"Error!" message:@"An error occurred while attempting to save the image. Please try again." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    //Show error alert
+    [errorAlert show];
+}
+
+//Built in method to grab button index selected for an alert view. Index 1 (save) saves the video
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    if (buttonIndex == 1) {
+        UISaveVideoAtPathToSavedPhotosAlbum(videoPath, self, @selector(video: didFinishSavingWithError: contextInfo:), nil);
+        
+    }
+}
+
 #pragma mark - segue
 
 //Built in method to cancel/allow a segue to occur
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
     //Check if segue is from camera or video
-    if ([identifier isEqualToString:@"CameraView"] || [identifier isEqualToString:@"VideoView"]) {
+    if ([identifier isEqualToString:@"CameraView"] || [identifier isEqualToString:@"PhotoView"]) {
         //shouldPushOccur is BOOL set to NO if camera is not available
         if (shouldPushSegueOccur == NO) {
             //Show no camera alert

@@ -62,15 +62,15 @@
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select &quot;Camera&quot; to take a picture with your devices camera and have the option to save to your device." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="nCZ-tI-vzE">
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select &quot;Camera&quot; to take a picture with your devices camera and edit it with the option to save both images to your album." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="nCZ-tI-vzE">
                                 <rect key="frame" x="20" y="259" width="728" height="175"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select &quot;Albums&quot; to pick an image from your album and edit it. Also has the option to save edited image to your device." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="Vt6-pa-371">
-                                <rect key="frame" x="20" y="424" width="728" height="175"/>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select &quot;Albums&quot; to view an image or video in your album." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="728" translatesAutoresizingMaskIntoConstraints="NO" id="Vt6-pa-371">
+                                <rect key="frame" x="20" y="450" width="728" height="124"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="37"/>
                                 <color key="textColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
@@ -156,9 +156,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="NNz-dS-qW1"/>
                     <connections>
+                        <outlet property="cancelButton" destination="CG8-lz-eqK" id="Nr5-me-eh3"/>
                         <outlet property="editedImageView" destination="eQ3-O9-Ohw" id="XJS-SY-Tbo"/>
                         <outlet property="editedLabel" destination="V3G-j1-gPU" id="wEH-yp-Imp"/>
                         <outlet property="originalImageView" destination="aBQ-ZT-YtR" id="j46-Sa-OHX"/>
+                        <outlet property="saveButton" destination="BGO-Mx-dpV" id="KjC-FS-u4E"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ojY-1n-VOQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
