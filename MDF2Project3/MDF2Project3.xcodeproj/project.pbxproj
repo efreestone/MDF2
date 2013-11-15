@@ -26,6 +26,9 @@
 		B86EB1E3182EC8EA009BF4AC /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B86EB1C2182EC8EA009BF4AC /* UIKit.framework */; };
 		B86EB1EB182EC8EA009BF4AC /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B86EB1E9182EC8EA009BF4AC /* InfoPlist.strings */; };
 		B86EB1ED182EC8EA009BF4AC /* MDF2Project3Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B86EB1EC182EC8EA009BF4AC /* MDF2Project3Tests.m */; };
+		B87307951835DCB6007E099F /* album-icon_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = B87307921835DCB6007E099F /* album-icon_iPad.png */; };
+		B87307961835DCB6007E099F /* camera-icon_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = B87307931835DCB6007E099F /* camera-icon_iPad.png */; };
+		B87307971835DCB6007E099F /* video-icon_iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = B87307941835DCB6007E099F /* video-icon_iPad.png */; };
 		B892EDA618357C44001F6DBD /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B892EDA518357C44001F6DBD /* MobileCoreServices.framework */; };
 		B892EDB01835AE47001F6DBD /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B892EDA71835AE47001F6DBD /* Default-568h@2x.png */; };
 		B892EDB11835AE47001F6DBD /* Default-Portrait@2x~iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = B892EDA81835AE47001F6DBD /* Default-Portrait@2x~iPad.png */; };
@@ -74,6 +77,9 @@
 		B86EB1E8182EC8EA009BF4AC /* MDF2Project3Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MDF2Project3Tests-Info.plist"; sourceTree = "<group>"; };
 		B86EB1EA182EC8EA009BF4AC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B86EB1EC182EC8EA009BF4AC /* MDF2Project3Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDF2Project3Tests.m; sourceTree = "<group>"; };
+		B87307921835DCB6007E099F /* album-icon_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "album-icon_iPad.png"; sourceTree = "<group>"; };
+		B87307931835DCB6007E099F /* camera-icon_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "camera-icon_iPad.png"; sourceTree = "<group>"; };
+		B87307941835DCB6007E099F /* video-icon_iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "video-icon_iPad.png"; sourceTree = "<group>"; };
 		B892EDA518357C44001F6DBD /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		B892EDA71835AE47001F6DBD /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		B892EDA81835AE47001F6DBD /* Default-Portrait@2x~iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~iPad.png"; sourceTree = "<group>"; };
@@ -114,6 +120,9 @@
 		B84A9A97183434F600F40F4F /* images */ = {
 			isa = PBXGroup;
 			children = (
+				B87307921835DCB6007E099F /* album-icon_iPad.png */,
+				B87307931835DCB6007E099F /* camera-icon_iPad.png */,
+				B87307941835DCB6007E099F /* video-icon_iPad.png */,
 				B892EDA71835AE47001F6DBD /* Default-568h@2x.png */,
 				B892EDA81835AE47001F6DBD /* Default-Portrait@2x~iPad.png */,
 				B892EDA91835AE47001F6DBD /* Default-Portrait~iPad.png */,
@@ -286,7 +295,9 @@
 			files = (
 				B892EDB41835AE47001F6DBD /* Default@2x.png in Resources */,
 				B892EDB81835AE47001F6DBD /* Icon@2x.png in Resources */,
+				B87307951835DCB6007E099F /* album-icon_iPad.png in Resources */,
 				B892EDB51835AE47001F6DBD /* Icon-76.png in Resources */,
+				B87307971835DCB6007E099F /* video-icon_iPad.png in Resources */,
 				B892EDB11835AE47001F6DBD /* Default-Portrait@2x~iPad.png in Resources */,
 				B86EB1D5182EC8EA009BF4AC /* Main_iPad.storyboard in Resources */,
 				B892EDB61835AE47001F6DBD /* Icon-76@2x.png in Resources */,
@@ -296,6 +307,7 @@
 				B84A9A9D183434F600F40F4F /* video-icon.png in Resources */,
 				B892EDB01835AE47001F6DBD /* Default-568h@2x.png in Resources */,
 				B892EDB21835AE47001F6DBD /* Default-Portrait~iPad.png in Resources */,
+				B87307961835DCB6007E099F /* camera-icon_iPad.png in Resources */,
 				B86EB1D2182EC8EA009BF4AC /* Main_iPhone.storyboard in Resources */,
 				B892EDB71835AE47001F6DBD /* Icon.png in Resources */,
 				B86EB1C9182EC8EA009BF4AC /* InfoPlist.strings in Resources */,
