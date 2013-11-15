@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>ABCC1B08-78AD-4A5E-9363-6B7B0B05BD08</string>
+	<key>IDESourceControlProjectName</key>
+	<string>MDF2Project3</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>7EBA3AAD-1F02-4F06-AD49-00DEB225AA56</key>
+		<string>ssh://github.com/efreestone/MDF2</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>MDF2Project3/MDF2Project3.xcodeproj/project.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>7EBA3AAD-1F02-4F06-AD49-00DEB225AA56</key>
+		<string>../../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>ssh://github.com/efreestone/MDF2</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>7EBA3AAD-1F02-4F06-AD49-00DEB225AA56</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>7EBA3AAD-1F02-4F06-AD49-00DEB225AA56</string>
+			<key>IDESourceControlWCCName</key>
+			<string>MDF2</string>
+		</dict>
+	</array>
+</dict>
+</plist>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="4514" systemVersion="12F45" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="yXr-6K-N9x">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3746"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller - MDF2 Project 3-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController id="vXZ-lx-hvc" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Sew-eS-TOW"/>
+                        <viewControllerLayoutGuide type="bottom" id="KRh-9X-RL2"/>
+                    </layoutGuides>
+                    <view key="view" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XOx-Tv-TVn">
+                                <rect key="frame" x="107" y="508" width="106" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.89174150919923645" green="0.8957029984075795" blue="0.90758746603260865" alpha="0.95000000000000007" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="album-icon.png"/>
+                                <connections>
+                                    <action selector="onClick:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="nTf-1I-Nnx"/>
+                                    <segue destination="dyA-gW-Yda" kind="push" identifier="PhotoView" id="v8d-wf-U82"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Xx2-TO-s5Y">
+                                <rect key="frame" x="0.0" y="508" width="106" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.89174150919923645" green="0.8957029984075795" blue="0.90758746603260865" alpha="0.95000000000000007" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="camera-icon.png"/>
+                                <connections>
+                                    <action selector="onClick:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="eSS-YL-RRv"/>
+                                    <segue destination="dyA-gW-Yda" kind="push" identifier="CameraView" id="4K4-aH-u4d"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wvu-et-vwf">
+                                <rect key="frame" x="214" y="508" width="106" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.89174150919923645" green="0.8957029984075795" blue="0.90758746603260865" alpha="0.95000000000000007" colorSpace="calibratedRGB"/>
+                                <state key="normal" image="video-icon.png"/>
+                                <connections>
+                                    <action selector="onClick:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="QYG-Vu-udS"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Welcome to Project 3 of MDF2 Term 1311 by Elijah Freestone" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="305" translatesAutoresizingMaskIntoConstraints="NO" id="T93-0K-nC3">
+                                <rect key="frame" x="8" y="69" width="305" height="38"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" red="0.89174150919999995" green="0.89570299840000001" blue="0.90758746599999995" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select &quot;Camera&quot; to take a picture with your devices camera and edit it with the option to save both images to your album." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="YxG-HT-RG6">
+                                <rect key="frame" x="20" y="151" width="280" height="87"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.89174150919999995" green="0.89570299840000001" blue="0.90758746599999995" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select &quot;Video&quot; to take a video with your devices camera and have the option to save to your device." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="nVj-BA-mr9">
+                                <rect key="frame" x="20" y="329" width="280" height="73"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.89174150919999995" green="0.89570299840000001" blue="0.90758746599999995" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Select &quot;Album&quot; to view an image or video in your album." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" preferredMaxLayoutWidth="280" translatesAutoresizingMaskIntoConstraints="NO" id="L38-pt-bTY">
+                                <rect key="frame" x="20" y="246" width="280" height="75"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.89174150919999995" green="0.89570299840000001" blue="0.90758746599999995" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="MDF2 Project 3" id="9I1-yL-1kH"/>
+                    <connections>
+                        <outlet property="albumButton" destination="XOx-Tv-TVn" id="XLc-9D-8ZW"/>
+                        <outlet property="cameraButton" destination="Xx2-TO-s5Y" id="D6K-MC-eOn"/>
+                        <outlet property="videoButton" destination="Wvu-et-vwf" id="UHx-J7-n25"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="799" y="42"/>
+        </scene>
+        <!--Photos View Controller-->
+        <scene sceneID="pVg-XG-JXz">
+            <objects>
+                <viewController id="dyA-gW-Yda" customClass="PhotosViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Pqz-Nk-ryz"/>
+                        <viewControllerLayoutGuide type="bottom" id="LPY-NL-t5w"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="y76-5d-587">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5wb-iv-K6C">
+                                <rect key="frame" x="20" y="95" width="280" height="200"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Wbl-we-Oi7">
+                                <rect key="frame" x="20" y="326" width="280" height="200"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ntm-L8-DFF">
+                                <rect key="frame" x="0.0" y="532" width="159" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.89174150919999995" green="0.89570299840000001" blue="0.90758746599999995" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Cancel"/>
+                                <connections>
+                                    <action selector="onCancel:" destination="dyA-gW-Yda" eventType="touchUpInside" id="Yny-Dv-wfi"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LhD-g8-NWg">
+                                <rect key="frame" x="161" y="532" width="159" height="36"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.89174150919999995" green="0.89570299840000001" blue="0.90758746599999995" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="Save"/>
+                                <connections>
+                                    <action selector="onSaveImage:" destination="dyA-gW-Yda" eventType="touchUpInside" id="iZp-PB-rBu"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Original Image" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rPK-dr-puY">
+                                <rect key="frame" x="97" y="72" width="126" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.89174150919999995" green="0.89570299840000001" blue="0.90758746599999995" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Edited Image" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9ks-8B-zar">
+                                <rect key="frame" x="97" y="303" width="126" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.89174150919999995" green="0.89570299840000001" blue="0.90758746599999995" alpha="0.94999999999999996" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="XLq-59-fq0"/>
+                    <connections>
+                        <outlet property="cancelButton" destination="Ntm-L8-DFF" id="Rz1-Ol-oeN"/>
+                        <outlet property="editedImageView" destination="Wbl-we-Oi7" id="9KG-h0-QRQ"/>
+                        <outlet property="editedLabel" destination="9ks-8B-zar" id="M5x-iL-Rcp"/>
+                        <outlet property="originalImageView" destination="5wb-iv-K6C" id="sQA-Lg-r3z"/>
+                        <outlet property="saveButton" destination="LhD-g8-NWg" id="goR-Up-ip0"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="yIu-ht-8w5" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1205" y="42"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="jRs-Lz-1q6">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yXr-6K-N9x" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Nho-YL-5aP">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="cHn-vY-wq2"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cgl-yT-akw" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="399" y="42"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="album-icon.png" width="80" height="60"/>
+        <image name="camera-icon.png" width="80" height="60"/>
+        <image name="video-icon.png" width="80" height="60"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+    <inferredMetricsTieBreakers>
+        <segue reference="v8d-wf-U82"/>
+    </inferredMetricsTieBreakers>
+</document>
