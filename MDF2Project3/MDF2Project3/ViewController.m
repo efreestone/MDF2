@@ -139,6 +139,7 @@
         videoPath = [urlString path];
         //Video save is moved to saveVideoAlertView and only saved if "save" is clicked in the alert view
         //UISaveVideoAtPathToSavedPhotosAlbum(videoPath, self, @selector(video: didFinishSavingWithError: contextInfo:), nil);
+        //Dismiss photo view. This is to override push to photo view triggered by album button. Only hit if a video is selected in the album
         [self.navigationController popViewControllerAnimated:true];
         [self saveVideoAlertView];
     }
@@ -233,9 +234,8 @@
         photosViewController = segue.destinationViewController;
         
         if (photosViewController != nil) {
-            //These are set in didFinishPickingMediaWithInfo
+            //This is set in didFinishPickingMediaWithInfo
             //photosViewController.passedSelectedImage = selectedImage;
-            //photosViewController.passedEditedImage = editedImage;
         }
     }
     //Verify identifier of push segue to photos view from camera
@@ -246,6 +246,7 @@
         if (photosViewController != nil) {
             //These are set in didFinishPickingMediaWithInfo
             //photosViewController.passedSelectedImage = selectedImage;
+            //photosViewController.passedEditedImage = editedImage;
         }
     }
 }

@@ -77,6 +77,11 @@
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" title="MDF2 Project 3" id="9I1-yL-1kH"/>
+                    <connections>
+                        <outlet property="albumButton" destination="XOx-Tv-TVn" id="XLc-9D-8ZW"/>
+                        <outlet property="cameraButton" destination="Xx2-TO-s5Y" id="D6K-MC-eOn"/>
+                        <outlet property="videoButton" destination="Wvu-et-vwf" id="UHx-J7-n25"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
@@ -141,8 +146,11 @@
                     </view>
                     <navigationItem key="navigationItem" id="XLq-59-fq0"/>
                     <connections>
+                        <outlet property="cancelButton" destination="Ntm-L8-DFF" id="Rz1-Ol-oeN"/>
                         <outlet property="editedImageView" destination="Wbl-we-Oi7" id="9KG-h0-QRQ"/>
+                        <outlet property="editedLabel" destination="9ks-8B-zar" id="M5x-iL-Rcp"/>
                         <outlet property="originalImageView" destination="5wb-iv-K6C" id="sQA-Lg-r3z"/>
+                        <outlet property="saveButton" destination="LhD-g8-NWg" id="goR-Up-ip0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yIu-ht-8w5" userLabel="First Responder" sceneMemberID="firstResponder"/>
