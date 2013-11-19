@@ -22,6 +22,8 @@
 		B8B53313183C0D260063515D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8B532F2183C0D260063515D /* UIKit.framework */; };
 		B8B5331B183C0D260063515D /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B8B53319183C0D260063515D /* InfoPlist.strings */; };
 		B8B5331D183C0D270063515D /* MDF2Project4Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B5331C183C0D270063515D /* MDF2Project4Tests.m */; };
+		B8B53328183C13510063515D /* MovieInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B53327183C13510063515D /* MovieInfo.m */; };
+		B8B5332B183C136A0063515D /* TheaterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B5332A183C136A0063515D /* TheaterInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,10 @@
 		B8B53318183C0D260063515D /* MDF2Project4Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MDF2Project4Tests-Info.plist"; sourceTree = "<group>"; };
 		B8B5331A183C0D260063515D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		B8B5331C183C0D270063515D /* MDF2Project4Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MDF2Project4Tests.m; sourceTree = "<group>"; };
+		B8B53326183C13510063515D /* MovieInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieInfo.h; sourceTree = "<group>"; };
+		B8B53327183C13510063515D /* MovieInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieInfo.m; sourceTree = "<group>"; };
+		B8B53329183C136A0063515D /* TheaterInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterInfo.h; sourceTree = "<group>"; };
+		B8B5332A183C136A0063515D /* TheaterInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +128,10 @@
 				B8B53307183C0D260063515D /* ViewController.m */,
 				B8B53309183C0D260063515D /* Images.xcassets */,
 				B8B532F5183C0D260063515D /* Supporting Files */,
+				B8B53326183C13510063515D /* MovieInfo.h */,
+				B8B53327183C13510063515D /* MovieInfo.m */,
+				B8B53329183C136A0063515D /* TheaterInfo.h */,
+				B8B5332A183C136A0063515D /* TheaterInfo.m */,
 			);
 			path = MDF2Project4;
 			sourceTree = "<group>";
@@ -254,7 +264,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				B8B53308183C0D260063515D /* ViewController.m in Sources */,
+				B8B5332B183C136A0063515D /* TheaterInfo.m in Sources */,
 				B8B532FF183C0D260063515D /* AppDelegate.m in Sources */,
+				B8B53328183C13510063515D /* MovieInfo.m in Sources */,
 				B8B532FB183C0D260063515D /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
