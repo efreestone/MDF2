@@ -46,7 +46,7 @@
 }
 
 //Built in method to set header titles
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+/*- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     if (section == 0) {
         return @"Section 1";
     } else if (section == 1) {
@@ -55,6 +55,27 @@
         return @"Section 3";
     }
     return @"hello";
+}*/
+
+//Built in method to apply custom view for header
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    //Create header label
+    UILabel *headerLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, 0.0f, myTableView.frame.size.width, 30.0f)];
+    if (headerLabel != nil) {
+        //Set text color
+        headerLabel.textColor = [UIColor whiteColor];
+        //Set background color
+        headerLabel.backgroundColor = [UIColor blackColor];
+        //Set text based on section number
+        if (section == 0) {
+            headerLabel.text = @"Section 1";
+        } else if (section == 1) {
+            headerLabel.text = @"Section 2";
+        } else if (section == 2) {
+            headerLabel.text = @"Section 3";
+        }
+    }
+    return headerLabel;
 }
 
 //Built in method to set number of rows in table view section
