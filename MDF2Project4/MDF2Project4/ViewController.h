@@ -13,6 +13,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UITableViewController <UITableViewDelegate, UITableViewDataSource>
+
+//Declare table view
+@property (strong, nonatomic) IBOutlet UITableView *myTableView;
 
 @end

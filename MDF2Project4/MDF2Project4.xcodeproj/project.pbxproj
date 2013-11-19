@@ -24,6 +24,7 @@
 		B8B5331D183C0D270063515D /* MDF2Project4Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B5331C183C0D270063515D /* MDF2Project4Tests.m */; };
 		B8B53328183C13510063515D /* MovieInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B53327183C13510063515D /* MovieInfo.m */; };
 		B8B5332B183C136A0063515D /* TheaterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B5332A183C136A0063515D /* TheaterInfo.m */; };
+		B8B5332E183C18BC0063515D /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B5332D183C18BC0063515D /* CustomTableViewCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -61,6 +62,8 @@
 		B8B53327183C13510063515D /* MovieInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieInfo.m; sourceTree = "<group>"; };
 		B8B53329183C136A0063515D /* TheaterInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterInfo.h; sourceTree = "<group>"; };
 		B8B5332A183C136A0063515D /* TheaterInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterInfo.m; sourceTree = "<group>"; };
+		B8B5332C183C18BC0063515D /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
+		B8B5332D183C18BC0063515D /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -132,6 +135,8 @@
 				B8B53327183C13510063515D /* MovieInfo.m */,
 				B8B53329183C136A0063515D /* TheaterInfo.h */,
 				B8B5332A183C136A0063515D /* TheaterInfo.m */,
+				B8B5332C183C18BC0063515D /* CustomTableViewCell.h */,
+				B8B5332D183C18BC0063515D /* CustomTableViewCell.m */,
 			);
 			path = MDF2Project4;
 			sourceTree = "<group>";
@@ -265,6 +270,7 @@
 			files = (
 				B8B53308183C0D260063515D /* ViewController.m in Sources */,
 				B8B5332B183C136A0063515D /* TheaterInfo.m in Sources */,
+				B8B5332E183C18BC0063515D /* CustomTableViewCell.m in Sources */,
 				B8B532FF183C0D260063515D /* AppDelegate.m in Sources */,
 				B8B53328183C13510063515D /* MovieInfo.m in Sources */,
 				B8B532FB183C0D260063515D /* main.m in Sources */,

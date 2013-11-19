@@ -1,3 +1,8 @@
+// Elijah Freestone
+// MDF2 1311
+// Project 4
+// November 19th, 2013
+
 //
 //  CustomTableViewCell.m
 //  MDF2Project4
@@ -9,6 +14,9 @@
 #import "CustomTableViewCell.h"
 
 @implementation CustomTableViewCell
+
+//Synthesize for getters/setters
+@synthesize movieTitleLabel, playTimesLabel, posterImageView;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
