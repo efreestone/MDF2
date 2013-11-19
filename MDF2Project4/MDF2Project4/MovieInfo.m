@@ -15,4 +15,7 @@
 
 @implementation MovieInfo
 
+//Synthesize for getters/setters
+@synthesize movieTitleString, playTimeString, moviePosterImage;
+
 @end

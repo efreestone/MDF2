@@ -18,4 +18,9 @@
 //Declare table view
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;
 
+//Declare header elements
+@property (strong, nonatomic) UILabel *theaterNameLabel;
+@property (strong, nonatomic) UILabel *theaterInfoLabel;
+@property (strong, nonatomic) UIImageView *theaterImageView;
+
 @end

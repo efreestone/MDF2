@@ -14,6 +14,10 @@
 #import "ViewController.h"
 //Import custom table view cell
 #import "CustomTableViewCell.h"
+//Import theater inf
+#import "TheaterInfo.h"
+//Import movie info
+#import "MovieInfo.h"
 
 @interface ViewController ()
 
@@ -22,7 +26,7 @@
 @implementation ViewController
 
 //Synthesize for getters/setters
-@synthesize myTableView;
+@synthesize myTableView, theaterNameLabel, theaterInfoLabel, theaterImageView;
 
 - (void)viewDidLoad
 {
@@ -44,18 +48,6 @@
     // Return the number of sections.
     return 3;
 }
-
-//Built in method to set header titles
-/*- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    if (section == 0) {
-        return @"Section 1";
-    } else if (section == 1) {
-        return @"Section 2";
-    }else if (section == 2) {
-        return @"Section 3";
-    }
-    return @"hello";
-}*/
 
 //Built in method to apply custom view for header
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
@@ -105,5 +97,7 @@
     
     return cell;
 }
+
+
 
 @end

@@ -15,4 +15,7 @@
 
 @implementation TheaterInfo
 
+//Synthesize for getters/setters
+@synthesize theaterName, theaterInfo, theaterImage;
+
 @end

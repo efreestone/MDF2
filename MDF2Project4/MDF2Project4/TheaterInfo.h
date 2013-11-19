@@ -15,4 +15,11 @@
 
 @interface TheaterInfo : NSObject
 
+//Declare strings for theater name and info
+@property (strong, nonatomic) NSString *theaterName;
+@property (strong, nonatomic) NSString *theaterInfo;
+
+//Declare theater image
+@property (strong, nonatomic) UIImage *theaterImage;
+
 @end

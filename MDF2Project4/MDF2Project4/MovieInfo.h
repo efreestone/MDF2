@@ -15,4 +15,11 @@
 
 @interface MovieInfo : NSObject
 
+//Declare movie title and time strings
+@property (strong, nonatomic) NSString *movieTitleString;
+@property (strong, nonatomic) NSString *playTimeString;
+
+//Declare movie poster image
+@property (strong, nonatomic) UIImage *moviePosterImage;
+
 @end
