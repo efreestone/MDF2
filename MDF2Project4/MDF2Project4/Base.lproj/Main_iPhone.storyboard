@@ -7,7 +7,6 @@
         <!--Navigation Controller-->
         <scene sceneID="Ftr-af-pFk">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Gfx-Mx-Fud" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="x76-cx-f0t" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OR9-0w-Qrt">
@@ -19,6 +18,7 @@
                         <segue destination="S9f-jy-3Op" kind="relationship" relationship="rootViewController" id="hrC-dF-vb5"/>
                     </connections>
                 </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Gfx-Mx-Fud" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="632" y="125"/>
         </scene>
@@ -30,6 +30,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="blue" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MovieCell" rowHeight="60" id="sT8-Ue-XUg" customClass="CustomTableViewCell">
                                 <rect key="frame" x="0.0" y="86" width="320" height="60"/>
