@@ -179,32 +179,35 @@
     theaterNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(70.0f, 5.0f, myTableView.frame.size.width, 20.0f)];
     theaterInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(70.0f, 25.0f, myTableView.frame.size.width, 20.0f)];
     theaterImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f, 5.0f, 55.0f, 40.0f)];
-    
-    
-    if (theaterNameLabel != nil) {
+    if (headerView != nil) {
         //Set text color
         theaterNameLabel.textColor = [UIColor whiteColor];
         theaterInfoLabel.textColor = [UIColor whiteColor];
         //Set background color
         headerView.backgroundColor = [UIColor blackColor];
-        //theaterNameLabel.backgroundColor = [UIColor blackColor];
-        //theaterInfoLabel.backgroundColor = [UIColor blackColor];
+        //Add labels and image view to header view
         [headerView addSubview:theaterNameLabel];
         [headerView addSubview:theaterInfoLabel];
         [headerView addSubview:theaterImageView];
         //Set text based on section number
         if (section == 0) {
+            //Grab instance of theater info object for section
             TheaterInfo *theaterInfo = [theaterArray objectAtIndex:section];
+            //Set text and image from theater array
             theaterNameLabel.text = theaterInfo.theaterName;
             theaterInfoLabel.text = theaterInfo.theaterInfo;
             theaterImageView.image = theaterInfo.theaterImage;
         } else if (section == 1) {
+            //Grab instance of theater info object for section
             TheaterInfo *theaterInfo = [theaterArray objectAtIndex:section];
+            //Set text and image from theater array
             theaterNameLabel.text = theaterInfo.theaterName;
             theaterInfoLabel.text = theaterInfo.theaterInfo;
             theaterImageView.image = theaterInfo.theaterImage;
         } else if (section == 2) {
+            //Grab instance of theater info object for section
             TheaterInfo *theaterInfo = [theaterArray objectAtIndex:section];
+            //Set text and image from theater array
             theaterNameLabel.text = theaterInfo.theaterName;
             theaterInfoLabel.text = theaterInfo.theaterInfo;
             theaterImageView.image = theaterInfo.theaterImage;
@@ -222,6 +225,7 @@
 //Built in method to set number of rows in table view section
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    //Dynamically set number of rows based on array lengths
     if (section == 0) {
         return [moviesArray1 count];
     } else if (section == 1) {
@@ -240,31 +244,30 @@
     if (cell != nil) {
         //Section 1
         if (indexPath.section == 0) {
-            //Grab new instance of movie info object
+            //Grab instance of movie info object for row
             MovieInfo *movieInfo = [self.moviesArray1 objectAtIndex:indexPath.row];
-            //Apply text to cell labels
+            //Apply text and image to cell
             cell.movieTitleLabel.text = movieInfo.movieTitleString;
             cell.playTimesLabel.text = movieInfo.playTimeString;
             cell.posterImageView.image = movieInfo.moviePosterImage;
         //Section 2
         } else if (indexPath.section == 1) {
-            //Grab new instance of movie info object
+            //Grab instance of movie info object for row
             MovieInfo *movieInfo = [self.moviesArray2 objectAtIndex:indexPath.row];
-            //Apply text to cell labels
+            //Apply text and image to cell
             cell.movieTitleLabel.text = movieInfo.movieTitleString;
             cell.playTimesLabel.text = movieInfo.playTimeString;
             cell.posterImageView.image = movieInfo.moviePosterImage;
         //Section 3
         } else if (indexPath.section == 2) {
-            //Grab new instance of movie info object
+            //Grab instance of movie info object for row
             MovieInfo *movieInfo = [self.moviesArray3 objectAtIndex:indexPath.row];
-            //Apply text to cell labels
+            //Apply text and image to cell
             cell.movieTitleLabel.text = movieInfo.movieTitleString;
             cell.playTimesLabel.text = movieInfo.playTimeString;
             cell.posterImageView.image = movieInfo.moviePosterImage;
         }
     }
-    
     return cell;
 }
 
