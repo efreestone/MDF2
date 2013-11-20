@@ -18,6 +18,8 @@
 #import "TheaterInfo.h"
 //Import movie info
 #import "MovieInfo.h"
+//Import detail view
+#import "DetailsViewController.h"
 
 @interface ViewController ()
 
@@ -169,13 +171,14 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 3;
+    return [theaterArray count];
 }
 
 //Built in method to apply custom view for header
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    //Create header label view
+    //Create header label view. The size and possition of view are set by the elements contained and heightForHeaderInSection below
     UIView *headerView = [[UIView alloc] init];
+    //Allocate labels and image view
     theaterNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(70.0f, 5.0f, myTableView.frame.size.width, 20.0f)];
     theaterInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(70.0f, 25.0f, myTableView.frame.size.width, 20.0f)];
     theaterImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f, 5.0f, 55.0f, 40.0f)];
@@ -189,7 +192,7 @@
         [headerView addSubview:theaterNameLabel];
         [headerView addSubview:theaterInfoLabel];
         [headerView addSubview:theaterImageView];
-        //Set text based on section number
+        //Set text/image based on section number
         if (section == 0) {
             //Grab instance of theater info object for section
             TheaterInfo *theaterInfo = [theaterArray objectAtIndex:section];
@@ -271,6 +274,53 @@
     return cell;
 }
 
+//Built in method to grab cell selected and pass info
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+}
+
+#pragma mark - Segue
+
+//Built in method to pass data during segue
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    //Verify identifier of push segue to Details view
+    if ([segue.identifier isEqualToString:@"DetailView"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        //Grab destination view controller
+        DetailsViewController *detailsViewController = segue.destinationViewController;
+        
+        if (detailsViewController != nil) {
+            //Section 1
+            if (indexPath.section == 0) {
+                //Grab instance of movie info object for row
+                MovieInfo *movieInfo = [self.moviesArray1 objectAtIndex:indexPath.row];
+                //Apply text and image to cell
+                detailsViewController.passedMovieTitle = movieInfo.movieTitleString;
+                detailsViewController.passedPlayTimes = movieInfo.playTimeString;
+                detailsViewController.passedPosterImage = movieInfo.moviePosterImage;
+                //Section 2
+            } else if (indexPath.section == 1) {
+                //Grab instance of movie info object for row
+                MovieInfo *movieInfo = [self.moviesArray2 objectAtIndex:indexPath.row];
+                //Apply text and image to cell
+                detailsViewController.passedMovieTitle = movieInfo.movieTitleString;
+                detailsViewController.passedPlayTimes = movieInfo.playTimeString;
+                detailsViewController.passedPosterImage = movieInfo.moviePosterImage;
+                //Section 3
+            } else if (indexPath.section == 2) {
+                //Grab instance of movie info object for row
+                MovieInfo *movieInfo = [self.moviesArray3 objectAtIndex:indexPath.row];
+                //Apply text and image to cell
+                detailsViewController.passedMovieTitle = movieInfo.movieTitleString;
+                detailsViewController.passedPlayTimes = movieInfo.playTimeString;
+                detailsViewController.passedPosterImage = movieInfo.moviePosterImage;
+            }
+            //Send screen name to NSString in DetailViewController for display
+            //detailsViewController.passedMovieTitle = [moviesArray1 objectAtIndex:indexPath.row];
+        }
+    }
+}
 
 
 @end
