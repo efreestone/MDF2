@@ -1,3 +1,8 @@
+// Elijah Freestone
+// MDF2 1311
+// Project 4
+// November 19th, 2013
+
 //
 //  DetailsViewController.m
 //  MDF2Project4
@@ -14,6 +19,9 @@
 
 @implementation DetailsViewController
 
+//Synthesize for getters/setters
+@synthesize movieTitleLabel, playTimesLabel, posterImageView, passedMovieTitle, passedPlayTimes, passedPosterImage;
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -25,6 +33,9 @@
 
 - (void)viewDidLoad
 {
+    movieTitleLabel.text = passedMovieTitle;
+    playTimesLabel.text = passedPlayTimes;
+    posterImageView.image = passedPosterImage;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
 }

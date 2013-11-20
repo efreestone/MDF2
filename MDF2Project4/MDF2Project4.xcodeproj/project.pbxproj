@@ -43,6 +43,7 @@
 		B8B53352183C68FB0063515D /* cinemark.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B5334F183C68FB0063515D /* cinemark.jpg */; };
 		B8B53353183C68FB0063515D /* metrolux.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B53350183C68FB0063515D /* metrolux.jpg */; };
 		B8B53354183C68FB0063515D /* twin_peaks.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B53351183C68FB0063515D /* twin_peaks.jpg */; };
+		B8B53357183C6DAE0063515D /* DetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B53356183C6DAE0063515D /* DetailsViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,8 @@
 		B8B5334F183C68FB0063515D /* cinemark.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cinemark.jpg; sourceTree = "<group>"; };
 		B8B53350183C68FB0063515D /* metrolux.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = metrolux.jpg; sourceTree = "<group>"; };
 		B8B53351183C68FB0063515D /* twin_peaks.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = twin_peaks.jpg; sourceTree = "<group>"; };
+		B8B53355183C6DAE0063515D /* DetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailsViewController.h; sourceTree = "<group>"; };
+		B8B53356183C6DAE0063515D /* DetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailsViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +168,8 @@
 				B8B53303183C0D260063515D /* Main_iPad.storyboard */,
 				B8B53306183C0D260063515D /* ViewController.h */,
 				B8B53307183C0D260063515D /* ViewController.m */,
+				B8B53355183C6DAE0063515D /* DetailsViewController.h */,
+				B8B53356183C6DAE0063515D /* DetailsViewController.m */,
 				B8B53309183C0D260063515D /* Images.xcassets */,
 				B8B532F5183C0D260063515D /* Supporting Files */,
 				B8B53326183C13510063515D /* MovieInfo.h */,
@@ -360,6 +365,7 @@
 				B8B5332B183C136A0063515D /* TheaterInfo.m in Sources */,
 				B8B5332E183C18BC0063515D /* CustomTableViewCell.m in Sources */,
 				B8B532FF183C0D260063515D /* AppDelegate.m in Sources */,
+				B8B53357183C6DAE0063515D /* DetailsViewController.m in Sources */,
 				B8B53328183C13510063515D /* MovieInfo.m in Sources */,
 				B8B532FB183C0D260063515D /* main.m in Sources */,
 			);
