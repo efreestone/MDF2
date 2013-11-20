@@ -34,7 +34,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nRu-aK-pfb">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nRu-aK-pfb">
                                             <rect key="frame" x="20" y="0.0" width="60" height="60"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         </imageView>
@@ -53,6 +53,9 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="arF-oK-2li"/>
+                    <connections>
+                        <outlet property="myTableView" destination="TuD-yJ-2Xa" id="3uF-uf-y7R"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OMd-hH-zN0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

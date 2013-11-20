@@ -23,4 +23,12 @@
 @property (strong, nonatomic) UILabel *theaterInfoLabel;
 @property (strong, nonatomic) UIImageView *theaterImageView;
 
+//Declare movie arrays
+@property (strong, nonatomic) NSMutableArray *moviesArray1;
+@property (strong, nonatomic) NSMutableArray *moviesArray2;
+@property (strong, nonatomic) NSMutableArray *moviesArray3;
+
+//Declare theater array
+@property (strong, nonatomic) NSMutableArray *theaterArray;
+
 @end

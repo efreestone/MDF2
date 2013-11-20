@@ -25,6 +25,24 @@
 		B8B53328183C13510063515D /* MovieInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B53327183C13510063515D /* MovieInfo.m */; };
 		B8B5332B183C136A0063515D /* TheaterInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B5332A183C136A0063515D /* TheaterInfo.m */; };
 		B8B5332E183C18BC0063515D /* CustomTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = B8B5332D183C18BC0063515D /* CustomTableViewCell.m */; };
+		B8B5333F183C5D300063515D /* a_journey_to_planet_sanity.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B53330183C5D300063515D /* a_journey_to_planet_sanity.jpg */; };
+		B8B53340183C5D300063515D /* best_man_down.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B53331183C5D300063515D /* best_man_down.jpg */; };
+		B8B53341183C5D300063515D /* divergent.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B53332183C5D300063515D /* divergent.jpg */; };
+		B8B53342183C5D300063515D /* geography_club.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B53333183C5D300063515D /* geography_club.jpg */; };
+		B8B53343183C5D300063515D /* maleficent.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B53334183C5D300063515D /* maleficent.jpg */; };
+		B8B53344183C5D300063515D /* narco_cultura.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B53335183C5D300063515D /* narco_cultura.jpg */; };
+		B8B53345183C5D300063515D /* need_for_speed.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B53336183C5D300063515D /* need_for_speed.jpg */; };
+		B8B53346183C5D300063515D /* noah.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B53337183C5D300063515D /* noah.jpg */; };
+		B8B53347183C5D300063515D /* robocop.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B53338183C5D300063515D /* robocop.jpg */; };
+		B8B53348183C5D300063515D /* sunlight_jr.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B53339183C5D300063515D /* sunlight_jr.jpg */; };
+		B8B53349183C5D300063515D /* the_book_thief.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B5333A183C5D300063515D /* the_book_thief.jpg */; };
+		B8B5334A183C5D300063515D /* the_hunger_games_catching_fire.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B5333B183C5D300063515D /* the_hunger_games_catching_fire.jpg */; };
+		B8B5334B183C5D300063515D /* the_invisible_woman.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B5333C183C5D300063515D /* the_invisible_woman.jpg */; };
+		B8B5334C183C5D300063515D /* the_past.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B5333D183C5D300063515D /* the_past.jpg */; };
+		B8B5334D183C5D300063515D /* these_birds_walk.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B5333E183C5D300063515D /* these_birds_walk.jpg */; };
+		B8B53352183C68FB0063515D /* cinemark.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B5334F183C68FB0063515D /* cinemark.jpg */; };
+		B8B53353183C68FB0063515D /* metrolux.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B53350183C68FB0063515D /* metrolux.jpg */; };
+		B8B53354183C68FB0063515D /* twin_peaks.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B8B53351183C68FB0063515D /* twin_peaks.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +82,24 @@
 		B8B5332A183C136A0063515D /* TheaterInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterInfo.m; sourceTree = "<group>"; };
 		B8B5332C183C18BC0063515D /* CustomTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomTableViewCell.h; sourceTree = "<group>"; };
 		B8B5332D183C18BC0063515D /* CustomTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomTableViewCell.m; sourceTree = "<group>"; };
+		B8B53330183C5D300063515D /* a_journey_to_planet_sanity.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = a_journey_to_planet_sanity.jpg; sourceTree = "<group>"; };
+		B8B53331183C5D300063515D /* best_man_down.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = best_man_down.jpg; sourceTree = "<group>"; };
+		B8B53332183C5D300063515D /* divergent.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = divergent.jpg; sourceTree = "<group>"; };
+		B8B53333183C5D300063515D /* geography_club.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = geography_club.jpg; sourceTree = "<group>"; };
+		B8B53334183C5D300063515D /* maleficent.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = maleficent.jpg; sourceTree = "<group>"; };
+		B8B53335183C5D300063515D /* narco_cultura.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = narco_cultura.jpg; sourceTree = "<group>"; };
+		B8B53336183C5D300063515D /* need_for_speed.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = need_for_speed.jpg; sourceTree = "<group>"; };
+		B8B53337183C5D300063515D /* noah.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = noah.jpg; sourceTree = "<group>"; };
+		B8B53338183C5D300063515D /* robocop.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = robocop.jpg; sourceTree = "<group>"; };
+		B8B53339183C5D300063515D /* sunlight_jr.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = sunlight_jr.jpg; sourceTree = "<group>"; };
+		B8B5333A183C5D300063515D /* the_book_thief.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = the_book_thief.jpg; sourceTree = "<group>"; };
+		B8B5333B183C5D300063515D /* the_hunger_games_catching_fire.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = the_hunger_games_catching_fire.jpg; sourceTree = "<group>"; };
+		B8B5333C183C5D300063515D /* the_invisible_woman.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = the_invisible_woman.jpg; sourceTree = "<group>"; };
+		B8B5333D183C5D300063515D /* the_past.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = the_past.jpg; sourceTree = "<group>"; };
+		B8B5333E183C5D300063515D /* these_birds_walk.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = these_birds_walk.jpg; sourceTree = "<group>"; };
+		B8B5334F183C68FB0063515D /* cinemark.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = cinemark.jpg; sourceTree = "<group>"; };
+		B8B53350183C68FB0063515D /* metrolux.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = metrolux.jpg; sourceTree = "<group>"; };
+		B8B53351183C68FB0063515D /* twin_peaks.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = twin_peaks.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -137,6 +173,8 @@
 				B8B5332A183C136A0063515D /* TheaterInfo.m */,
 				B8B5332C183C18BC0063515D /* CustomTableViewCell.h */,
 				B8B5332D183C18BC0063515D /* CustomTableViewCell.m */,
+				B8B5334E183C68FB0063515D /* theaters */,
+				B8B5332F183C5D300063515D /* posters */,
 			);
 			path = MDF2Project4;
 			sourceTree = "<group>";
@@ -168,6 +206,38 @@
 				B8B53319183C0D260063515D /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B8B5332F183C5D300063515D /* posters */ = {
+			isa = PBXGroup;
+			children = (
+				B8B53330183C5D300063515D /* a_journey_to_planet_sanity.jpg */,
+				B8B53331183C5D300063515D /* best_man_down.jpg */,
+				B8B53332183C5D300063515D /* divergent.jpg */,
+				B8B53333183C5D300063515D /* geography_club.jpg */,
+				B8B53334183C5D300063515D /* maleficent.jpg */,
+				B8B53335183C5D300063515D /* narco_cultura.jpg */,
+				B8B53336183C5D300063515D /* need_for_speed.jpg */,
+				B8B53337183C5D300063515D /* noah.jpg */,
+				B8B53338183C5D300063515D /* robocop.jpg */,
+				B8B53339183C5D300063515D /* sunlight_jr.jpg */,
+				B8B5333A183C5D300063515D /* the_book_thief.jpg */,
+				B8B5333B183C5D300063515D /* the_hunger_games_catching_fire.jpg */,
+				B8B5333C183C5D300063515D /* the_invisible_woman.jpg */,
+				B8B5333D183C5D300063515D /* the_past.jpg */,
+				B8B5333E183C5D300063515D /* these_birds_walk.jpg */,
+			);
+			path = posters;
+			sourceTree = "<group>";
+		};
+		B8B5334E183C68FB0063515D /* theaters */ = {
+			isa = PBXGroup;
+			children = (
+				B8B5334F183C68FB0063515D /* cinemark.jpg */,
+				B8B53350183C68FB0063515D /* metrolux.jpg */,
+				B8B53351183C68FB0063515D /* twin_peaks.jpg */,
+			);
+			path = theaters;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,10 +316,28 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8B5334B183C5D300063515D /* the_invisible_woman.jpg in Resources */,
+				B8B5334D183C5D300063515D /* these_birds_walk.jpg in Resources */,
+				B8B53354183C68FB0063515D /* twin_peaks.jpg in Resources */,
+				B8B53349183C5D300063515D /* the_book_thief.jpg in Resources */,
 				B8B53305183C0D260063515D /* Main_iPad.storyboard in Resources */,
+				B8B53346183C5D300063515D /* noah.jpg in Resources */,
+				B8B53347183C5D300063515D /* robocop.jpg in Resources */,
+				B8B5333F183C5D300063515D /* a_journey_to_planet_sanity.jpg in Resources */,
+				B8B53340183C5D300063515D /* best_man_down.jpg in Resources */,
 				B8B5330A183C0D260063515D /* Images.xcassets in Resources */,
+				B8B5334A183C5D300063515D /* the_hunger_games_catching_fire.jpg in Resources */,
+				B8B53344183C5D300063515D /* narco_cultura.jpg in Resources */,
+				B8B53345183C5D300063515D /* need_for_speed.jpg in Resources */,
+				B8B5334C183C5D300063515D /* the_past.jpg in Resources */,
+				B8B53352183C68FB0063515D /* cinemark.jpg in Resources */,
+				B8B53353183C68FB0063515D /* metrolux.jpg in Resources */,
+				B8B53342183C5D300063515D /* geography_club.jpg in Resources */,
+				B8B53343183C5D300063515D /* maleficent.jpg in Resources */,
 				B8B53302183C0D260063515D /* Main_iPhone.storyboard in Resources */,
+				B8B53348183C5D300063515D /* sunlight_jr.jpg in Resources */,
 				B8B532F9183C0D260063515D /* InfoPlist.strings in Resources */,
+				B8B53341183C5D300063515D /* divergent.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
