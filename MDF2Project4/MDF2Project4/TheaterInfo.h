@@ -22,4 +22,9 @@
 //Declare theater image
 @property (strong, nonatomic) UIImage *theaterImage;
 
+//Declare movie arrays to contain MovieInfo objects for each theater
+@property (strong, nonatomic) NSMutableArray *passedMoviesArray1;
+@property (strong, nonatomic) NSArray *passedMoviesArray2;
+@property (strong, nonatomic) NSArray *passedMoviesArray3;
+
 @end

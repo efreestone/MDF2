@@ -18,11 +18,6 @@
 //Declare table view
 @property (strong, nonatomic) IBOutlet UITableView *myTableView;
 
-//Declare header elements
-@property (strong, nonatomic) UILabel *theaterNameLabel;
-@property (strong, nonatomic) UILabel *theaterInfoLabel;
-@property (strong, nonatomic) UIImageView *theaterImageView;
-
 //Declare movie arrays
 @property (strong, nonatomic) NSMutableArray *moviesArray1;
 @property (strong, nonatomic) NSMutableArray *moviesArray2;
