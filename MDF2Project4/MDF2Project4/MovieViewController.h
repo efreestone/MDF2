@@ -12,7 +12,17 @@
 //
 
 #import <UIKit/UIKit.h>
+//Import media player
+#import <MediaPlayer/MediaPlayer.h>
 
-@interface MovieViewController : UIViewController
+@interface MovieViewController : UIViewController {
+    //Declare media player
+    MPMoviePlayerController *moviePlayer;
+    
+    IBOutlet UIView *movieView;
+}
+
+-(IBAction)onPlay:(id)sender;
+-(IBAction)onStop:(id)sender;
 
 @end
