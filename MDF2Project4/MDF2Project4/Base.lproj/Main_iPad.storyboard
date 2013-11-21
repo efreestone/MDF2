@@ -129,32 +129,30 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9qJ-Lg-uXJ">
-                                <rect key="frame" x="102" y="119" width="565" height="565"/>
+                                <rect key="frame" x="20" y="83" width="728" height="605"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaT-KC-j7t">
-                                <rect key="frame" x="232" y="758" width="46" height="30"/>
+                                <rect key="frame" x="197" y="696" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Play">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="play_icon_ipad.png"/>
                                 <connections>
                                     <action selector="onPlay:" destination="kj7-TG-Uh0" eventType="touchUpInside" id="ewx-zy-o3V"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZX6-Rb-QPM">
-                                <rect key="frame" x="490" y="758" width="46" height="30"/>
+                                <rect key="frame" x="471" y="696" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Stop">
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <state key="normal" image="stop_icon_ipad.png"/>
                                 <connections>
                                     <action selector="onStop:" destination="kj7-TG-Uh0" eventType="touchUpInside" id="Xda-RO-PFF"/>
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <navigationItem key="navigationItem" id="cR8-OG-WaD"/>
                     <connections>
@@ -163,7 +161,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="J1g-bH-dRl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1673" y="873"/>
+            <point key="canvasLocation" x="2605" y="-308"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0r1-fM-FpI">
@@ -184,6 +182,10 @@
             <point key="canvasLocation" x="-18" y="-308"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="play_icon_ipad.png" width="100" height="100"/>
+        <image name="stop_icon_ipad.png" width="100" height="100"/>
+    </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackOpaque"/>
         <simulatedOrientationMetrics key="orientation"/>
