@@ -4,7 +4,7 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="3747"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--View Controller - Movies by Theater-->
         <scene sceneID="rBC-8G-Y7Z">
             <objects>
                 <tableViewController id="3Yo-UV-rfm" customClass="ViewController" sceneMemberID="viewController">
@@ -54,7 +54,7 @@
                             <outlet property="delegate" destination="3Yo-UV-rfm" id="2Zd-g4-ZFu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="arF-oK-2li"/>
+                    <navigationItem key="navigationItem" title="Movies by Theater" id="arF-oK-2li"/>
                     <connections>
                         <outlet property="myTableView" destination="TuD-yJ-2Xa" id="3uF-uf-y7R"/>
                     </connections>
@@ -76,23 +76,24 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="DHH-au-QjR">
-                                <rect key="frame" x="84" y="71" width="600" height="600"/>
+                                <rect key="frame" x="84" y="83" width="600" height="600"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Movie Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BFs-j4-pRH">
-                                <rect key="frame" x="20" y="679" width="728" height="40"/>
+                                <rect key="frame" x="20" y="691" width="728" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="25"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Times" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hc9-Ki-BMy">
-                                <rect key="frame" x="20" y="727" width="728" height="40"/>
+                                <rect key="frame" x="20" y="739" width="728" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FIa-nR-gEe">
-                                <rect key="frame" x="259" y="775" width="250" height="107"/>
+                                <rect key="frame" x="259" y="787" width="250" height="107"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" image="play_ticket_ipad.png">
@@ -116,7 +117,7 @@
             </objects>
             <point key="canvasLocation" x="1733" y="-308"/>
         </scene>
-        <!--Movie View Controller-->
+        <!--Movie View Controller - Trailer-->
         <scene sceneID="Bf6-pP-AIR">
             <objects>
                 <viewController id="kj7-TG-Uh0" customClass="MovieViewController" sceneMemberID="viewController">
@@ -129,12 +130,12 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9qJ-Lg-uXJ">
-                                <rect key="frame" x="20" y="83" width="728" height="605"/>
+                                <rect key="frame" x="0.0" y="64" width="768" height="768"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaT-KC-j7t">
-                                <rect key="frame" x="197" y="696" width="100" height="100"/>
+                                <rect key="frame" x="197" y="840" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="play_icon_ipad.png"/>
@@ -143,7 +144,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZX6-Rb-QPM">
-                                <rect key="frame" x="471" y="696" width="100" height="100"/>
+                                <rect key="frame" x="471" y="840" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="stop_icon_ipad.png"/>
@@ -154,7 +155,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" id="cR8-OG-WaD"/>
+                    <navigationItem key="navigationItem" title="Trailer" id="cR8-OG-WaD"/>
                     <connections>
                         <outlet property="movieView" destination="9qJ-Lg-uXJ" id="t7R-Mx-v7i"/>
                     </connections>

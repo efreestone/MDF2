@@ -13,6 +13,15 @@
 		B81E71AE183EB4810040F42E /* stop_icon_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B81E71AC183EB4810040F42E /* stop_icon_ipad.png */; };
 		B81E71B0183EBA9C0040F42E /* play_ticket.png in Resources */ = {isa = PBXBuildFile; fileRef = B81E71AF183EBA9C0040F42E /* play_ticket.png */; };
 		B81E71B2183EC0980040F42E /* play_ticket_ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = B81E71B1183EC0980040F42E /* play_ticket_ipad.png */; };
+		B81E71BC183EC5180040F42E /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B81E71B3183EC5180040F42E /* Default-568h@2x.png */; };
+		B81E71BD183EC5180040F42E /* Default-Portrait@2x~iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = B81E71B4183EC5180040F42E /* Default-Portrait@2x~iPad.png */; };
+		B81E71BE183EC5180040F42E /* Default-Portrait~iPad.png in Resources */ = {isa = PBXBuildFile; fileRef = B81E71B5183EC5180040F42E /* Default-Portrait~iPad.png */; };
+		B81E71BF183EC5180040F42E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B81E71B6183EC5180040F42E /* Default.png */; };
+		B81E71C0183EC5180040F42E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B81E71B7183EC5180040F42E /* Default@2x.png */; };
+		B81E71C1183EC5180040F42E /* Icon-76.png in Resources */ = {isa = PBXBuildFile; fileRef = B81E71B8183EC5180040F42E /* Icon-76.png */; };
+		B81E71C2183EC5180040F42E /* Icon-76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B81E71B9183EC5180040F42E /* Icon-76@2x.png */; };
+		B81E71C3183EC5180040F42E /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B81E71BA183EC5180040F42E /* Icon.png */; };
+		B81E71C4183EC5180040F42E /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B81E71BB183EC5180040F42E /* Icon@2x.png */; };
 		B8669A4A183DA0C100D158CC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8669A49183DA0C100D158CC /* MediaPlayer.framework */; };
 		B8669A4D183DA15B00D158CC /* MovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8669A4C183DA15B00D158CC /* MovieViewController.m */; };
 		B8669A51183DC25600D158CC /* Best_Man_Down.m4v in Resources */ = {isa = PBXBuildFile; fileRef = B8669A50183DC25600D158CC /* Best_Man_Down.m4v */; };
@@ -72,6 +81,15 @@
 		B81E71AC183EB4810040F42E /* stop_icon_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = stop_icon_ipad.png; sourceTree = "<group>"; };
 		B81E71AF183EBA9C0040F42E /* play_ticket.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_ticket.png; sourceTree = "<group>"; };
 		B81E71B1183EC0980040F42E /* play_ticket_ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = play_ticket_ipad.png; sourceTree = "<group>"; };
+		B81E71B3183EC5180040F42E /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		B81E71B4183EC5180040F42E /* Default-Portrait@2x~iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait@2x~iPad.png"; sourceTree = "<group>"; };
+		B81E71B5183EC5180040F42E /* Default-Portrait~iPad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Portrait~iPad.png"; sourceTree = "<group>"; };
+		B81E71B6183EC5180040F42E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		B81E71B7183EC5180040F42E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		B81E71B8183EC5180040F42E /* Icon-76.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76.png"; sourceTree = "<group>"; };
+		B81E71B9183EC5180040F42E /* Icon-76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon-76@2x.png"; sourceTree = "<group>"; };
+		B81E71BA183EC5180040F42E /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		B81E71BB183EC5180040F42E /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 		B8669A49183DA0C100D158CC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		B8669A4B183DA15B00D158CC /* MovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieViewController.h; sourceTree = "<group>"; };
 		B8669A4C183DA15B00D158CC /* MovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieViewController.m; sourceTree = "<group>"; };
@@ -152,6 +170,15 @@
 		B81E71A6183EAF330040F42E /* images */ = {
 			isa = PBXGroup;
 			children = (
+				B81E71B3183EC5180040F42E /* Default-568h@2x.png */,
+				B81E71B4183EC5180040F42E /* Default-Portrait@2x~iPad.png */,
+				B81E71B5183EC5180040F42E /* Default-Portrait~iPad.png */,
+				B81E71B6183EC5180040F42E /* Default.png */,
+				B81E71B7183EC5180040F42E /* Default@2x.png */,
+				B81E71B8183EC5180040F42E /* Icon-76.png */,
+				B81E71B9183EC5180040F42E /* Icon-76@2x.png */,
+				B81E71BA183EC5180040F42E /* Icon.png */,
+				B81E71BB183EC5180040F42E /* Icon@2x.png */,
 				B81E71B1183EC0980040F42E /* play_ticket_ipad.png */,
 				B81E71AF183EBA9C0040F42E /* play_ticket.png */,
 				B81E71AB183EB4810040F42E /* play_icon_ipad.png */,
@@ -368,20 +395,29 @@
 				B8B53347183C5D300063515D /* robocop.jpg in Resources */,
 				B8B5333F183C5D300063515D /* a_journey_to_planet_sanity.jpg in Resources */,
 				B8B53340183C5D300063515D /* best_man_down.jpg in Resources */,
+				B81E71BD183EC5180040F42E /* Default-Portrait@2x~iPad.png in Resources */,
+				B81E71C2183EC5180040F42E /* Icon-76@2x.png in Resources */,
+				B81E71BF183EC5180040F42E /* Default.png in Resources */,
 				B8669A51183DC25600D158CC /* Best_Man_Down.m4v in Resources */,
 				B81E71AE183EB4810040F42E /* stop_icon_ipad.png in Resources */,
 				B8B5330A183C0D260063515D /* Images.xcassets in Resources */,
+				B81E71C4183EC5180040F42E /* Icon@2x.png in Resources */,
 				B8B5334A183C5D300063515D /* the_hunger_games_catching_fire.jpg in Resources */,
 				B81E71B2183EC0980040F42E /* play_ticket_ipad.png in Resources */,
+				B81E71BE183EC5180040F42E /* Default-Portrait~iPad.png in Resources */,
+				B81E71C1183EC5180040F42E /* Icon-76.png in Resources */,
 				B8B53344183C5D300063515D /* narco_cultura.jpg in Resources */,
 				B8B53345183C5D300063515D /* need_for_speed.jpg in Resources */,
 				B81E71AD183EB4810040F42E /* play_icon_ipad.png in Resources */,
+				B81E71C3183EC5180040F42E /* Icon.png in Resources */,
 				B8B5334C183C5D300063515D /* the_past.jpg in Resources */,
 				B8B53352183C68FB0063515D /* cinemark.jpg in Resources */,
 				B8B53353183C68FB0063515D /* metrolux.jpg in Resources */,
 				B81E71B0183EBA9C0040F42E /* play_ticket.png in Resources */,
 				B81E71AA183EAF330040F42E /* stop_icon.png in Resources */,
 				B8B53342183C5D300063515D /* geography_club.jpg in Resources */,
+				B81E71C0183EC5180040F42E /* Default@2x.png in Resources */,
+				B81E71BC183EC5180040F42E /* Default-568h@2x.png in Resources */,
 				B8B53343183C5D300063515D /* maleficent.jpg in Resources */,
 				B8B53302183C0D260063515D /* Main_iPhone.storyboard in Resources */,
 				B8B53348183C5D300063515D /* sunlight_jr.jpg in Resources */,
