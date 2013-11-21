@@ -28,33 +28,10 @@
 @implementation ViewController
 
 //Synthesize for getters/setters
-@synthesize myTableView, theaterNameLabel, theaterInfoLabel, theaterImageView, moviesArray1, moviesArray2, moviesArray3, theaterArray;
+@synthesize myTableView, moviesArray1, moviesArray2, moviesArray3, theaterArray;
 
 - (void)viewDidLoad
 {
-    //Create movie theater array
-    theaterArray = [NSMutableArray arrayWithCapacity:3];
-    //Theater 1
-    //Allocate theater info object
-    TheaterInfo *theaterInfo = [[TheaterInfo alloc] init];
-    theaterInfo.theaterName = @"Metrolux 14 Theatres";
-    theaterInfo.theaterInfo = @"Loveland, CO";
-    theaterInfo.theaterImage = [UIImage imageNamed:@"metrolux.jpg"];
-    [theaterArray addObject:theaterInfo];
-    //Theater 2 with new theater info object
-    theaterInfo = [[TheaterInfo alloc] init];
-    theaterInfo.theaterName = @"Cinemark 16";
-    theaterInfo.theaterInfo = @"Fort Collins, CO";
-    theaterInfo.theaterImage = [UIImage imageNamed:@"cinemark.jpg"];
-    [theaterArray addObject:theaterInfo];
-    //Theater 3 with new theater info object
-    theaterInfo = [[TheaterInfo alloc] init];
-    theaterInfo.theaterName = @"UA Twin Peaks 10";
-    theaterInfo.theaterInfo = @"Longmont, CO";
-    theaterInfo.theaterImage = [UIImage imageNamed:@"twin_peaks.jpg"];
-    [theaterArray addObject:theaterInfo];
-    
-    
     //Create first movie array using MovieInfo object
     moviesArray1 = [NSMutableArray arrayWithCapacity:5];
     //Movie 1
@@ -89,6 +66,21 @@
     movieInfo.moviePosterImage = [UIImage imageNamed:@"narco_cultura.jpg"];
     [moviesArray1 addObject:movieInfo];
     
+    //Create movie theater array
+    theaterArray = [NSMutableArray arrayWithCapacity:3];
+    //Theater 1
+    //Allocate theater info object and set details and movies array
+    TheaterInfo *theaterInfo = [[TheaterInfo alloc] init];
+    theaterInfo.theaterName = @"Metrolux 14 Theatres";
+    theaterInfo.theaterInfo = @"Loveland, CO";
+    theaterInfo.theaterImage = [UIImage imageNamed:@"metrolux.jpg"];
+    theaterInfo.passedMoviesArray1 = moviesArray1;
+    [theaterArray addObject:theaterInfo];
+    
+    //NSLog(@"movieArray1 = %@", [moviesArray1 description]);
+    //NSLog(@"theaterArray = %@", [theaterArray description]);
+    //NSLog(@"theaterArray = %@", [theaterInfo.passedMoviesArray1 description]);
+    
     //Create second movie array using MovieInfo object
     moviesArray2 = [NSMutableArray arrayWithCapacity:5];
     //Movie 1 with new movie info alloc
@@ -122,6 +114,16 @@
     movieInfo.moviePosterImage = [UIImage imageNamed:@"the_hunger_games_catching_fire.jpg"];
     [moviesArray2 addObject:movieInfo];
     
+    //Theater 2 with new theater info object
+    theaterInfo = [[TheaterInfo alloc] init];
+    theaterInfo.theaterName = @"Cinemark 16";
+    theaterInfo.theaterInfo = @"Fort Collins, CO";
+    theaterInfo.theaterImage = [UIImage imageNamed:@"cinemark.jpg"];
+    theaterInfo.passedMoviesArray2 = moviesArray2;
+    [theaterArray addObject:theaterInfo];
+    
+    //NSLog(@"theaterArray 2= %@", [theaterInfo.passedMoviesArray2 description]);
+    
     //Create third movie array using MovieInfo object
     moviesArray3 = [NSMutableArray arrayWithCapacity:5];
     //Movie 1 with new movie info alloc
@@ -154,6 +156,18 @@
     movieInfo.playTimeString = @"8:31pm, 9:17pm, 10:15pm";
     movieInfo.moviePosterImage = [UIImage imageNamed:@"the_book_thief.jpg"];
     [moviesArray3 addObject:movieInfo];
+
+    //Theater 3 with new theater info object
+    theaterInfo = [[TheaterInfo alloc] init];
+    theaterInfo.theaterName = @"UA Twin Peaks 10";
+    theaterInfo.theaterInfo = @"Longmont, CO";
+    theaterInfo.theaterImage = [UIImage imageNamed:@"twin_peaks.jpg"];
+    theaterInfo.passedMoviesArray3 = moviesArray3;
+    [theaterArray addObject:theaterInfo];
+    
+    //NSLog(@"theaterArray 3= %@", [theaterInfo.passedMoviesArray3 description]);
+    //NSLog(@"theaterArray = %lu", (unsigned long)[theaterArray count]);
+    //NSLog(@"theaterArray = %@", [theaterArray description]);
     
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
@@ -179,9 +193,9 @@
     //Create header label view. The size and possition of view are set by the elements contained and heightForHeaderInSection below
     UIView *headerView = [[UIView alloc] init];
     //Allocate labels and image view
-    theaterNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(70.0f, 5.0f, myTableView.frame.size.width, 20.0f)];
-    theaterInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(70.0f, 25.0f, myTableView.frame.size.width, 20.0f)];
-    theaterImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f, 5.0f, 55.0f, 40.0f)];
+    UILabel *theaterNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(70.0f, 5.0f, myTableView.frame.size.width, 20.0f)];
+    UILabel *theaterInfoLabel = [[UILabel alloc] initWithFrame:CGRectMake(70.0f, 25.0f, myTableView.frame.size.width, 20.0f)];
+    UIImageView *theaterImageView = [[UIImageView alloc] initWithFrame:CGRectMake(10.0f, 5.0f, 55.0f, 40.0f)];
     if (headerView != nil) {
         //Set text color
         theaterNameLabel.textColor = [UIColor whiteColor];
@@ -192,29 +206,13 @@
         [headerView addSubview:theaterNameLabel];
         [headerView addSubview:theaterInfoLabel];
         [headerView addSubview:theaterImageView];
-        //Set text/image based on section number
-        if (section == 0) {
-            //Grab instance of theater info object for section
-            TheaterInfo *theaterInfo = [theaterArray objectAtIndex:section];
-            //Set text and image from theater array
-            theaterNameLabel.text = theaterInfo.theaterName;
-            theaterInfoLabel.text = theaterInfo.theaterInfo;
-            theaterImageView.image = theaterInfo.theaterImage;
-        } else if (section == 1) {
-            //Grab instance of theater info object for section
-            TheaterInfo *theaterInfo = [theaterArray objectAtIndex:section];
-            //Set text and image from theater array
-            theaterNameLabel.text = theaterInfo.theaterName;
-            theaterInfoLabel.text = theaterInfo.theaterInfo;
-            theaterImageView.image = theaterInfo.theaterImage;
-        } else if (section == 2) {
-            //Grab instance of theater info object for section
-            TheaterInfo *theaterInfo = [theaterArray objectAtIndex:section];
-            //Set text and image from theater array
-            theaterNameLabel.text = theaterInfo.theaterName;
-            theaterInfoLabel.text = theaterInfo.theaterInfo;
-            theaterImageView.image = theaterInfo.theaterImage;
-        }
+        
+        //Grab instance of theater info object for section
+        TheaterInfo *theaterInfo = [theaterArray objectAtIndex:section];
+        //Set text and image from theater array based on section
+        theaterNameLabel.text = theaterInfo.theaterName;
+        theaterInfoLabel.text = theaterInfo.theaterInfo;
+        theaterImageView.image = theaterInfo.theaterImage;
     }
     return headerView;
 }
@@ -245,10 +243,13 @@
     //Allocate and reuse cells
     CustomTableViewCell *cell = (CustomTableViewCell *) [tableView dequeueReusableCellWithIdentifier:@"MovieCell"];
     if (cell != nil) {
+        //Grab instance of theater info object for section
+        TheaterInfo *theaterInfo = [theaterArray objectAtIndex:indexPath.section];
+        
         //Section 1
         if (indexPath.section == 0) {
-            //Grab instance of movie info object for row
-            MovieInfo *movieInfo = [self.moviesArray1 objectAtIndex:indexPath.row];
+            //Grab instance of movie info object in theater info object for row
+            MovieInfo *movieInfo = [theaterInfo.passedMoviesArray1 objectAtIndex:indexPath.row];
             //Apply text and image to cell
             cell.movieTitleLabel.text = movieInfo.movieTitleString;
             cell.playTimesLabel.text = movieInfo.playTimeString;
@@ -256,7 +257,7 @@
         //Section 2
         } else if (indexPath.section == 1) {
             //Grab instance of movie info object for row
-            MovieInfo *movieInfo = [self.moviesArray2 objectAtIndex:indexPath.row];
+            MovieInfo *movieInfo = [theaterInfo.passedMoviesArray2 objectAtIndex:indexPath.row];
             //Apply text and image to cell
             cell.movieTitleLabel.text = movieInfo.movieTitleString;
             cell.playTimesLabel.text = movieInfo.playTimeString;
@@ -264,7 +265,7 @@
         //Section 3
         } else if (indexPath.section == 2) {
             //Grab instance of movie info object for row
-            MovieInfo *movieInfo = [self.moviesArray3 objectAtIndex:indexPath.row];
+            MovieInfo *movieInfo = [theaterInfo.passedMoviesArray3 objectAtIndex:indexPath.row];
             //Apply text and image to cell
             cell.movieTitleLabel.text = movieInfo.movieTitleString;
             cell.playTimesLabel.text = movieInfo.playTimeString;
@@ -289,12 +290,14 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         //Grab destination view controller
         DetailsViewController *detailsViewController = segue.destinationViewController;
+        //Grab instance of theaterInfo by section
+        TheaterInfo *theaterInfo = [theaterArray objectAtIndex:indexPath.section];
         
         if (detailsViewController != nil) {
             //Section 1
             if (indexPath.section == 0) {
                 //Grab instance of movie info object for row
-                MovieInfo *movieInfo = [self.moviesArray1 objectAtIndex:indexPath.row];
+                MovieInfo *movieInfo = [theaterInfo.passedMoviesArray1 objectAtIndex:indexPath.row];
                 //Apply text and image to cell
                 detailsViewController.passedMovieTitle = movieInfo.movieTitleString;
                 detailsViewController.passedPlayTimes = movieInfo.playTimeString;
@@ -302,7 +305,7 @@
                 //Section 2
             } else if (indexPath.section == 1) {
                 //Grab instance of movie info object for row
-                MovieInfo *movieInfo = [self.moviesArray2 objectAtIndex:indexPath.row];
+                MovieInfo *movieInfo = [theaterInfo.passedMoviesArray2 objectAtIndex:indexPath.row];
                 //Apply text and image to cell
                 detailsViewController.passedMovieTitle = movieInfo.movieTitleString;
                 detailsViewController.passedPlayTimes = movieInfo.playTimeString;
@@ -310,14 +313,12 @@
                 //Section 3
             } else if (indexPath.section == 2) {
                 //Grab instance of movie info object for row
-                MovieInfo *movieInfo = [self.moviesArray3 objectAtIndex:indexPath.row];
+                MovieInfo *movieInfo = [theaterInfo.passedMoviesArray3 objectAtIndex:indexPath.row];
                 //Apply text and image to cell
                 detailsViewController.passedMovieTitle = movieInfo.movieTitleString;
                 detailsViewController.passedPlayTimes = movieInfo.playTimeString;
                 detailsViewController.passedPosterImage = movieInfo.moviePosterImage;
             }
-            //Send screen name to NSString in DetailViewController for display
-            //detailsViewController.passedMovieTitle = [moviesArray1 objectAtIndex:indexPath.row];
         }
     }
 }

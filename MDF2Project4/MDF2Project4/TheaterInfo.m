@@ -16,6 +16,6 @@
 @implementation TheaterInfo
 
 //Synthesize for getters/setters
-@synthesize theaterName, theaterInfo, theaterImage;
+@synthesize theaterName, theaterInfo, theaterImage, passedMoviesArray1, passedMoviesArray2, passedMoviesArray3;
 
 @end
