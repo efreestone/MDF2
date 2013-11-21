@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B8669A4A183DA0C100D158CC /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8669A49183DA0C100D158CC /* MediaPlayer.framework */; };
+		B8669A4D183DA15B00D158CC /* MovieViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B8669A4C183DA15B00D158CC /* MovieViewController.m */; };
 		B8B532EF183C0D260063515D /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8B532EE183C0D260063515D /* Foundation.framework */; };
 		B8B532F1183C0D260063515D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8B532F0183C0D260063515D /* CoreGraphics.framework */; };
 		B8B532F3183C0D260063515D /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B8B532F2183C0D260063515D /* UIKit.framework */; };
@@ -57,6 +59,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B8669A49183DA0C100D158CC /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		B8669A4B183DA15B00D158CC /* MovieViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieViewController.h; sourceTree = "<group>"; };
+		B8669A4C183DA15B00D158CC /* MovieViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieViewController.m; sourceTree = "<group>"; };
 		B8B532EB183C0D260063515D /* MDF2Project4.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MDF2Project4.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8B532EE183C0D260063515D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		B8B532F0183C0D260063515D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -110,6 +115,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B8669A4A183DA0C100D158CC /* MediaPlayer.framework in Frameworks */,
 				B8B532F1183C0D260063515D /* CoreGraphics.framework in Frameworks */,
 				B8B532F3183C0D260063515D /* UIKit.framework in Frameworks */,
 				B8B532EF183C0D260063515D /* Foundation.framework in Frameworks */,
@@ -151,6 +157,7 @@
 		B8B532ED183C0D260063515D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				B8669A49183DA0C100D158CC /* MediaPlayer.framework */,
 				B8B532EE183C0D260063515D /* Foundation.framework */,
 				B8B532F0183C0D260063515D /* CoreGraphics.framework */,
 				B8B532F2183C0D260063515D /* UIKit.framework */,
@@ -180,6 +187,8 @@
 				B8B5332D183C18BC0063515D /* CustomTableViewCell.m */,
 				B8B5334E183C68FB0063515D /* theaters */,
 				B8B5332F183C5D300063515D /* posters */,
+				B8669A4B183DA15B00D158CC /* MovieViewController.h */,
+				B8669A4C183DA15B00D158CC /* MovieViewController.m */,
 			);
 			path = MDF2Project4;
 			sourceTree = "<group>";
@@ -368,6 +377,7 @@
 				B8B53357183C6DAE0063515D /* DetailsViewController.m in Sources */,
 				B8B53328183C13510063515D /* MovieInfo.m in Sources */,
 				B8B532FB183C0D260063515D /* main.m in Sources */,
+				B8669A4D183DA15B00D158CC /* MovieViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,6 +596,7 @@
 				B8B53322183C0D270063515D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B8B53323183C0D270063515D /* Build configuration list for PBXNativeTarget "MDF2Project4Tests" */ = {
 			isa = XCConfigurationList;
@@ -594,6 +605,7 @@
 				B8B53325183C0D270063515D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

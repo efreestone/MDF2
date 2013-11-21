@@ -31,7 +31,7 @@
 @synthesize myTableView, moviesArray1, moviesArray2, moviesArray3, theaterArray;
 
 - (void)viewDidLoad
-{    
+{
     //Create first movie array using MovieInfo object
     moviesArray1 = [NSMutableArray arrayWithCapacity:5];
     //Movie 1
@@ -78,9 +78,8 @@
     [theaterArray addObject:theaterInfo];
     
     //NSLog(@"movieArray1 = %@", [moviesArray1 description]);
-    
     //NSLog(@"theaterArray = %@", [theaterArray description]);
-    NSLog(@"theaterArray = %@", [theaterInfo.passedMoviesArray1 description]);
+    //NSLog(@"theaterArray = %@", [theaterInfo.passedMoviesArray1 description]);
     
     //Create second movie array using MovieInfo object
     moviesArray2 = [NSMutableArray arrayWithCapacity:5];
@@ -123,7 +122,7 @@
     theaterInfo.passedMoviesArray2 = moviesArray2;
     [theaterArray addObject:theaterInfo];
     
-    NSLog(@"theaterArray 2= %@", [theaterInfo.passedMoviesArray2 description]);
+    //NSLog(@"theaterArray 2= %@", [theaterInfo.passedMoviesArray2 description]);
     
     //Create third movie array using MovieInfo object
     moviesArray3 = [NSMutableArray arrayWithCapacity:5];
@@ -166,8 +165,7 @@
     theaterInfo.passedMoviesArray3 = moviesArray3;
     [theaterArray addObject:theaterInfo];
     
-    NSLog(@"theaterArray 3= %@", [theaterInfo.passedMoviesArray3 description]);
-    
+    //NSLog(@"theaterArray 3= %@", [theaterInfo.passedMoviesArray3 description]);
     //NSLog(@"theaterArray = %lu", (unsigned long)[theaterArray count]);
     //NSLog(@"theaterArray = %@", [theaterArray description]);
     

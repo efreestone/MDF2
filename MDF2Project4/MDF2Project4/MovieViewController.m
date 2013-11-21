@@ -1,3 +1,8 @@
+// Elijah Freestone
+// MDF2 1311
+// Project 4
+// November 19th, 2013
+
 //
 //  MovieViewController.m
 //  MDF2Project4
@@ -7,6 +12,8 @@
 //
 
 #import "MovieViewController.h"
+//Import media player
+#import <MediaPlayer/MediaPlayer.h>
 
 @interface MovieViewController ()
 

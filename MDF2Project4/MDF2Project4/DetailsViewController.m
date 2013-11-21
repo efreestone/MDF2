@@ -12,10 +12,6 @@
 //
 
 #import "DetailsViewController.h"
-//
-#import "ViewController.h"
-#import "MovieInfo.h"
-#import "TheaterInfo.h"
 
 @interface DetailsViewController ()
 
