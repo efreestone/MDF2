@@ -68,8 +68,8 @@
             <objects>
                 <viewController id="zJY-et-c6g" customClass="DetailsViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="LOi-al-Ztp"/>
-                        <viewControllerLayoutGuide type="bottom" id="63u-sk-QqE"/>
+                        <viewControllerLayoutGuide type="top" id="02k-R4-jxc"/>
+                        <viewControllerLayoutGuide type="bottom" id="xAj-L3-wxa"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="ng3-cw-zyi">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
@@ -122,20 +122,20 @@
             <objects>
                 <viewController id="kj7-TG-Uh0" customClass="MovieViewController" sceneMemberID="viewController">
                     <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="6Ey-n8-X30"/>
-                        <viewControllerLayoutGuide type="bottom" id="BQu-sm-xRk"/>
+                        <viewControllerLayoutGuide type="top" id="5Wh-RF-vgK"/>
+                        <viewControllerLayoutGuide type="bottom" id="GIl-nw-Tmw"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="tlO-z4-Puj">
                         <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9qJ-Lg-uXJ">
-                                <rect key="frame" x="0.0" y="64" width="768" height="768"/>
+                                <rect key="frame" x="0.0" y="64" width="768" height="720"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XaT-KC-j7t">
-                                <rect key="frame" x="197" y="840" width="100" height="100"/>
+                                <rect key="frame" x="197" y="792" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="play_icon_ipad.png"/>
@@ -144,7 +144,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZX6-Rb-QPM">
-                                <rect key="frame" x="471" y="840" width="100" height="100"/>
+                                <rect key="frame" x="471" y="792" width="100" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <state key="normal" image="stop_icon_ipad.png"/>

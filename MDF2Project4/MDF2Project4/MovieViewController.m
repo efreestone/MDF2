@@ -38,12 +38,15 @@
 
 - (void)viewDidAppear:(BOOL)animated
 {
+    //Trying to load remote video but recieving error "_itemFailedToPlayToEnd: { kind = 1; new = 2; old = 0;}" regardless of video source. Currently set up to play locally stored video included with project
     /*//NSString *filePath = [[NSBundle mainBundle] pathForResource:@"test video" ofType:@"m4v"];
     //NSString *urlString = @"http://movietrailers.apple.com/movies/dreamworks/needforspeed/needforspeed-tlr2_480p.mov";
     //Dropbox public link
     //NSString *urlString = @"https://www.dropbox.com/sc/a66xho2o0whxk1k/C5SWMnX3xU";
     //Dropbox share link
-    NSString *urlString = @"https://dl.dropboxusercontent.com/u/101537341/Best_Man_Down.m4v";
+    //NSString *urlString = @"https://dl.dropboxusercontent.com/u/101537341/Best_Man_Down.m4v";
+    
+    NSString *urlString = @"https://drive.google.com/file/d/0B3UtgI4UhJDvNHpsYlZNSWUwS00/edit?usp=sharing";
     //NSURL *fileUrl = [NSURL fileURLWithPath:filePath];
     NSURL *fileUrl = [NSURL fileURLWithPath:urlString];
     
